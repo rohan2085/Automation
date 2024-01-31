@@ -1,0 +1,170 @@
+{
+	"scenarioName": "PayMate Business flow",
+	"ignoreStepFailures": true,
+	"steps": [
+		{
+			"name": "Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending",
+			"url": "/v1/Businessboarding",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "REQhp${RANDOM.NUMBER:13}",
+						"BusinessInfo": {
+							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
+							"BusinessName": "paul${RANDOM.NUMBER:8}",
+							"BusinessCode": "paul${RANDOM.NUMBER:8}",
+							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
+							"BusinessEmailAddress": "paulw${RANDOM.NUMBER.FIXED:4}@yopmail.com",
+							"ISDCode": "+65",
+							"MobileNumber": "80${RANDOM.NUMBER:6}",
+							"BusinessDescription": "Gift products ecommerce site which has been created for Paul Walker",
+							"WebsiteAddress": "www.tata${RANDOM.NUMBER:6}.com",
+							"BusinessISOCountryCode": "SGP",
+							"ContactKYCRequired": "Y"
+						},
+						"TransactionCharges": [
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"IssuerCode": "",
+								"ProgramCode": "ABC123"
+							},
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"IssuerCode": "",
+								"ProgramCode": "ABC123"
+							}
+						]
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": {
+						"BusinessXpressID": "$NOT.NULL",
+						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"Status": "198",
+						"Message": "T&C acceptance is pending"
+					}
+				}
+			}
+		},
+		{
+			"name": "Create_manage_business_000_Your_request_has_been_processed_successfully_290_KYC_Pending",
+			"url": "/v1/managebusiness",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"RequestID": "Reqm${RANDOM.NUMBER:13}",
+					"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+					"BusinessXpressID": "",
+					"FromDate": "${LOCAL.DATETIME.NOW:dd-MM-yyyy}",
+					"ToDate": "${LOCAL.DATETIME.NOW:dd-MM-yyyy}",
+					"PaginationIndex": "1",
+					"RecordsPerPage": "10"
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Create_manage_business_000_Your_request_has_been_processed_successfully_290_KYC_Pending.request.body.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": [
+						{
+							"BusinessDetails": {
+								"BusinessName": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessName}",
+								"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+								"ContactPersonName": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.ContactPersonName}",
+								"BusinessEmailAddress": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessEmailAddress}",
+								"ISDCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.ISDCode}",
+								"MobileNumber": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.MobileNumber}",
+								"WebsiteAddress": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.WebsiteAddress}",
+								"BusinessDescription": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessDescription}",
+								"ContactKYCRequired": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.ContactKYCRequired}",
+								"BusinessStatus": "299",
+								"StatusRemark": "Business Registered",
+								"RegistrationDate": "${LOCAL.DATETIME.NOW:dd/MM/yyyy}",
+								"BusinessXpressID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.response.body.DetailedSummary.BusinessXpressID}",
+								"XpressAccountNo": null,
+								"XpressAccountBalance": 0.0
+							},
+							"TransactionCharges": [
+								{
+									"ServiceType": "Send Money",
+									"PaymentMode": "Credit Card",
+									"ProcessingRate": 2.0,
+									"IssuerCode": ""
+								}
+							],
+							"TermsConditions": null,
+							"KYCDetails": {
+								"BusinessNature": null,
+								"StatusCode": 290,
+								"KYCStatus": "KYC Pending"
+							}
+						}
+					]
+				}
+			}
+		}
+	]
+}
