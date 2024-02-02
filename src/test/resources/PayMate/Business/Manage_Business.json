@@ -1,5 +1,5 @@
 {
-	"scenarioName": "PayMate Business flow",
+	"scenarioName": "Manage Business flow",
 	"ignoreStepFailures": true,
 	"steps": [
 		{
@@ -20,7 +20,7 @@
 							"BusinessName": "paul${RANDOM.NUMBER:8}",
 							"BusinessCode": "paul${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
-							"BusinessEmailAddress": "paulw${RANDOM.NUMBER.FIXED:4}@yopmail.com",
+							"BusinessEmailAddress": "paulw${RANDOM.NUMBER.FIXED:6}@yopmail.com",
 							"ISDCode": "+65",
 							"MobileNumber": "80${RANDOM.NUMBER:6}",
 							"BusinessDescription": "Gift products ecommerce site which has been created for Paul Walker",

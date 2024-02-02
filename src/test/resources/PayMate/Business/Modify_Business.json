@@ -1,0 +1,208 @@
+{
+	"scenarioName": "Modify Business flow",
+	"ignoreStepFailures": true,
+	"steps": [
+		{
+			"name": "Create_Business_boarding_000_198_TC_acceptance_is_pending_with_RequestID_lessThan_maxLength_10AN",
+			"url": "/v1/Businessboarding",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "${RANDOM.NUMBER:5}${RANDOM.NUMBER:5}",
+						"BusinessInfo": {
+							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
+							"BusinessName": "paul${RANDOM.NUMBER:8}",
+							"BusinessCode": "paul${RANDOM.NUMBER:8}",
+							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
+							"BusinessEmailAddress": "paulw${RANDOM.NUMBER.FIXED:6}@yopmail.com",
+							"ISDCode": "+65",
+							"MobileNumber": "80${RANDOM.NUMBER:6}",
+							"BusinessDescription": "Gift products ecommerce site which has been created for Paul Walker",
+							"WebsiteAddress": "www.tata${RANDOM.NUMBER:6}.com",
+							"BusinessISOCountryCode": "SGP",
+							"ContactKYCRequired": "Y"
+						},
+						"TransactionCharges": [
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"IssuerCode": "",
+								"ProgramCode": "ABC123"
+							},
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"IssuerCode": "",
+								"ProgramCode": "ABC123"
+							}
+						]
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Create_Business_boarding_000_198_TC_acceptance_is_pending_with_RequestID_lessThan_maxLength_10AN.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": {
+						"BusinessXpressID": "$NOT.NULL",
+						"BusinessCode": "${$.Create_Business_boarding_000_198_TC_acceptance_is_pending_with_RequestID_lessThan_maxLength_10AN.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"Status": "198",
+						"Message": "T&C acceptance is pending"
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify_Business_boarding_000_219_Your_business_information_has_been_updated_successfully_01",
+			"url": "/v1/modifybusiness",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "M${$.Create_Business_boarding_000_198_TC_acceptance_is_pending_with_RequestID_lessThan_maxLength_10AN.request.body.BusinessDetails.RequestID}${RANDOM.NUMBER:6}",
+						"BusinessInfo": {
+							"BusinessName": "MODIFY${$.Create_Business_boarding_000_198_TC_acceptance_is_pending_with_RequestID_lessThan_maxLength_10AN.request.body.BusinessDetails.BusinessInfo.BusinessName}",
+							"BusinessCode": "${$.Create_Business_boarding_000_198_TC_acceptance_is_pending_with_RequestID_lessThan_maxLength_10AN.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+							"BusinessXpressID": "",
+							"ContactPersonName": "MODIFY${$.Create_Business_boarding_000_198_TC_acceptance_is_pending_with_RequestID_lessThan_maxLength_10AN.request.body.BusinessDetails.BusinessInfo.ContactPersonName}",
+							"BusinessEmailAddress": "MODIFY${$.Create_Business_boarding_000_198_TC_acceptance_is_pending_with_RequestID_lessThan_maxLength_10AN.request.body.BusinessDetails.BusinessInfo.BusinessEmailAddress}",
+							"MobileNumber": "80${RANDOM.NUMBER:6}",
+							"BusinessDescription": "MODIFY Gift products ecommerce site which has been created for Paul Walker MODIFY",
+							"ContactKYCRequired": "N"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Modify_Business_boarding_000_219_Your_business_information_has_been_updated_successfully_01.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": {
+						"BusinessXpressID": "$NOT.NULL",
+						"BusinessCode": "${$.Modify_Business_boarding_000_219_Your_business_information_has_been_updated_successfully_01.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"Status": "219",
+						"Message": "Your business information has been updated successfully"
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify_Business_boarding_000_219_Your_business_information_has_been_updated_successfully_02",
+			"url": "/v1/modifybusiness",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "M2${$.Modify_Business_boarding_000_219_Your_business_information_has_been_updated_successfully_01.request.body.BusinessDetails.RequestID}${RANDOM.NUMBER:6}",
+						"BusinessInfo": {
+							"BusinessName": "M2${$.Modify_Business_boarding_000_219_Your_business_information_has_been_updated_successfully_01.request.body.BusinessDetails.BusinessInfo.BusinessName}",
+							"BusinessCode": "${$.Modify_Business_boarding_000_219_Your_business_information_has_been_updated_successfully_01.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+							"BusinessXpressID": "",
+							"ContactPersonName": "MPaul Walker${RANDOM.STRING:6}",
+							"BusinessEmailAddress": "M2${$.Modify_Business_boarding_000_219_Your_business_information_has_been_updated_successfully_01.request.body.BusinessDetails.BusinessInfo.BusinessEmailAddress}",
+							"MobileNumber": "80${RANDOM.NUMBER:6}",
+							"BusinessDescription": "MODIFY2 Gift products ecommerce site which has been created for Paul Walker MODIFY2",
+							"ContactKYCRequired": "N"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Modify_Business_boarding_000_219_Your_business_information_has_been_updated_successfully_02.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": {
+						"BusinessXpressID": "$NOT.NULL",
+						"BusinessCode": "${$.Modify_Business_boarding_000_219_Your_business_information_has_been_updated_successfully_02.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"Status": "219",
+						"Message": "Your business information has been updated successfully"
+					}
+				}
+			}
+		}
+	]
+}

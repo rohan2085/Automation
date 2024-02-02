@@ -22,5 +22,15 @@ public class BusinessTest {
 	@Scenario("PayMate/Business/Manage_Business.json")
 	public void test_Manage_Business_scenarios() throws Exception {
 	}
+	
+	@Test
+	@Scenario("PayMate/Business/Modify_Business.json")
+	public void test_Modify_Business_scenarios() throws Exception {
+	}
+
+	@Test
+	@Scenario("PayMate/Business/Delete_Business.json")
+	public void test_Delete_Business_scenarios() throws Exception {
+	}
 
 }
