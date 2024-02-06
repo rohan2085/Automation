@@ -11,9 +11,14 @@ import org.junit.runners.MethodSorters;
 
 @TargetEnv("PayMate.properties")
 @RunWith(ZeroCodeUnitRunner.class)
-@EnvProperty("_${env}")  
+@EnvProperty("_${env}")
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class BusinessTest {
+
+	@Test
+	@Scenario("PayMate/Business/Business_BoardingCustom.json")
+	public void test_Business_Boarding_custom_scenarios() throws Exception {
+	}
 
 	@Test
 	@Scenario("PayMate/Business/Business_Boarding.json")
@@ -24,7 +29,7 @@ public class BusinessTest {
 	@Scenario("PayMate/Business/Manage_Business.json")
 	public void test_Manage_Business_scenarios() throws Exception {
 	}
-	
+
 	@Test
 	@Scenario("PayMate/Business/Modify_Business.json")
 	public void test_Modify_Business_scenarios() throws Exception {

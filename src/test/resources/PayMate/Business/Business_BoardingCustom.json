@@ -1,0 +1,90 @@
+{
+	"scenarioName": "Business Boarding Custom flow",
+	"ignoreStepFailures": true,
+	"steps": [
+		{
+			"name": "${0}",
+			"url": "/v1/Businessboarding",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "${1}",
+						"BusinessInfo": {
+							"BusinessRegistrationNo": "${2}",
+							"BusinessName": "${3}",
+							"BusinessCode": "${4}",
+							"ContactPersonName": "${5}",
+							"BusinessEmailAddress": "${6}",
+							"ISDCode": "${7}",
+							"MobileNumber": "${8}",
+							"BusinessDescription": "${9}",
+							"WebsiteAddress": "${10}",
+							"BusinessISOCountryCode": "${11}",
+							"ContactKYCRequired": "${12}"
+						},
+						"TransactionCharges": [
+							{
+								"ServiceType": "${13}",
+								"PaymentMode": "${14}",
+								"ProcessingRate": "${15}",
+								"ProgramCode": "${16}"
+							},
+							{
+								"ServiceType": "${17}",
+								"PaymentMode": "${18}",
+								"ProcessingRate": "${19}",
+								"ProgramCode": "${20}"
+							}
+						]
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${21}",
+					"StatusCode": "${22}",
+					"Description": "${23}",
+					"DetailedSummary": {
+						"BusinessXpressID": "$NOT.NULL",
+						"BusinessCode": "${24}",
+						"Status": "${25}",
+						"Message": "${26}"
+					}
+				}
+			}
+		}
+	],
+	"parameterized": {
+		"csvSource": [
+			"Create_Business_boarding_000_198_TC_acceptance_is_pending_with_RequestID_maxLength_31AN,REQhp${RANDOM.NUMBER:15}${RANDOM.NUMBER:11},${RANDOM.NUMBER:9}R,paul${RANDOM.NUMBER:8},paul${RANDOM.NUMBER:8},PaulWalker${RANDOM.STRING:6},paulw${RANDOM.NUMBER.FIXED:6}@yopmail.com,${ISDCode},${MobileNumber},GiftproductsecommercesitewhichhasbeencreatedforPaulWalker,www.tata${RANDOM.NUMBER:6}.com,${BusinessISOCountryCode},Y,Payments,CreditCard,2.00,ABC123,Payments,CreditCard,2.00,ABC123,${$.Create_Business_boarding_000_198_TC_acceptance_is_pending_with_RequestID_maxLength_31AN.request.body.BusinessDetails.RequestID},178,Invalid Input Parameter(s),${$.Create_Business_boarding_000_198_TC_acceptance_is_pending_with_RequestID_maxLength_31AN.request.body.BusinessDetails.BusinessInfo.BusinessCode},609,Empty/Invalid RequestId",
+			"Create_Business_boarding_178_Invalid_Input_Parameters_609_Empty_Invalid_RequestId_when_RequestID_special_characters,_&^%@${RANDOM.STRING:6})(*{},${RANDOM.NUMBER:9}R,paul${RANDOM.NUMBER:8},paul${RANDOM.NUMBER:8},PaulWalker${RANDOM.STRING:6},paulw${RANDOM.NUMBER.FIXED:6}@yopmail.com,${ISDCode},${MobileNumber},GiftproductsecommercesitewhichhasbeencreatedforPaulWalker,www.tata${RANDOM.NUMBER:6}.com,${BusinessISOCountryCode},Y,Payments,CreditCard,2.00,ABC123,Payments,CreditCard,2.00,ABC123,${$.Create_Business_boarding_178_Invalid_Input_Parameters_609_Empty_Invalid_RequestId_when_RequestID_special_characters.request.body.BusinessDetails.RequestID},178,Invalid Input Parameter(s),${$.Create_Business_boarding_178_Invalid_Input_Parameters_609_Empty_Invalid_RequestId_when_RequestID_special_characters.request.body.BusinessDetails.BusinessInfo.BusinessCode},609,Empty/Invalid RequestId"
+		]
+	}
+}
