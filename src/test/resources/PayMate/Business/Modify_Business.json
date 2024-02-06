@@ -21,11 +21,11 @@
 							"BusinessCode": "paul${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
 							"BusinessEmailAddress": "paulw${RANDOM.NUMBER.FIXED:6}@yopmail.com",
-							"ISDCode": "+65",
-							"MobileNumber": "80${RANDOM.NUMBER:6}",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}",
 							"BusinessDescription": "Gift products ecommerce site which has been created for Paul Walker",
 							"WebsiteAddress": "www.tata${RANDOM.NUMBER:6}.com",
-							"BusinessISOCountryCode": "SGP",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
 							"ContactKYCRequired": "Y"
 						},
 						"TransactionCharges": [
@@ -33,14 +33,12 @@
 								"ServiceType": "Payments",
 								"PaymentMode": "CreditCard",
 								"ProcessingRate": "2.00",
-								"IssuerCode": "",
 								"ProgramCode": "ABC123"
 							},
 							{
 								"ServiceType": "Payments",
 								"PaymentMode": "CreditCard",
 								"ProcessingRate": "2.00",
-								"IssuerCode": "",
 								"ProgramCode": "ABC123"
 							}
 						]
@@ -101,7 +99,7 @@
 							"BusinessXpressID": "",
 							"ContactPersonName": "MODIFY${$.Create_Business_boarding_000_198_TC_acceptance_is_pending_with_RequestID_lessThan_maxLength_10AN.request.body.BusinessDetails.BusinessInfo.ContactPersonName}",
 							"BusinessEmailAddress": "MODIFY${$.Create_Business_boarding_000_198_TC_acceptance_is_pending_with_RequestID_lessThan_maxLength_10AN.request.body.BusinessDetails.BusinessInfo.BusinessEmailAddress}",
-							"MobileNumber": "80${RANDOM.NUMBER:6}",
+							"MobileNumber": "${MobileNumber}",
 							"BusinessDescription": "MODIFY Gift products ecommerce site which has been created for Paul Walker MODIFY",
 							"ContactKYCRequired": "N"
 						}
@@ -162,7 +160,7 @@
 							"BusinessXpressID": "",
 							"ContactPersonName": "MPaul Walker${RANDOM.STRING:6}",
 							"BusinessEmailAddress": "M2${$.Modify_Business_boarding_000_219_Your_business_information_has_been_updated_successfully_01.request.body.BusinessDetails.BusinessInfo.BusinessEmailAddress}",
-							"MobileNumber": "80${RANDOM.NUMBER:6}",
+							"MobileNumber": "${MobileNumber}",
 							"BusinessDescription": "MODIFY2 Gift products ecommerce site which has been created for Paul Walker MODIFY2",
 							"ContactKYCRequired": "N"
 						}

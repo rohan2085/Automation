@@ -1,5 +1,6 @@
 package com.paymate.business;
 
+import org.jsmart.zerocode.core.domain.EnvProperty;
 import org.jsmart.zerocode.core.domain.Scenario;
 import org.jsmart.zerocode.core.domain.TargetEnv;
 import org.jsmart.zerocode.core.runner.ZeroCodeUnitRunner;
@@ -10,6 +11,7 @@ import org.junit.runners.MethodSorters;
 
 @TargetEnv("PayMate.properties")
 @RunWith(ZeroCodeUnitRunner.class)
+@EnvProperty("_${env}")  
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class BusinessTest {
 

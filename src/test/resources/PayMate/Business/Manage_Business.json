@@ -21,11 +21,11 @@
 							"BusinessCode": "paul${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
 							"BusinessEmailAddress": "paulw${RANDOM.NUMBER.FIXED:6}@yopmail.com",
-							"ISDCode": "+65",
-							"MobileNumber": "80${RANDOM.NUMBER:6}",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}",
 							"BusinessDescription": "Gift products ecommerce site which has been created for Paul Walker",
 							"WebsiteAddress": "www.tata${RANDOM.NUMBER:6}.com",
-							"BusinessISOCountryCode": "SGP",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
 							"ContactKYCRequired": "Y"
 						},
 						"TransactionCharges": [
@@ -33,14 +33,12 @@
 								"ServiceType": "Payments",
 								"PaymentMode": "CreditCard",
 								"ProcessingRate": "2.00",
-								"IssuerCode": "",
 								"ProgramCode": "ABC123"
 							},
 							{
 								"ServiceType": "Payments",
 								"PaymentMode": "CreditCard",
 								"ProcessingRate": "2.00",
-								"IssuerCode": "",
 								"ProgramCode": "ABC123"
 							}
 						]
@@ -152,7 +150,7 @@
 									"ServiceType": "Send Money",
 									"PaymentMode": "Credit Card",
 									"ProcessingRate": 2.0,
-									"IssuerCode": ""
+									"IssuerCode": null
 								}
 							],
 							"TermsConditions": null,
