@@ -1,9 +1,9 @@
 {
-	"scenarioName": "Business Boarding flow",
+	"scenarioName": "Business Boarding All Flow as per xls",
 	"ignoreStepFailures": true,
 	"steps": [
 		{
-			"name": "Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending",
+			"name": "Businessboarding_Verify_API_only_with_mandatory_field",
 			"url": "/v1/Businessboarding",
 			"operation": "POST",
 			"request": {
@@ -14,85 +14,18 @@
 				},
 				"body": {
 					"BusinessDetails": {
-						"RequestID": "REQhp${RANDOM.NUMBER:13}",
+						"RequestID": "REQhp${RANDOM.NUMBER:8}${RANDOM.NUMBER:8}",
 						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
+							"BusinessRegistrationNo": "${RANDOM.STRING:15}${RANDOM.NUMBER:15}",
 							"BusinessName": "paul${RANDOM.NUMBER:8}",
 							"BusinessCode": "paul${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
 							"BusinessEmailAddress": "paulw${RANDOM.NUMBER.FIXED:6}@yopmail.com",
-							"ISDCode": "${ISDCode}",
-							"MobileNumber": "${MobileNumber}",
-							"BusinessDescription": "Gift products ecommerce site which has been created for Paul Walker",
-							"WebsiteAddress": "www.tata${RANDOM.NUMBER:6}.com",
-							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
-							"ContactKYCRequired": "Y"
-						},
-						"TransactionCharges": [
-							{
-								"ServiceType": "Payments",
-								"PaymentMode": "CreditCard",
-								"ProcessingRate": "2.00",
-								"ProgramCode": "ABC123"
-							},
-							{
-								"ServiceType": "Payments",
-								"PaymentMode": "CreditCard",
-								"ProcessingRate": "2.00",
-								"ProgramCode": "ABC123"
-							}
-						]
-					}
-				}
-			},
-			"assertions": {
-				"status": 200,
-				"headers": {
-					"Date": [
-						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
-					],
-					"Server": [
-						"Webserver"
-					],
-					"Transfer-Encoding": [
-						"chunked"
-					],
-					"X-Frame-Options": [
-						"DENY"
-					],
-					"Content-Type": [
-						"text/plain; charset=utf-8"
-					],
-					"Strict-Transport-Security": [
-						"max-age=31536000"
-					]
-				}
-			}
-		},
-		{
-			"name": "Create_Business_boarding_000_198_TC_acceptance_is_pending_with_RequestID_maxLength_30AN",
-			"url": "/v1/Businessboarding",
-			"operation": "POST",
-			"request": {
-				"headers": {
-					"MerchantId": "${MerchandId-TOKEN}",
-					"TerminalId": "${TerminalId-TOKEN}",
-					"XpressId": "${XpressId-TOKEN}"
-				},
-				"body": {
-					"BusinessDetails": {
-						"RequestID": "REQhp${RANDOM.NUMBER:15}${RANDOM.NUMBER:10}",
-						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
-							"BusinessName": "paul${RANDOM.NUMBER:8}",
-							"BusinessCode": "paul${RANDOM.NUMBER:8}",
-							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
-							"BusinessEmailAddress": "paulw${RANDOM.NUMBER.FIXED:6}@yopmail.com",
-							"ISDCode": "${ISDCode}",
-							"MobileNumber": "${MobileNumber}",
-							"BusinessDescription": "Gift products ecommerce site which has been created for Paul Walker",
-							"WebsiteAddress": "www.tata${RANDOM.NUMBER:6}.com",
-							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ISDCode": "",
+							"MobileNumber": "",
+							"BusinessDescription": "",
+							"WebsiteAddress": "",
+							"BusinessISOCountryCode": "",
 							"ContactKYCRequired": "Y"
 						},
 						"TransactionCharges": [
@@ -135,12 +68,12 @@
 					]
 				},
 				"body": {
-					"RequestID": "${$.Create_Business_boarding_000_198_TC_acceptance_is_pending_with_RequestID_maxLength_30AN.request.body.BusinessDetails.RequestID}",
+					"RequestID": "${$.Businessboarding_Verify_API_only_with_mandatory_field.request.body.BusinessDetails.RequestID}",
 					"StatusCode": "000",
 					"Description": "Your request has been processed successfully",
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
-						"BusinessCode": "${$.Create_Business_boarding_000_198_TC_acceptance_is_pending_with_RequestID_maxLength_30AN.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessCode": "${$.Businessboarding_Verify_API_only_with_mandatory_field.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
 						"Status": "198",
 						"Message": "T&C acceptance is pending"
 					}
@@ -148,7 +81,7 @@
 			}
 		},
 		{
-			"name": "Create_Business_boarding_609_RequestId_already_processed_when_RequestID_is_Duplicated_means_is_already_exist",
+			"name": "Businessboarding_Verify_API_with_Duplicate_RequestID",
 			"url": "/v1/Businessboarding",
 			"operation": "POST",
 			"request": {
@@ -159,18 +92,18 @@
 				},
 				"body": {
 					"BusinessDetails": {
-						"RequestID": "${$.Create_Business_boarding_000_198_TC_acceptance_is_pending_with_RequestID_maxLength_30AN.request.body.BusinessDetails.RequestID}",
+						"RequestID": "${$.Businessboarding_Verify_API_only_with_mandatory_field.request.body.BusinessDetails.RequestID}",
 						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
+							"BusinessRegistrationNo": "${RANDOM.STRING:15}${RANDOM.NUMBER:15}",
 							"BusinessName": "paul${RANDOM.NUMBER:8}",
 							"BusinessCode": "paul${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
 							"BusinessEmailAddress": "paulw${RANDOM.NUMBER.FIXED:6}@yopmail.com",
-							"ISDCode": "${ISDCode}",
-							"MobileNumber": "${MobileNumber}",
-							"BusinessDescription": "Gift products ecommerce site which has been created for Paul Walker",
-							"WebsiteAddress": "www.tata${RANDOM.NUMBER:6}.com",
-							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ISDCode": "",
+							"MobileNumber": "",
+							"BusinessDescription": "",
+							"WebsiteAddress": "",
+							"BusinessISOCountryCode": "",
 							"ContactKYCRequired": "Y"
 						},
 						"TransactionCharges": [
@@ -213,7 +146,7 @@
 					]
 				},
 				"body": {
-					"RequestID": "${$.Create_Business_boarding_609_RequestId_already_processed_when_RequestID_is_Duplicated_means_is_already_exist.request.body.BusinessDetails.RequestID}",
+					"RequestID": "${$.Businessboarding_Verify_API_only_with_mandatory_field.request.body.BusinessDetails.RequestID}",
 					"StatusCode": "609",
 					"Description": "RequestId already processed",
 					"DetailedSummary": {
@@ -222,7 +155,7 @@
 			}
 		},
 		{
-			"name": "Create_Business_boarding_178_Invalid_Input_Parameter_609_Empty_Invalid_RequestId_with_RequestID_with_SPACE",
+			"name": "Businessboarding_Verify_API_with_Same_Duplicate_Business_Name",
 			"url": "/v1/Businessboarding",
 			"operation": "POST",
 			"request": {
@@ -233,7 +166,163 @@
 				},
 				"body": {
 					"BusinessDetails": {
-						"RequestID": " REQhp${RANDOM.NUMBER:15}${RANDOM.NUMBER:9}",
+						"RequestID": "REQhp${RANDOM.NUMBER:8}${RANDOM.NUMBER:8}",
+						"BusinessInfo": {
+							"BusinessRegistrationNo": "${RANDOM.STRING:15}${RANDOM.NUMBER:15}",
+							"BusinessName": "${$.Businessboarding_Verify_API_only_with_mandatory_field.request.body.BusinessDetails.BusinessInfo.BusinessName}",
+							"BusinessCode": "paul${RANDOM.NUMBER:8}",
+							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
+							"BusinessEmailAddress": "paulw${RANDOM.NUMBER.FIXED:6}@yopmail.com",
+							"ISDCode": "",
+							"MobileNumber": "",
+							"BusinessDescription": "",
+							"WebsiteAddress": "",
+							"BusinessISOCountryCode": "",
+							"ContactKYCRequired": "Y"
+						},
+						"TransactionCharges": [
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"ProgramCode": "ABC123"
+							},
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"ProgramCode": "ABC123"
+							}
+						]
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Businessboarding_Verify_API_with_Same_Duplicate_Business_Name.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": {
+						"BusinessXpressID": "$NOT.NULL",
+						"BusinessCode": "${$.Businessboarding_Verify_API_with_Same_Duplicate_Business_Name.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"Status": "198",
+						"Message": "T&C acceptance is pending"
+					}
+				}
+			}
+		},
+		{
+			"name": "Businessboarding_Verify_API_with_Same_Duplicate_Business_Email_Address",
+			"url": "/v1/Businessboarding",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "REQhp${RANDOM.NUMBER:8}${RANDOM.NUMBER:8}",
+						"BusinessInfo": {
+							"BusinessRegistrationNo": "${RANDOM.STRING:15}${RANDOM.NUMBER:15}",
+							"BusinessName": "${RANDOM.STRING:15}${RANDOM.NUMBER:15}",
+							"BusinessCode": "paul${RANDOM.NUMBER:8}",
+							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
+							"BusinessEmailAddress": "${$.Businessboarding_Verify_API_only_with_mandatory_field.request.body.BusinessDetails.BusinessInfo.BusinessEmailAddress}",
+							"ISDCode": "",
+							"MobileNumber": "",
+							"BusinessDescription": "",
+							"WebsiteAddress": "",
+							"BusinessISOCountryCode": "",
+							"ContactKYCRequired": "Y"
+						},
+						"TransactionCharges": [
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"ProgramCode": "ABC123"
+							},
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"ProgramCode": "ABC123"
+							}
+						]
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Businessboarding_Verify_API_with_Same_Duplicate_Business_Email_Address.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "178",
+					"Description": "Invalid Input Parameter(s)",
+					"DetailedSummary": {
+						"BusinessXpressID": "$NOT.NULL",
+						"BusinessCode": "${$.Businessboarding_Verify_API_with_Same_Duplicate_Business_Email_Address.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"Status": "255",
+						"Message": "The entered email address is already registered. Please provide another email address."
+					}
+				}
+			}
+		},
+		{
+			"name": "Businessboarding_Verify_API_with_all_fields_data",
+			"url": "/v1/Businessboarding",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "${RANDOM.STRING:15}${RANDOM.NUMBER:10}",
 						"BusinessInfo": {
 							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
 							"BusinessName": "paul${RANDOM.NUMBER:8}",
@@ -287,20 +376,20 @@
 					]
 				},
 				"body": {
-					"RequestID": "${$.Create_Business_boarding_178_Invalid_Input_Parameter_609_Empty_Invalid_RequestId_with_RequestID_with_SPACE.request.body.BusinessDetails.RequestID}",
-					"StatusCode": "178",
-					"Description": "Invalid Input Parameter(s)",
+					"RequestID": "${$.Businessboarding_Verify_API_with_all_fields_data.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
-						"BusinessCode": "${$.Create_Business_boarding_178_Invalid_Input_Parameter_609_Empty_Invalid_RequestId_with_RequestID_with_SPACE.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "609",
-						"Message": "Empty/Invalid RequestId"
+						"BusinessCode": "${$.Businessboarding_Verify_API_with_all_fields_data.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"Status": "198",
+						"Message": "T&C acceptance is pending"
 					}
 				}
 			}
 		},
 		{
-			"name": "Create_Business_boarding_178_Invalid_Input_Parameters_609_Empty_Invalid_RequestId_when_RequestID_morethan_maxLength_31AN",
+			"name": "Businessboarding_Verify_API_with_Same_Duplicate_Mobile_Number",
 			"url": "/v1/Businessboarding",
 			"operation": "POST",
 			"request": {
@@ -311,7 +400,158 @@
 				},
 				"body": {
 					"BusinessDetails": {
-						"RequestID": "REQhp${RANDOM.NUMBER:15}${RANDOM.NUMBER:11}",
+						"RequestID": "${RANDOM.STRING:15}${RANDOM.NUMBER:10}",
+						"BusinessInfo": {
+							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
+							"BusinessName": "paul${RANDOM.NUMBER:8}",
+							"BusinessCode": "paul${RANDOM.NUMBER:8}",
+							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
+							"BusinessEmailAddress": "paulw${RANDOM.NUMBER.FIXED:6}@yopmail.com",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${$.Businessboarding_Verify_API_with_all_fields_data.request.body.BusinessDetails.BusinessInfo.MobileNumber}",
+							"BusinessDescription": "Gift products ecommerce site which has been created for Paul Walker",
+							"WebsiteAddress": "www.tata${RANDOM.NUMBER:6}.com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						},
+						"TransactionCharges": [
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"ProgramCode": "ABC123"
+							},
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"ProgramCode": "ABC123"
+							}
+						]
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Businessboarding_Verify_API_with_Same_Duplicate_Mobile_Number.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "178",
+					"Description": "Invalid Input Parameter(s)",
+					"DetailedSummary": {
+						"BusinessXpressID": "$NOT.NULL",
+						"BusinessCode": "${$.Businessboarding_Verify_API_with_Same_Duplicate_Mobile_Number.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"Status": "256",
+						"Message": "The entered Mobile Number is already registered. Please provide another Mobile Number."
+					}
+				}
+			}
+		},
+		{
+			"name": "Businessboarding_Verify_API_with_with_optional_field ",
+			"url": "/v1/Businessboarding",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "",
+						"BusinessInfo": {
+							"BusinessRegistrationNo": "",
+							"BusinessName": "",
+							"BusinessCode": "",
+							"ContactPersonName": "",
+							"BusinessEmailAddress": "",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}",
+							"BusinessDescription": "Gift products ecommerce site which has been created for Paul Walker",
+							"WebsiteAddress": "www.tata${RANDOM.NUMBER:6}.com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": ""
+						},
+						"TransactionCharges": [
+							{
+								"ServiceType": "",
+								"PaymentMode": "",
+								"ProcessingRate": "",
+								"ProgramCode": ""
+							},
+							{
+								"ServiceType": "",
+								"PaymentMode": "",
+								"ProcessingRate": "",
+								"ProgramCode": ""
+							}
+						]
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "",
+					"StatusCode": "609",
+					"Description": "Empty/Invalid RequestId",
+					"DetailedSummary": {
+					}
+				}
+			}
+		},
+		{
+			"name": "Businessboarding_Verify_API_without_RequestID_field",
+			"url": "/v1/Businessboarding",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
 						"BusinessInfo": {
 							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
 							"BusinessName": "paul${RANDOM.NUMBER:8}",
@@ -365,20 +605,16 @@
 					]
 				},
 				"body": {
-					"RequestID": "${$.Create_Business_boarding_178_Invalid_Input_Parameters_609_Empty_Invalid_RequestId_when_RequestID_morethan_maxLength_31AN.request.body.BusinessDetails.RequestID}",
-					"StatusCode": "178",
-					"Description": "Invalid Input Parameter(s)",
+					"RequestID": null,
+					"StatusCode": "609",
+					"Description": "Empty/Invalid RequestId",
 					"DetailedSummary": {
-						"BusinessXpressID": "$NOT.NULL",
-						"BusinessCode": "${$.Create_Business_boarding_178_Invalid_Input_Parameters_609_Empty_Invalid_RequestId_when_RequestID_morethan_maxLength_31AN.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "609",
-						"Message": "Empty/Invalid RequestId"
 					}
 				}
 			}
 		},
 		{
-			"name": "Create_Business_boarding_609_Empty_Invalid_RequestId_when_RequestID_is_blank_empty",
+			"name": "Businessboarding_Verify_API_with_blank_RequestID_field",
 			"url": "/v1/Businessboarding",
 			"operation": "POST",
 			"request": {
@@ -452,7 +688,7 @@
 			}
 		},
 		{
-			"name": "Create_Business_boarding_178_Invalid_Input_Parameters_609_Empty_Invalid_RequestId_when_RequestID_special_characters",
+			"name": "Businessboarding_Verify_API_more_than_AN30_RequestID_field",
 			"url": "/v1/Businessboarding",
 			"operation": "POST",
 			"request": {
@@ -463,7 +699,7 @@
 				},
 				"body": {
 					"BusinessDetails": {
-						"RequestID": "_&^%@${RANDOM.STRING:6})(*{}",
+						"RequestID": "REQhp${RANDOM.NUMBER:15}${RANDOM.NUMBER:11}",
 						"BusinessInfo": {
 							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
 							"BusinessName": "paul${RANDOM.NUMBER:8}",
@@ -517,12 +753,12 @@
 					]
 				},
 				"body": {
-					"RequestID": "${$.Create_Business_boarding_178_Invalid_Input_Parameters_609_Empty_Invalid_RequestId_when_RequestID_special_characters.request.body.BusinessDetails.RequestID}",
+					"RequestID": "${$.Businessboarding_Verify_API_more_than_AN30_RequestID_field.request.body.BusinessDetails.RequestID}",
 					"StatusCode": "178",
 					"Description": "Invalid Input Parameter(s)",
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
-						"BusinessCode": "${$.Create_Business_boarding_178_Invalid_Input_Parameters_609_Empty_Invalid_RequestId_when_RequestID_special_characters.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessCode": "${$.Businessboarding_Verify_API_more_than_AN30_RequestID_field.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
 						"Status": "609",
 						"Message": "Empty/Invalid RequestId"
 					}
@@ -530,7 +766,7 @@
 			}
 		},
 		{
-			"name": "Create_Business_boarding_178_Invalid_Input_Parameters_609_Empty_Invalid_RequestId_when_SQL",
+			"name": "Businessboarding_Verify_API_with_valid_RequestID_field_AN30",
 			"url": "/v1/Businessboarding",
 			"operation": "POST",
 			"request": {
@@ -541,7 +777,7 @@
 				},
 				"body": {
 					"BusinessDetails": {
-						"RequestID": "SELECT * FROM business WHERE request_id=10",
+						"RequestID": "REQhp${RANDOM.NUMBER:15}${RANDOM.NUMBER:10}",
 						"BusinessInfo": {
 							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
 							"BusinessName": "paul${RANDOM.NUMBER:8}",
@@ -595,20 +831,20 @@
 					]
 				},
 				"body": {
-					"RequestID": "${$.Create_Business_boarding_178_Invalid_Input_Parameters_609_Empty_Invalid_RequestId_when_SQL.request.body.BusinessDetails.RequestID}",
-					"StatusCode": "178",
-					"Description": "Invalid Input Parameter(s)",
+					"RequestID": "${$.Businessboarding_Verify_API_with_valid_RequestID_field_AN30.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
-						"BusinessCode": "${$.Create_Business_boarding_178_Invalid_Input_Parameters_609_Empty_Invalid_RequestId_when_SQL.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "609",
-						"Message": "Empty/Invalid RequestId"
+						"BusinessCode": "${$.Businessboarding_Verify_API_with_valid_RequestID_field_AN30.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"Status": "198",
+						"Message": "T&C acceptance is pending"
 					}
 				}
 			}
 		},
 		{
-			"name": "Create_Business_boarding_609_Empty_Invalid_RequestId_when_removed_parameter_RequestId_from_request",
+			"name": "Businessboarding_Verify_API_with_Empty_Invalid_Transaction_Charges",
 			"url": "/v1/Businessboarding",
 			"operation": "POST",
 			"request": {
@@ -619,6 +855,7 @@
 				},
 				"body": {
 					"BusinessDetails": {
+						"RequestID": "REQhp${RANDOM.NUMBER:15}${RANDOM.NUMBER:10}",
 						"BusinessInfo": {
 							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
 							"BusinessName": "paul${RANDOM.NUMBER:8}",
@@ -633,18 +870,6 @@
 							"ContactKYCRequired": "Y"
 						},
 						"TransactionCharges": [
-							{
-								"ServiceType": "Payments",
-								"PaymentMode": "CreditCard",
-								"ProcessingRate": "2.00",
-								"ProgramCode": "ABC123"
-							},
-							{
-								"ServiceType": "Payments",
-								"PaymentMode": "CreditCard",
-								"ProcessingRate": "2.00",
-								"ProgramCode": "ABC123"
-							}
 						]
 					}
 				}
@@ -672,250 +897,20 @@
 					]
 				},
 				"body": {
-					"RequestID": null,
-					"StatusCode": "609",
-					"Description": "Empty/Invalid RequestId",
-					"DetailedSummary": {
-					}
-				}
-			}
-		},
-		{
-			"name": "Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_BusinessRegistrationNo_maxLength_30AN",
-			"url": "/v1/Businessboarding",
-			"operation": "POST",
-			"request": {
-				"headers": {
-					"MerchantId": "${MerchandId-TOKEN}",
-					"TerminalId": "${TerminalId-TOKEN}",
-					"XpressId": "${XpressId-TOKEN}"
-				},
-				"body": {
-					"BusinessDetails": {
-						"RequestID": "REQhp${RANDOM.NUMBER:13}",
-						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:15}${RANDOM.STRING:15}",
-							"BusinessName": "paul${RANDOM.NUMBER:8}",
-							"BusinessCode": "paul${RANDOM.NUMBER:8}",
-							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
-							"BusinessEmailAddress": "paulw${RANDOM.NUMBER.FIXED:6}@yopmail.com",
-							"ISDCode": "${ISDCode}",
-							"MobileNumber": "${MobileNumber}",
-							"BusinessDescription": "Gift products ecommerce site which has been created for Paul Walker",
-							"WebsiteAddress": "www.tata${RANDOM.NUMBER:6}.com",
-							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
-							"ContactKYCRequired": "Y"
-						},
-						"TransactionCharges": [
-							{
-								"ServiceType": "Payments",
-								"PaymentMode": "CreditCard",
-								"ProcessingRate": "2.00",
-								"ProgramCode": "ABC123"
-							},
-							{
-								"ServiceType": "Payments",
-								"PaymentMode": "CreditCard",
-								"ProcessingRate": "2.00",
-								"ProgramCode": "ABC123"
-							}
-						]
-					}
-				}
-			},
-			"assertions": {
-				"status": 200,
-				"headers": {
-					"Date": [
-						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
-					],
-					"Server": [
-						"Webserver"
-					],
-					"Transfer-Encoding": [
-						"chunked"
-					],
-					"X-Frame-Options": [
-						"DENY"
-					],
-					"Content-Type": [
-						"text/plain; charset=utf-8"
-					],
-					"Strict-Transport-Security": [
-						"max-age=31536000"
-					]
-				},
-				"body": {
-					"RequestID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_BusinessRegistrationNo_maxLength_30AN.request.body.BusinessDetails.RequestID}",
-					"StatusCode": "000",
-					"Description": "Your request has been processed successfully",
-					"DetailedSummary": {
-						"BusinessXpressID": "$NOT.NULL",
-						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_BusinessRegistrationNo_maxLength_30AN.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
-					}
-				}
-			}
-		},
-		{
-			"name": "Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_BusinessRegistrationNo_with_SPACE",
-			"url": "/v1/Businessboarding",
-			"operation": "POST",
-			"request": {
-				"headers": {
-					"MerchantId": "${MerchandId-TOKEN}",
-					"TerminalId": "${TerminalId-TOKEN}",
-					"XpressId": "${XpressId-TOKEN}"
-				},
-				"body": {
-					"BusinessDetails": {
-						"RequestID": "REQhp${RANDOM.NUMBER:13}",
-						"BusinessInfo": {
-							"BusinessRegistrationNo": " ${RANDOM.NUMBER:9}${RANDOM.STRING:10}",
-							"BusinessName": "paul${RANDOM.NUMBER:8}",
-							"BusinessCode": "paul${RANDOM.NUMBER:8}",
-							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
-							"BusinessEmailAddress": "paulw${RANDOM.NUMBER.FIXED:6}@yopmail.com",
-							"ISDCode": "${ISDCode}",
-							"MobileNumber": "${MobileNumber}",
-							"BusinessDescription": "Gift products ecommerce site which has been created for Paul Walker",
-							"WebsiteAddress": "www.tata${RANDOM.NUMBER:6}.com",
-							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
-							"ContactKYCRequired": "Y"
-						},
-						"TransactionCharges": [
-							{
-								"ServiceType": "Payments",
-								"PaymentMode": "CreditCard",
-								"ProcessingRate": "2.00",
-								"ProgramCode": "ABC123"
-							},
-							{
-								"ServiceType": "Payments",
-								"PaymentMode": "CreditCard",
-								"ProcessingRate": "2.00",
-								"ProgramCode": "ABC123"
-							}
-						]
-					}
-				}
-			},
-			"assertions": {
-				"status": 200,
-				"headers": {
-					"Date": [
-						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
-					],
-					"Server": [
-						"Webserver"
-					],
-					"Transfer-Encoding": [
-						"chunked"
-					],
-					"X-Frame-Options": [
-						"DENY"
-					],
-					"Content-Type": [
-						"text/plain; charset=utf-8"
-					],
-					"Strict-Transport-Security": [
-						"max-age=31536000"
-					]
-				},
-				"body": {
-					"RequestID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_BusinessRegistrationNo_with_SPACE.request.body.BusinessDetails.RequestID}",
-					"StatusCode": "000",
-					"Description": "Your request has been processed successfully",
-					"DetailedSummary": {
-						"BusinessXpressID": "$NOT.NULL",
-						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_BusinessRegistrationNo_with_SPACE.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
-					}
-				}
-			}
-		},
-		{
-			"name": "Create_Business_boarding_with_valid_data_178_Invalid_Input_Parameters_199_Empty_Invalid_Business_Registration_No_when_BusinessRegistrationNo_morethan_maxLength_31AN",
-			"url": "/v1/Businessboarding",
-			"operation": "POST",
-			"request": {
-				"headers": {
-					"MerchantId": "${MerchandId-TOKEN}",
-					"TerminalId": "${TerminalId-TOKEN}",
-					"XpressId": "${XpressId-TOKEN}"
-				},
-				"body": {
-					"BusinessDetails": {
-						"RequestID": "REQhp${RANDOM.NUMBER:13}",
-						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:15}${RANDOM.STRING:16}",
-							"BusinessName": "paul${RANDOM.NUMBER:8}",
-							"BusinessCode": "paul${RANDOM.NUMBER:8}",
-							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
-							"BusinessEmailAddress": "paulw${RANDOM.NUMBER.FIXED:6}@yopmail.com",
-							"ISDCode": "${ISDCode}",
-							"MobileNumber": "${MobileNumber}",
-							"BusinessDescription": "Gift products ecommerce site which has been created for Paul Walker",
-							"WebsiteAddress": "www.tata${RANDOM.NUMBER:6}.com",
-							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
-							"ContactKYCRequired": "Y"
-						},
-						"TransactionCharges": [
-							{
-								"ServiceType": "Payments",
-								"PaymentMode": "CreditCard",
-								"ProcessingRate": "2.00",
-								"ProgramCode": "ABC123"
-							},
-							{
-								"ServiceType": "Payments",
-								"PaymentMode": "CreditCard",
-								"ProcessingRate": "2.00",
-								"ProgramCode": "ABC123"
-							}
-						]
-					}
-				}
-			},
-			"assertions": {
-				"status": 200,
-				"headers": {
-					"Date": [
-						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
-					],
-					"Server": [
-						"Webserver"
-					],
-					"Transfer-Encoding": [
-						"chunked"
-					],
-					"X-Frame-Options": [
-						"DENY"
-					],
-					"Content-Type": [
-						"text/plain; charset=utf-8"
-					],
-					"Strict-Transport-Security": [
-						"max-age=31536000"
-					]
-				},
-				"body": {
-					"RequestID": "${$.Create_Business_boarding_with_valid_data_178_Invalid_Input_Parameters_199_Empty_Invalid_Business_Registration_No_when_BusinessRegistrationNo_morethan_maxLength_31AN.request.body.BusinessDetails.RequestID}",
+					"RequestID": "${$.Businessboarding_Verify_API_with_Empty_Invalid_Transaction_Charges.request.body.BusinessDetails.RequestID}",
 					"StatusCode": "178",
 					"Description": "Invalid Input Parameter(s)",
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
-						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_178_Invalid_Input_Parameters_199_Empty_Invalid_Business_Registration_No_when_BusinessRegistrationNo_morethan_maxLength_31AN.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "199",
-						"Message": "Empty/Invalid Business Registration No"
+						"BusinessCode": "${$.Businessboarding_Verify_API_with_Empty_Invalid_Transaction_Charges.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"Status": "216",
+						"Message": "Empty/Invalid transaction charges"
 					}
 				}
 			}
 		},
 		{
-			"name": "Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_when_BusinessRegistrationNo_is_blank_empty",
+			"name": "Businessboarding_Verify_API_with_Empty_Invalid_Transaction_Charges_node",
 			"url": "/v1/Businessboarding",
 			"operation": "POST",
 			"request": {
@@ -926,19 +921,83 @@
 				},
 				"body": {
 					"BusinessDetails": {
-						"RequestID": "REQhp${RANDOM.NUMBER:13}",
+						"RequestID": "REQhp${RANDOM.NUMBER:15}${RANDOM.NUMBER:10}",
+						"BusinessInfo": {
+							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
+							"BusinessName": "paul${RANDOM.NUMBER:8}",
+							"BusinessCode": "paul${RANDOM.NUMBER:8}",
+							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
+							"BusinessEmailAddress": "paulw${RANDOM.NUMBER.FIXED:6}@yopmail.com",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}",
+							"BusinessDescription": "Gift products ecommerce site which has been created for Paul Walker",
+							"WebsiteAddress": "www.tata${RANDOM.NUMBER:6}.com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Businessboarding_Verify_API_with_Empty_Invalid_Transaction_Charges_node.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "178",
+					"Description": "Invalid Input Parameter(s)",
+					"DetailedSummary": {
+						"BusinessXpressID": "$NOT.NULL",
+						"BusinessCode": "${$.Businessboarding_Verify_API_with_Empty_Invalid_Transaction_Charges_node.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"Status": "239",
+						"Message": "Empty/Invalid Transaction Charges node"
+					}
+				}
+			}
+		},
+		{
+			"name": "Businessboarding_Verify_API_with_blank_BusinessInfo_section",
+			"url": "/v1/Businessboarding",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "REQhp${RANDOM.NUMBER:15}${RANDOM.NUMBER:10}",
 						"BusinessInfo": {
 							"BusinessRegistrationNo": "",
-							"BusinessName": "paul${RANDOM.NUMBER:8}",
-							"BusinessCode": "paul${RANDOM.NUMBER:8}",
-							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
-							"BusinessEmailAddress": "paulw${RANDOM.NUMBER.FIXED:6}@yopmail.com",
-							"ISDCode": "${ISDCode}",
-							"MobileNumber": "${MobileNumber}",
-							"BusinessDescription": "Gift products ecommerce site which has been created for Paul Walker",
-							"WebsiteAddress": "www.tata${RANDOM.NUMBER:6}.com",
-							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
-							"ContactKYCRequired": "Y"
+							"BusinessName": "",
+							"BusinessCode": "",
+							"ContactPersonName": "",
+							"BusinessEmailAddress": "",
+							"ISDCode": "",
+							"MobileNumber": "",
+							"BusinessDescription": "",
+							"WebsiteAddress": "",
+							"BusinessISOCountryCode": "",
+							"ContactKYCRequired": ""
 						},
 						"TransactionCharges": [
 							{
@@ -980,635 +1039,12 @@
 					]
 				},
 				"body": {
-					"RequestID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_when_BusinessRegistrationNo_is_blank_empty.request.body.BusinessDetails.RequestID}",
-					"StatusCode": "000",
-					"Description": "Your request has been processed successfully",
-					"DetailedSummary": {
-						"BusinessXpressID": "$NOT.NULL",
-						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_when_BusinessRegistrationNo_is_blank_empty.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
-					}
-				}
-			}
-		},
-		{
-			"name": "Create_Business_boarding_with_valid_data_178_Invalid_Input_Parameters_199_Empty_Invalid_Business_Registration_No_when_BusinessRegistrationNo_special_characters",
-			"url": "/v1/Businessboarding",
-			"operation": "POST",
-			"request": {
-				"headers": {
-					"MerchantId": "${MerchandId-TOKEN}",
-					"TerminalId": "${TerminalId-TOKEN}",
-					"XpressId": "${XpressId-TOKEN}"
-				},
-				"body": {
-					"BusinessDetails": {
-						"RequestID": "REQhp${RANDOM.NUMBER:13}",
-						"BusinessInfo": {
-							"BusinessRegistrationNo": "_&^%@${RANDOM.STRING:6})(*{}",
-							"BusinessName": "paul${RANDOM.NUMBER:8}",
-							"BusinessCode": "paul${RANDOM.NUMBER:8}",
-							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
-							"BusinessEmailAddress": "paulw${RANDOM.NUMBER.FIXED:6}@yopmail.com",
-							"ISDCode": "${ISDCode}",
-							"MobileNumber": "${MobileNumber}",
-							"BusinessDescription": "Gift products ecommerce site which has been created for Paul Walker",
-							"WebsiteAddress": "www.tata${RANDOM.NUMBER:6}.com",
-							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
-							"ContactKYCRequired": "Y"
-						},
-						"TransactionCharges": [
-							{
-								"ServiceType": "Payments",
-								"PaymentMode": "CreditCard",
-								"ProcessingRate": "2.00",
-								"ProgramCode": "ABC123"
-							},
-							{
-								"ServiceType": "Payments",
-								"PaymentMode": "CreditCard",
-								"ProcessingRate": "2.00",
-								"ProgramCode": "ABC123"
-							}
-						]
-					}
-				}
-			},
-			"assertions": {
-				"status": 200,
-				"headers": {
-					"Date": [
-						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
-					],
-					"Server": [
-						"Webserver"
-					],
-					"Transfer-Encoding": [
-						"chunked"
-					],
-					"X-Frame-Options": [
-						"DENY"
-					],
-					"Content-Type": [
-						"text/plain; charset=utf-8"
-					],
-					"Strict-Transport-Security": [
-						"max-age=31536000"
-					]
-				},
-				"body": {
-					"RequestID": "${$.Create_Business_boarding_with_valid_data_178_Invalid_Input_Parameters_199_Empty_Invalid_Business_Registration_No_when_BusinessRegistrationNo_special_characters.request.body.BusinessDetails.RequestID}",
+					"RequestID": "${$.Businessboarding_Verify_API_with_blank_BusinessInfo_section.request.body.BusinessDetails.RequestID}",
 					"StatusCode": "178",
 					"Description": "Invalid Input Parameter(s)",
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
-						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_178_Invalid_Input_Parameters_199_Empty_Invalid_Business_Registration_No_when_BusinessRegistrationNo_special_characters.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "199",
-						"Message": "Empty/Invalid Business Registration No"
-					}
-				}
-			}
-		},
-		{
-			"name": "Create_Business_boarding_with_valid_data_178_Invalid_Input_Parameters_199_Empty_Invalid_Business_Registration_No_when_BusinessRegistrationNo_SQL",
-			"url": "/v1/Businessboarding",
-			"operation": "POST",
-			"request": {
-				"headers": {
-					"MerchantId": "${MerchandId-TOKEN}",
-					"TerminalId": "${TerminalId-TOKEN}",
-					"XpressId": "${XpressId-TOKEN}"
-				},
-				"body": {
-					"BusinessDetails": {
-						"RequestID": "REQhp${RANDOM.NUMBER:13}",
-						"BusinessInfo": {
-							"BusinessRegistrationNo": "SELECT * FROM business WHERE id = 10;",
-							"BusinessName": "paul${RANDOM.NUMBER:8}",
-							"BusinessCode": "paul${RANDOM.NUMBER:8}",
-							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
-							"BusinessEmailAddress": "paulw${RANDOM.NUMBER.FIXED:6}@yopmail.com",
-							"ISDCode": "${ISDCode}",
-							"MobileNumber": "${MobileNumber}",
-							"BusinessDescription": "Gift products ecommerce site which has been created for Paul Walker",
-							"WebsiteAddress": "www.tata${RANDOM.NUMBER:6}.com",
-							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
-							"ContactKYCRequired": "Y"
-						},
-						"TransactionCharges": [
-							{
-								"ServiceType": "Payments",
-								"PaymentMode": "CreditCard",
-								"ProcessingRate": "2.00",
-								"ProgramCode": "ABC123"
-							},
-							{
-								"ServiceType": "Payments",
-								"PaymentMode": "CreditCard",
-								"ProcessingRate": "2.00",
-								"ProgramCode": "ABC123"
-							}
-						]
-					}
-				}
-			},
-			"assertions": {
-				"status": 200,
-				"headers": {
-					"Date": [
-						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
-					],
-					"Server": [
-						"Webserver"
-					],
-					"Transfer-Encoding": [
-						"chunked"
-					],
-					"X-Frame-Options": [
-						"DENY"
-					],
-					"Content-Type": [
-						"text/plain; charset=utf-8"
-					],
-					"Strict-Transport-Security": [
-						"max-age=31536000"
-					]
-				},
-				"body": {
-					"RequestID": "${$.Create_Business_boarding_with_valid_data_178_Invalid_Input_Parameters_199_Empty_Invalid_Business_Registration_No_when_BusinessRegistrationNo_SQL.request.body.BusinessDetails.RequestID}",
-					"StatusCode": "178",
-					"Description": "Invalid Input Parameter(s)",
-					"DetailedSummary": {
-						"BusinessXpressID": "$NOT.NULL",
-						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_178_Invalid_Input_Parameters_199_Empty_Invalid_Business_Registration_No_when_BusinessRegistrationNo_SQL.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "199",
-						"Message": "Empty/Invalid Business Registration No"
-					}
-				}
-			}
-		},
-		{
-			"name": "Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_when_BusinessRegistrationNo_removed_parameter_from_request",
-			"url": "/v1/Businessboarding",
-			"operation": "POST",
-			"request": {
-				"headers": {
-					"MerchantId": "${MerchandId-TOKEN}",
-					"TerminalId": "${TerminalId-TOKEN}",
-					"XpressId": "${XpressId-TOKEN}"
-				},
-				"body": {
-					"BusinessDetails": {
-						"RequestID": "REQhp${RANDOM.NUMBER:13}",
-						"BusinessInfo": {
-							"BusinessName": "paul${RANDOM.NUMBER:8}",
-							"BusinessCode": "paul${RANDOM.NUMBER:8}",
-							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
-							"BusinessEmailAddress": "paulw${RANDOM.NUMBER.FIXED:6}@yopmail.com",
-							"ISDCode": "${ISDCode}",
-							"MobileNumber": "${MobileNumber}",
-							"BusinessDescription": "Gift products ecommerce site which has been created for Paul Walker",
-							"WebsiteAddress": "www.tata${RANDOM.NUMBER:6}.com",
-							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
-							"ContactKYCRequired": "Y"
-						},
-						"TransactionCharges": [
-							{
-								"ServiceType": "Payments",
-								"PaymentMode": "CreditCard",
-								"ProcessingRate": "2.00",
-								"ProgramCode": "ABC123"
-							},
-							{
-								"ServiceType": "Payments",
-								"PaymentMode": "CreditCard",
-								"ProcessingRate": "2.00",
-								"ProgramCode": "ABC123"
-							}
-						]
-					}
-				}
-			},
-			"assertions": {
-				"status": 200,
-				"headers": {
-					"Date": [
-						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
-					],
-					"Server": [
-						"Webserver"
-					],
-					"Transfer-Encoding": [
-						"chunked"
-					],
-					"X-Frame-Options": [
-						"DENY"
-					],
-					"Content-Type": [
-						"text/plain; charset=utf-8"
-					],
-					"Strict-Transport-Security": [
-						"max-age=31536000"
-					]
-				},
-				"body": {
-					"RequestID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_when_BusinessRegistrationNo_removed_parameter_from_request.request.body.BusinessDetails.RequestID}",
-					"StatusCode": "000",
-					"Description": "Your request has been processed successfully",
-					"DetailedSummary": {
-						"BusinessXpressID": "$NOT.NULL",
-						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_when_BusinessRegistrationNo_removed_parameter_from_request.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
-					}
-				}
-			}
-		},
-		{
-			"name": "Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_BusinessRegistrationNo_lessThan_maxLength_10AN",
-			"url": "/v1/Businessboarding",
-			"operation": "POST",
-			"request": {
-				"headers": {
-					"MerchantId": "${MerchandId-TOKEN}",
-					"TerminalId": "${TerminalId-TOKEN}",
-					"XpressId": "${XpressId-TOKEN}"
-				},
-				"body": {
-					"BusinessDetails": {
-						"RequestID": "REQhp${RANDOM.NUMBER:13}",
-						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:5}${RANDOM.STRING:5}",
-							"BusinessName": "paul${RANDOM.NUMBER:8}",
-							"BusinessCode": "paul${RANDOM.NUMBER:8}",
-							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
-							"BusinessEmailAddress": "paulw${RANDOM.NUMBER.FIXED:6}@yopmail.com",
-							"ISDCode": "${ISDCode}",
-							"MobileNumber": "${MobileNumber}",
-							"BusinessDescription": "Gift products ecommerce site which has been created for Paul Walker",
-							"WebsiteAddress": "www.tata${RANDOM.NUMBER:6}.com",
-							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
-							"ContactKYCRequired": "Y"
-						},
-						"TransactionCharges": [
-							{
-								"ServiceType": "Payments",
-								"PaymentMode": "CreditCard",
-								"ProcessingRate": "2.00",
-								"ProgramCode": "ABC123"
-							},
-							{
-								"ServiceType": "Payments",
-								"PaymentMode": "CreditCard",
-								"ProcessingRate": "2.00",
-								"ProgramCode": "ABC123"
-							}
-						]
-					}
-				}
-			},
-			"assertions": {
-				"status": 200,
-				"headers": {
-					"Date": [
-						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
-					],
-					"Server": [
-						"Webserver"
-					],
-					"Transfer-Encoding": [
-						"chunked"
-					],
-					"X-Frame-Options": [
-						"DENY"
-					],
-					"Content-Type": [
-						"text/plain; charset=utf-8"
-					],
-					"Strict-Transport-Security": [
-						"max-age=31536000"
-					]
-				},
-				"body": {
-					"RequestID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_BusinessRegistrationNo_lessThan_maxLength_10AN.request.body.BusinessDetails.RequestID}",
-					"StatusCode": "000",
-					"Description": "Your request has been processed successfully",
-					"DetailedSummary": {
-						"BusinessXpressID": "$NOT.NULL",
-						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_BusinessRegistrationNo_lessThan_maxLength_10AN.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
-					}
-				}
-			}
-		},
-		{
-			"name": "Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_when_BusinessRegistrationNo_is_Duplicated_means_is_already_exist",
-			"url": "/v1/Businessboarding",
-			"operation": "POST",
-			"request": {
-				"headers": {
-					"MerchantId": "${MerchandId-TOKEN}",
-					"TerminalId": "${TerminalId-TOKEN}",
-					"XpressId": "${XpressId-TOKEN}"
-				},
-				"body": {
-					"BusinessDetails": {
-						"RequestID": "REQhp${RANDOM.NUMBER:13}",
-						"BusinessInfo": {
-							"BusinessRegistrationNo": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_BusinessRegistrationNo_lessThan_maxLength_10AN.request.body.BusinessDetails.BusinessInfo.BusinessRegistrationNo}",
-							"BusinessName": "paul${RANDOM.NUMBER:8}",
-							"BusinessCode": "paul${RANDOM.NUMBER:8}",
-							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
-							"BusinessEmailAddress": "paulw${RANDOM.NUMBER.FIXED:6}@yopmail.com",
-							"ISDCode": "${ISDCode}",
-							"MobileNumber": "${MobileNumber}",
-							"BusinessDescription": "Gift products ecommerce site which has been created for Paul Walker",
-							"WebsiteAddress": "www.tata${RANDOM.NUMBER:6}.com",
-							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
-							"ContactKYCRequired": "Y"
-						},
-						"TransactionCharges": [
-							{
-								"ServiceType": "Payments",
-								"PaymentMode": "CreditCard",
-								"ProcessingRate": "2.00",
-								"ProgramCode": "ABC123"
-							},
-							{
-								"ServiceType": "Payments",
-								"PaymentMode": "CreditCard",
-								"ProcessingRate": "2.00",
-								"ProgramCode": "ABC123"
-							}
-						]
-					}
-				}
-			},
-			"assertions": {
-				"status": 200,
-				"headers": {
-					"Date": [
-						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
-					],
-					"Server": [
-						"Webserver"
-					],
-					"Transfer-Encoding": [
-						"chunked"
-					],
-					"X-Frame-Options": [
-						"DENY"
-					],
-					"Content-Type": [
-						"text/plain; charset=utf-8"
-					],
-					"Strict-Transport-Security": [
-						"max-age=31536000"
-					]
-				},
-				"body": {
-					"RequestID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_when_BusinessRegistrationNo_is_Duplicated_means_is_already_exist.request.body.BusinessDetails.RequestID}",
-					"StatusCode": "000",
-					"Description": "Your request has been processed successfully",
-					"DetailedSummary": {
-						"BusinessXpressID": "$NOT.NULL",
-						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_when_BusinessRegistrationNo_is_Duplicated_means_is_already_exist.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
-					}
-				}
-			}
-		},
-		{
-			"name": "Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_BusinessName_maxLength_100AN",
-			"url": "/v1/Businessboarding",
-			"operation": "POST",
-			"request": {
-				"headers": {
-					"MerchantId": "${MerchandId-TOKEN}",
-					"TerminalId": "${TerminalId-TOKEN}",
-					"XpressId": "${XpressId-TOKEN}"
-				},
-				"body": {
-					"BusinessDetails": {
-						"RequestID": "REQhp${RANDOM.NUMBER:13}",
-						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:5}${RANDOM.STRING:5}",
-							"BusinessName": "paulw${RANDOM.STRING:5}${RANDOM.STRING:15}${RANDOM.STRING:15}${RANDOM.STRING:15}${RANDOM.NUMBER:15}${RANDOM.NUMBER:15}${RANDOM.NUMBER:15}",
-							"BusinessCode": "paul${RANDOM.NUMBER:8}",
-							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
-							"BusinessEmailAddress": "paulw${RANDOM.NUMBER.FIXED:8}@yopmail.com",
-							"ISDCode": "${ISDCode}",
-							"MobileNumber": "${MobileNumber}",
-							"BusinessDescription": "Gift products ecommerce site which has been created for Paul Walker",
-							"WebsiteAddress": "www.tata${RANDOM.NUMBER:6}.com",
-							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
-							"ContactKYCRequired": "Y"
-						},
-						"TransactionCharges": [
-							{
-								"ServiceType": "Payments",
-								"PaymentMode": "CreditCard",
-								"ProcessingRate": "2.00",
-								"ProgramCode": "ABC123"
-							},
-							{
-								"ServiceType": "Payments",
-								"PaymentMode": "CreditCard",
-								"ProcessingRate": "2.00",
-								"ProgramCode": "ABC123"
-							}
-						]
-					}
-				}
-			},
-			"assertions": {
-				"status": 200,
-				"headers": {
-					"Date": [
-						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
-					],
-					"Server": [
-						"Webserver"
-					],
-					"Transfer-Encoding": [
-						"chunked"
-					],
-					"X-Frame-Options": [
-						"DENY"
-					],
-					"Content-Type": [
-						"text/plain; charset=utf-8"
-					],
-					"Strict-Transport-Security": [
-						"max-age=31536000"
-					]
-				},
-				"body": {
-					"RequestID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_BusinessName_maxLength_100AN.request.body.BusinessDetails.RequestID}",
-					"StatusCode": "000",
-					"Description": "Your request has been processed successfully",
-					"DetailedSummary": {
-						"BusinessXpressID": "$NOT.NULL",
-						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_BusinessName_maxLength_100AN.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
-					}
-				}
-			}
-		},
-		{
-			"name": "Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_BusinessName_with_SPACE",
-			"url": "/v1/Businessboarding",
-			"operation": "POST",
-			"request": {
-				"headers": {
-					"MerchantId": "${MerchandId-TOKEN}",
-					"TerminalId": "${TerminalId-TOKEN}",
-					"XpressId": "${XpressId-TOKEN}"
-				},
-				"body": {
-					"BusinessDetails": {
-						"RequestID": "REQhp${RANDOM.NUMBER:13}",
-						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}${RANDOM.STRING:10}",
-							"BusinessName": " paul${RANDOM.NUMBER:8}${RANDOM.STRING:10}",
-							"BusinessCode": "paul${RANDOM.NUMBER:8}",
-							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
-							"BusinessEmailAddress": "paulw${RANDOM.NUMBER.FIXED:6}@yopmail.com",
-							"ISDCode": "${ISDCode}",
-							"MobileNumber": "${MobileNumber}",
-							"BusinessDescription": "Gift products ecommerce site which has been created for Paul Walker",
-							"WebsiteAddress": "www.tata${RANDOM.NUMBER:6}.com",
-							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
-							"ContactKYCRequired": "Y"
-						},
-						"TransactionCharges": [
-							{
-								"ServiceType": "Payments",
-								"PaymentMode": "CreditCard",
-								"ProcessingRate": "2.00",
-								"ProgramCode": "ABC123"
-							},
-							{
-								"ServiceType": "Payments",
-								"PaymentMode": "CreditCard",
-								"ProcessingRate": "2.00",
-								"ProgramCode": "ABC123"
-							}
-						]
-					}
-				}
-			},
-			"assertions": {
-				"status": 200,
-				"headers": {
-					"Date": [
-						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
-					],
-					"Server": [
-						"Webserver"
-					],
-					"Transfer-Encoding": [
-						"chunked"
-					],
-					"X-Frame-Options": [
-						"DENY"
-					],
-					"Content-Type": [
-						"text/plain; charset=utf-8"
-					],
-					"Strict-Transport-Security": [
-						"max-age=31536000"
-					]
-				},
-				"body": {
-					"RequestID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_BusinessName_with_SPACE.request.body.BusinessDetails.RequestID}",
-					"StatusCode": "000",
-					"Description": "Your request has been processed successfully",
-					"DetailedSummary": {
-						"BusinessXpressID": "$NOT.NULL",
-						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_BusinessName_with_SPACE.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
-					}
-				}
-			}
-		},
-		{
-			"name": "Create_Business_boarding_with_valid_data_178_Invalid_Input_Parameters_202_Empty_Invalid_Business_Name_when_BusinessName_morethan_maxLength_101AN",
-			"url": "/v1/Businessboarding",
-			"operation": "POST",
-			"request": {
-				"headers": {
-					"MerchantId": "${MerchandId-TOKEN}",
-					"TerminalId": "${TerminalId-TOKEN}",
-					"XpressId": "${XpressId-TOKEN}"
-				},
-				"body": {
-					"BusinessDetails": {
-						"RequestID": "REQhp${RANDOM.NUMBER:13}",
-						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:7}${RANDOM.STRING:7}",
-							"BusinessName": "paulw${RANDOM.STRING:6}${RANDOM.STRING:15}${RANDOM.STRING:15}${RANDOM.STRING:15}${RANDOM.NUMBER:15}${RANDOM.NUMBER:15}${RANDOM.NUMBER:15}",
-							"BusinessCode": "paul${RANDOM.NUMBER:8}",
-							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
-							"BusinessEmailAddress": "paulw${RANDOM.NUMBER.FIXED:6}@yopmail.com",
-							"ISDCode": "${ISDCode}",
-							"MobileNumber": "${MobileNumber}",
-							"BusinessDescription": "Gift products ecommerce site which has been created for Paul Walker",
-							"WebsiteAddress": "www.tata${RANDOM.NUMBER:6}.com",
-							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
-							"ContactKYCRequired": "Y"
-						},
-						"TransactionCharges": [
-							{
-								"ServiceType": "Payments",
-								"PaymentMode": "CreditCard",
-								"ProcessingRate": "2.00",
-								"ProgramCode": "ABC123"
-							},
-							{
-								"ServiceType": "Payments",
-								"PaymentMode": "CreditCard",
-								"ProcessingRate": "2.00",
-								"ProgramCode": "ABC123"
-							}
-						]
-					}
-				}
-			},
-			"assertions": {
-				"status": 200,
-				"headers": {
-					"Date": [
-						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
-					],
-					"Server": [
-						"Webserver"
-					],
-					"Transfer-Encoding": [
-						"chunked"
-					],
-					"X-Frame-Options": [
-						"DENY"
-					],
-					"Content-Type": [
-						"text/plain; charset=utf-8"
-					],
-					"Strict-Transport-Security": [
-						"max-age=31536000"
-					]
-				},
-				"body": {
-					"RequestID": "${$.Create_Business_boarding_with_valid_data_178_Invalid_Input_Parameters_202_Empty_Invalid_Business_Name_when_BusinessName_morethan_maxLength_101AN.request.body.BusinessDetails.RequestID}",
-					"StatusCode": "178",
-					"Description": "Invalid Input Parameter(s)",
-					"DetailedSummary": {
-						"BusinessXpressID": "$NOT.NULL",
-						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_178_Invalid_Input_Parameters_202_Empty_Invalid_Business_Name_when_BusinessName_morethan_maxLength_101AN.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessCode": "${$.Businessboarding_Verify_API_with_blank_BusinessInfo_section.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
 						"Status": "202",
 						"Message": "Empty/Invalid Business Name"
 					}
@@ -1616,7 +1052,214 @@
 			}
 		},
 		{
-			"name": "Create_Business_boarding_with_valid_data_178_Invalid_Input_Parameters_202_Empty_Invalid_Business_Name_when_BusinessName_is_blank_empty",
+			"name": "Businessboarding_Verify_API_without_BusinessInfo_section",
+			"url": "/v1/Businessboarding",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "REQhp${RANDOM.NUMBER:15}${RANDOM.NUMBER:10}",
+						"TransactionCharges": [
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"ProgramCode": "ABC123"
+							},
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"ProgramCode": "ABC123"
+							}
+						]
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Businessboarding_Verify_API_without_BusinessInfo_section.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "178",
+					"Description": "Invalid Input Parameter(s)",
+					"DetailedSummary": {
+						"BusinessXpressID": "$NOT.NULL",
+						"BusinessCode": "",
+						"Status": "238",
+						"Message": "Empty/Invalid  BusinessInfo node"
+					}
+				}
+			}
+		},
+		{
+			"name": "Businessboarding_Verify_API_with_blank_transaction_charges_section",
+			"url": "/v1/Businessboarding",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "REQhp${RANDOM.NUMBER:15}${RANDOM.NUMBER:10}",
+						"BusinessInfo": {
+							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
+							"BusinessName": "paul${RANDOM.NUMBER:8}",
+							"BusinessCode": "paul${RANDOM.NUMBER:8}",
+							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
+							"BusinessEmailAddress": "paulw${RANDOM.NUMBER.FIXED:6}@yopmail.com",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}",
+							"BusinessDescription": "Gift products ecommerce site which has been created for Paul Walker",
+							"WebsiteAddress": "www.tata${RANDOM.NUMBER:6}.com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						},
+						"TransactionCharges": [
+							{
+								"ServiceType": "",
+								"PaymentMode": "",
+								"ProcessingRate": "",
+								"ProgramCode": ""
+							},
+							{
+								"ServiceType": "",
+								"PaymentMode": "",
+								"ProcessingRate": "",
+								"ProgramCode": ""
+							}
+						]
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Businessboarding_Verify_API_with_blank_transaction_charges_section.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "178",
+					"Description": "Invalid Input Parameter(s)",
+					"DetailedSummary": {
+						"BusinessXpressID": "",
+						"BusinessCode": "${$.Businessboarding_Verify_API_with_blank_transaction_charges_section.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"Status": "210",
+						"Message": "Empty/Invalid Service Type"
+					}
+				}
+			}
+		},
+		{
+			"name": "Businessboarding_Verify_API_without_transaction_charges_node",
+			"url": "/v1/Businessboarding",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "REQhp${RANDOM.NUMBER:15}${RANDOM.NUMBER:10}",
+						"BusinessInfo": {
+							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
+							"BusinessName": "paul${RANDOM.NUMBER:8}",
+							"BusinessCode": "paul${RANDOM.NUMBER:8}",
+							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
+							"BusinessEmailAddress": "paulw${RANDOM.NUMBER.FIXED:6}@yopmail.com",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}",
+							"BusinessDescription": "Gift products ecommerce site which has been created for Paul Walker",
+							"WebsiteAddress": "www.tata${RANDOM.NUMBER:6}.com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Businessboarding_Verify_API_without_transaction_charges_node.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "178",
+					"Description": "Invalid Input Parameter(s)",
+					"DetailedSummary": {
+						"BusinessXpressID": "",
+						"BusinessCode": "${$.Businessboarding_Verify_API_without_transaction_charges_node.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"Status": "239",
+						"Message": "Empty/Invalid Transaction Charges node"
+					}
+				}
+			}
+		},
+		{
+			"name": "Businessboarding_Verify_API_with_valid_BusinessName_less_than_100AN_with_allowed_special_characters",
 			"url": "/v1/Businessboarding",
 			"operation": "POST",
 			"request": {
@@ -1629,7 +1272,163 @@
 					"BusinessDetails": {
 						"RequestID": "REQhp${RANDOM.NUMBER:13}",
 						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:8}${RANDOM.STRING:8}",
+							"BusinessRegistrationNo": "${RANDOM.STRING:7}${RANDOM.NUMBER:7}",
+							"BusinessName": ".@&!${RANDOM.STRING:15}${RANDOM.NUMBER:15}'_-/()",
+							"BusinessCode": "paul${RANDOM.NUMBER:8}",
+							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
+							"BusinessEmailAddress": "paulw${RANDOM.NUMBER.FIXED:6}@yopmail.com",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}",
+							"BusinessDescription": "Gift products ecommerce site which has been created for Paul Walker",
+							"WebsiteAddress": "www.tata${RANDOM.NUMBER:6}.com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						},
+						"TransactionCharges": [
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"ProgramCode": "ABC123"
+							},
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"ProgramCode": "ABC123"
+							}
+						]
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Businessboarding_Verify_API_with_valid_BusinessName_less_than_100AN_with_allowed_special_characters.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": {
+						"BusinessXpressID": "$NOT.NULL",
+						"BusinessCode": "${$.Businessboarding_Verify_API_with_valid_BusinessName_less_than_100AN_with_allowed_special_characters.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"Status": "198",
+						"Message": "T&C acceptance is pending"
+					}
+				}
+			}
+		},
+		{
+			"name": "Businessboarding_Verify_API_with_invalid_BusinessName_more_than_100AN",
+			"url": "/v1/Businessboarding",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "${RANDOM.STRING:15}${RANDOM.NUMBER:10}",
+						"BusinessInfo": {
+							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
+							"BusinessName": "${RANDOM.STRING:15}${RANDOM.STRING:15}${RANDOM.STRING:15}${RANDOM.STRING:15}${RANDOM.NUMBER:15}${RANDOM.NUMBER:15}${RANDOM.NUMBER:11}",
+							"BusinessCode": "paul${RANDOM.NUMBER:8}",
+							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
+							"BusinessEmailAddress": "paulw${RANDOM.NUMBER.FIXED:6}@yopmail.com",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}",
+							"BusinessDescription": "Gift products ecommerce site which has been created for Paul Walker",
+							"WebsiteAddress": "www.tata${RANDOM.NUMBER:6}.com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						},
+						"TransactionCharges": [
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"ProgramCode": "ABC123"
+							},
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"ProgramCode": "ABC123"
+							}
+						]
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Businessboarding_Verify_API_with_invalid_BusinessName_more_than_100AN.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "178",
+					"Description": "Invalid Input Parameter(s)",
+					"DetailedSummary": {
+						"BusinessXpressID": "$NOT.NULL",
+						"BusinessCode": "${$.Businessboarding_Verify_API_with_invalid_BusinessName_more_than_100AN.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"Status": "202",
+						"Message": "Empty/Invalid Business Name"
+					}
+				}
+			}
+		},
+		{
+			"name": "Businessboarding_Verify_API_with_blank_BusinessName",
+			"url": "/v1/Businessboarding",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "${RANDOM.STRING:15}${RANDOM.NUMBER:10}",
+						"BusinessInfo": {
+							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
 							"BusinessName": "",
 							"BusinessCode": "paul${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
@@ -1681,12 +1480,12 @@
 					]
 				},
 				"body": {
-					"RequestID": "${$.Create_Business_boarding_with_valid_data_178_Invalid_Input_Parameters_202_Empty_Invalid_Business_Name_when_BusinessName_is_blank_empty.request.body.BusinessDetails.RequestID}",
+					"RequestID": "${$.Businessboarding_Verify_API_with_blank_BusinessName.request.body.BusinessDetails.RequestID}",
 					"StatusCode": "178",
 					"Description": "Invalid Input Parameter(s)",
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
-						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_178_Invalid_Input_Parameters_202_Empty_Invalid_Business_Name_when_BusinessName_is_blank_empty.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessCode": "${$.Businessboarding_Verify_API_with_blank_BusinessName.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
 						"Status": "202",
 						"Message": "Empty/Invalid Business Name"
 					}
@@ -1694,7 +1493,84 @@
 			}
 		},
 		{
-			"name": "Create_Business_boarding_with_valid_data_178_Invalid_Input_Parameters_202_Empty_Invalid_Business_Name_when_BusinessName_special_characters_which_are_not_allowed",
+			"name": "Businessboarding_Verify_API_without_BusinessName",
+			"url": "/v1/Businessboarding",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "${RANDOM.STRING:15}${RANDOM.NUMBER:10}",
+						"BusinessInfo": {
+							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
+							"BusinessCode": "paul${RANDOM.NUMBER:8}",
+							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
+							"BusinessEmailAddress": "paulw${RANDOM.NUMBER.FIXED:6}@yopmail.com",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}",
+							"BusinessDescription": "Gift products ecommerce site which has been created for Paul Walker",
+							"WebsiteAddress": "www.tata${RANDOM.NUMBER:6}.com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						},
+						"TransactionCharges": [
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"ProgramCode": "ABC123"
+							},
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"ProgramCode": "ABC123"
+							}
+						]
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Businessboarding_Verify_API_without_BusinessName.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "178",
+					"Description": "Invalid Input Parameter(s)",
+					"DetailedSummary": {
+						"BusinessXpressID": "$NOT.NULL",
+						"BusinessCode": "${$.Businessboarding_Verify_API_without_BusinessName.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"Status": "202",
+						"Message": "Empty/Invalid Business Name"
+					}
+				}
+			}
+		},
+		{
+			"name": "Businessboarding_Verify_API_with_valid_BusinessName_less_than_100AN_with_not_allowed_special_characters",
 			"url": "/v1/Businessboarding",
 			"operation": "POST",
 			"request": {
@@ -1708,7 +1584,7 @@
 						"RequestID": "REQhp${RANDOM.NUMBER:13}",
 						"BusinessInfo": {
 							"BusinessRegistrationNo": "${RANDOM.STRING:7}${RANDOM.NUMBER:7}",
-							"BusinessName": "_&^%@${RANDOM.STRING:6})(*{}",
+							"BusinessName": "#^${RANDOM.STRING:15}${RANDOM.NUMBER:15}*><",
 							"BusinessCode": "paul${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
 							"BusinessEmailAddress": "paulw${RANDOM.NUMBER.FIXED:6}@yopmail.com",
@@ -1759,12 +1635,12 @@
 					]
 				},
 				"body": {
-					"RequestID": "${$.Create_Business_boarding_with_valid_data_178_Invalid_Input_Parameters_202_Empty_Invalid_Business_Name_when_BusinessName_special_characters_which_are_not_allowed.request.body.BusinessDetails.RequestID}",
+					"RequestID": "${$.Businessboarding_Verify_API_with_valid_BusinessName_less_than_100AN_with_not_allowed_special_characters.request.body.BusinessDetails.RequestID}",
 					"StatusCode": "178",
 					"Description": "Invalid Input Parameter(s)",
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
-						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_178_Invalid_Input_Parameters_202_Empty_Invalid_Business_Name_when_BusinessName_special_characters_which_are_not_allowed.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessCode": "${$.Businessboarding_Verify_API_with_valid_BusinessName_less_than_100AN_with_not_allowed_special_characters.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
 						"Status": "202",
 						"Message": "Empty/Invalid Business Name"
 					}
@@ -1772,7 +1648,7 @@
 			}
 		},
 		{
-			"name": "Create_Business_boarding_with_valid_data_178_Invalid_Input_Parameters_202_Empty_Invalid_Business_Name_when_BusinessName_SQL",
+			"name": "Businessboarding_Verify_API_with_valid_BusinessCode_less_than_or_equal_30AN",
 			"url": "/v1/Businessboarding",
 			"operation": "POST",
 			"request": {
@@ -1785,9 +1661,9 @@
 					"BusinessDetails": {
 						"RequestID": "REQhp${RANDOM.NUMBER:13}",
 						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:8}${RANDOM.STRING:8}",
-							"BusinessName": "SELECT * FROM business WHERE id = 10;",
-							"BusinessCode": "paul${RANDOM.NUMBER:8}",
+							"BusinessRegistrationNo": "${RANDOM.STRING:5}${RANDOM.NUMBER:7}",
+							"BusinessName": "${RANDOM.STRING:7}${RANDOM.NUMBER:9}",
+							"BusinessCode": "${RANDOM.STRING:2}${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
 							"BusinessEmailAddress": "paulw${RANDOM.NUMBER.FIXED:6}@yopmail.com",
 							"ISDCode": "${ISDCode}",
@@ -1837,167 +1713,12 @@
 					]
 				},
 				"body": {
-					"RequestID": "${$.Create_Business_boarding_with_valid_data_178_Invalid_Input_Parameters_202_Empty_Invalid_Business_Name_when_BusinessName_SQL.request.body.BusinessDetails.RequestID}",
-					"StatusCode": "178",
-					"Description": "Invalid Input Parameter(s)",
-					"DetailedSummary": {
-						"BusinessXpressID": "$NOT.NULL",
-						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_178_Invalid_Input_Parameters_202_Empty_Invalid_Business_Name_when_BusinessName_SQL.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "202",
-						"Message": "Empty/Invalid Business Name"
-					}
-				}
-			}
-		},
-		{
-			"name": "Create_Business_boarding_with_valid_data_178_Invalid_Input_Parameters_202_Empty_Invalid_Business_Name_when_BusinessName_removed_parameter_from_request",
-			"url": "/v1/Businessboarding",
-			"operation": "POST",
-			"request": {
-				"headers": {
-					"MerchantId": "${MerchandId-TOKEN}",
-					"TerminalId": "${TerminalId-TOKEN}",
-					"XpressId": "${XpressId-TOKEN}"
-				},
-				"body": {
-					"BusinessDetails": {
-						"RequestID": "REQhp${RANDOM.NUMBER:13}",
-						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.STRING:8}${RANDOM.NUMBER:8}",
-							"BusinessCode": "paul${RANDOM.NUMBER:8}",
-							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
-							"BusinessEmailAddress": "paulw${RANDOM.NUMBER.FIXED:6}@yopmail.com",
-							"ISDCode": "${ISDCode}",
-							"MobileNumber": "${MobileNumber}",
-							"BusinessDescription": "Gift products ecommerce site which has been created for Paul Walker",
-							"WebsiteAddress": "www.tata${RANDOM.NUMBER:6}.com",
-							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
-							"ContactKYCRequired": "Y"
-						},
-						"TransactionCharges": [
-							{
-								"ServiceType": "Payments",
-								"PaymentMode": "CreditCard",
-								"ProcessingRate": "2.00",
-								"ProgramCode": "ABC123"
-							},
-							{
-								"ServiceType": "Payments",
-								"PaymentMode": "CreditCard",
-								"ProcessingRate": "2.00",
-								"ProgramCode": "ABC123"
-							}
-						]
-					}
-				}
-			},
-			"assertions": {
-				"status": 200,
-				"headers": {
-					"Date": [
-						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
-					],
-					"Server": [
-						"Webserver"
-					],
-					"Transfer-Encoding": [
-						"chunked"
-					],
-					"X-Frame-Options": [
-						"DENY"
-					],
-					"Content-Type": [
-						"text/plain; charset=utf-8"
-					],
-					"Strict-Transport-Security": [
-						"max-age=31536000"
-					]
-				},
-				"body": {
-					"RequestID": "${$.Create_Business_boarding_with_valid_data_178_Invalid_Input_Parameters_202_Empty_Invalid_Business_Name_when_BusinessName_removed_parameter_from_request.request.body.BusinessDetails.RequestID}",
-					"StatusCode": "178",
-					"Description": "Invalid Input Parameter(s)",
-					"DetailedSummary": {
-						"BusinessXpressID": "$NOT.NULL",
-						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_178_Invalid_Input_Parameters_202_Empty_Invalid_Business_Name_when_BusinessName_removed_parameter_from_request.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "202",
-						"Message": "Empty/Invalid Business Name"
-					}
-				}
-			}
-		},
-		{
-			"name": "Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_BusinessName_with_allowed_special_chars",
-			"url": "/v1/Businessboarding",
-			"operation": "POST",
-			"request": {
-				"headers": {
-					"MerchantId": "${MerchandId-TOKEN}",
-					"TerminalId": "${TerminalId-TOKEN}",
-					"XpressId": "${XpressId-TOKEN}"
-				},
-				"body": {
-					"BusinessDetails": {
-						"RequestID": "REQhp${RANDOM.NUMBER:13}",
-						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:7}${RANDOM.STRING:7}",
-							"BusinessName": ".@&!${RANDOM.NUMBER:8}'_-/()",
-							"BusinessCode": "paul${RANDOM.NUMBER:8}",
-							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
-							"BusinessEmailAddress": "paulw${RANDOM.NUMBER.FIXED:6}@yopmail.com",
-							"ISDCode": "${ISDCode}",
-							"MobileNumber": "${MobileNumber}",
-							"BusinessDescription": "Gift products ecommerce site which has been created for Paul Walker",
-							"WebsiteAddress": "www.tata${RANDOM.NUMBER:6}.com",
-							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
-							"ContactKYCRequired": "Y"
-						},
-						"TransactionCharges": [
-							{
-								"ServiceType": "Payments",
-								"PaymentMode": "CreditCard",
-								"ProcessingRate": "2.00",
-								"ProgramCode": "ABC123"
-							},
-							{
-								"ServiceType": "Payments",
-								"PaymentMode": "CreditCard",
-								"ProcessingRate": "2.00",
-								"ProgramCode": "ABC123"
-							}
-						]
-					}
-				}
-			},
-			"assertions": {
-				"status": 200,
-				"headers": {
-					"Date": [
-						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
-					],
-					"Server": [
-						"Webserver"
-					],
-					"Transfer-Encoding": [
-						"chunked"
-					],
-					"X-Frame-Options": [
-						"DENY"
-					],
-					"Content-Type": [
-						"text/plain; charset=utf-8"
-					],
-					"Strict-Transport-Security": [
-						"max-age=31536000"
-					]
-				},
-				"body": {
-					"RequestID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_BusinessName_with_allowed_special_chars.request.body.BusinessDetails.RequestID}",
+					"RequestID": "${$.Businessboarding_Verify_API_with_valid_BusinessCode_less_than_or_equal_30AN.request.body.BusinessDetails.RequestID}",
 					"StatusCode": "000",
 					"Description": "Your request has been processed successfully",
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
-						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_BusinessName_with_allowed_special_chars.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessCode": "${$.Businessboarding_Verify_API_with_valid_BusinessCode_less_than_or_equal_30AN.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
 						"Status": "198",
 						"Message": "T&C acceptance is pending"
 					}
@@ -2005,7 +1726,7 @@
 			}
 		},
 		{
-			"name": "Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_when_BusinessName_is_Duplicated_means_is_already_exist",
+			"name": "Businessboarding_Verify_API_with_valid_BusinessCode_more_than_30AN",
 			"url": "/v1/Businessboarding",
 			"operation": "POST",
 			"request": {
@@ -2018,9 +1739,9 @@
 					"BusinessDetails": {
 						"RequestID": "REQhp${RANDOM.NUMBER:13}",
 						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:8}${RANDOM.STRING:8}",
-							"BusinessName": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_BusinessName_with_allowed_special_chars.request.body.BusinessDetails.BusinessInfo.BusinessName}",
-							"BusinessCode": "paul${RANDOM.NUMBER:8}",
+							"BusinessRegistrationNo": "${RANDOM.STRING:7}${RANDOM.NUMBER:7}",
+							"BusinessName": "${RANDOM.STRING:7}${RANDOM.NUMBER:8}",
+							"BusinessCode": "${RANDOM.STRING:15}${RANDOM.NUMBER:16}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
 							"BusinessEmailAddress": "paulw${RANDOM.NUMBER.FIXED:6}@yopmail.com",
 							"ISDCode": "${ISDCode}",
@@ -2070,169 +1791,1025 @@
 					]
 				},
 				"body": {
-					"RequestID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_when_BusinessName_is_Duplicated_means_is_already_exist.request.body.BusinessDetails.RequestID}",
-					"StatusCode": "000",
-					"Description": "Your request has been processed successfully",
-					"DetailedSummary": {
-						"BusinessXpressID": "$NOT.NULL",
-						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_when_BusinessName_is_Duplicated_means_is_already_exist.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
-					}
-				}
-			}
-		},
-		{
-			"name": "Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_BusinessCode_maxLength_30AN",
-			"url": "/v1/Businessboarding",
-			"operation": "POST",
-			"request": {
-				"headers": {
-					"MerchantId": "${MerchandId-TOKEN}",
-					"TerminalId": "${TerminalId-TOKEN}",
-					"XpressId": "${XpressId-TOKEN}"
-				},
-				"body": {
-					"BusinessDetails": {
-						"RequestID": "REQhp${RANDOM.NUMBER:13}",
-						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:5}${RANDOM.STRING:4}",
-							"BusinessName": "paul${RANDOM.STRING:5}${RANDOM.NUMBER:6}",
-							"BusinessCode": "paulw${RANDOM.STRING:10}${RANDOM.NUMBER:15}",
-							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
-							"BusinessEmailAddress": "paulw${RANDOM.NUMBER.FIXED:8}@yopmail.com",
-							"ISDCode": "${ISDCode}",
-							"BusinessDescription": "Gift products ecommerce site which has been created for Paul Walker",
-							"WebsiteAddress": "www.tata${RANDOM.NUMBER:6}.com",
-							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
-							"ContactKYCRequired": "Y"
-						},
-						"TransactionCharges": [
-							{
-								"ServiceType": "Payments",
-								"PaymentMode": "CreditCard",
-								"ProcessingRate": "2.00",
-								"ProgramCode": "ABC123"
-							},
-							{
-								"ServiceType": "Payments",
-								"PaymentMode": "CreditCard",
-								"ProcessingRate": "2.00",
-								"ProgramCode": "ABC123"
-							}
-						]
-					}
-				}
-			},
-			"assertions": {
-				"status": 200,
-				"headers": {
-					"Date": [
-						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
-					],
-					"Server": [
-						"Webserver"
-					],
-					"Transfer-Encoding": [
-						"chunked"
-					],
-					"X-Frame-Options": [
-						"DENY"
-					],
-					"Content-Type": [
-						"text/plain; charset=utf-8"
-					],
-					"Strict-Transport-Security": [
-						"max-age=31536000"
-					]
-				},
-				"body": {
-					"RequestID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_BusinessCode_maxLength_30AN.request.body.BusinessDetails.RequestID}",
-					"StatusCode": "000",
-					"Description": "Your request has been processed successfully",
-					"DetailedSummary": {
-						"BusinessXpressID": "$NOT.NULL",
-						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_BusinessCode_maxLength_30AN.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
-					}
-				}
-			}
-		},
-		{
-			"name": "Create_Business_boarding_with_valid_data_178_Invalid_Input_Parameters_201_Empty_Invalid_Business_Code_with_SPACE",
-			"url": "/v1/Businessboarding",
-			"operation": "POST",
-			"request": {
-				"headers": {
-					"MerchantId": "${MerchandId-TOKEN}",
-					"TerminalId": "${TerminalId-TOKEN}",
-					"XpressId": "${XpressId-TOKEN}"
-				},
-				"body": {
-					"BusinessDetails": {
-						"RequestID": "REQhp${RANDOM.NUMBER:13}",
-						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}${RANDOM.STRING:10}",
-							"BusinessName": "paul${RANDOM.NUMBER:8}${RANDOM.STRING:10}",
-							"BusinessCode": " paul${RANDOM.NUMBER:8}",
-							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
-							"BusinessEmailAddress": "paulw${RANDOM.NUMBER.FIXED:6}@yopmail.com",
-							"ISDCode": "${ISDCode}",
-							"MobileNumber": "${MobileNumber}",
-							"BusinessDescription": "Gift products ecommerce site which has been created for Paul Walker",
-							"WebsiteAddress": "www.tata${RANDOM.NUMBER:6}.com",
-							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
-							"ContactKYCRequired": "Y"
-						},
-						"TransactionCharges": [
-							{
-								"ServiceType": "Payments",
-								"PaymentMode": "CreditCard",
-								"ProcessingRate": "2.00",
-								"ProgramCode": "ABC123"
-							},
-							{
-								"ServiceType": "Payments",
-								"PaymentMode": "CreditCard",
-								"ProcessingRate": "2.00",
-								"ProgramCode": "ABC123"
-							}
-						]
-					}
-				}
-			},
-			"assertions": {
-				"status": 200,
-				"headers": {
-					"Date": [
-						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
-					],
-					"Server": [
-						"Webserver"
-					],
-					"Transfer-Encoding": [
-						"chunked"
-					],
-					"X-Frame-Options": [
-						"DENY"
-					],
-					"Content-Type": [
-						"text/plain; charset=utf-8"
-					],
-					"Strict-Transport-Security": [
-						"max-age=31536000"
-					]
-				},
-				"body": {
-					"RequestID": "${$.Create_Business_boarding_with_valid_data_178_Invalid_Input_Parameters_201_Empty_Invalid_Business_Code_with_SPACE.request.body.BusinessDetails.RequestID}",
+					"RequestID": "${$.Businessboarding_Verify_API_with_valid_BusinessCode_more_than_30AN.request.body.BusinessDetails.RequestID}",
 					"StatusCode": "178",
 					"Description": "Invalid Input Parameter(s)",
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
-						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_178_Invalid_Input_Parameters_201_Empty_Invalid_Business_Code_with_SPACE.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessCode": "${$.Businessboarding_Verify_API_with_valid_BusinessCode_more_than_30AN.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
 						"Status": "201",
 						"Message": "Empty/Invalid Business Code"
+					}
+				}
+			}
+		},
+		{
+			"name": "Businessboarding_Verify_API_without_BusinessCode",
+			"url": "/v1/Businessboarding",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "REQhp${RANDOM.NUMBER:13}",
+						"BusinessInfo": {
+							"BusinessRegistrationNo": "${RANDOM.STRING:7}${RANDOM.NUMBER:7}",
+							"BusinessName": "${RANDOM.STRING:15}${RANDOM.NUMBER:15}",
+							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
+							"BusinessEmailAddress": "paulw${RANDOM.NUMBER.FIXED:6}@yopmail.com",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}",
+							"BusinessDescription": "Gift products ecommerce site which has been created for Paul Walker",
+							"WebsiteAddress": "www.tata${RANDOM.NUMBER:6}.com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						},
+						"TransactionCharges": [
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"ProgramCode": "ABC123"
+							},
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"ProgramCode": "ABC123"
+							}
+						]
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Businessboarding_Verify_API_without_BusinessCode.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "178",
+					"Description": "Invalid Input Parameter(s)",
+					"DetailedSummary": {
+						"BusinessXpressID": "$NOT.NULL",
+						"BusinessCode": null,
+						"Status": "201",
+						"Message": "Empty/Invalid Business Code"
+					}
+				}
+			}
+		},
+		{
+			"name": "Businessboarding_Verify_API_with_blank_BusinessCode",
+			"url": "/v1/Businessboarding",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "REQhp${RANDOM.NUMBER:13}",
+						"BusinessInfo": {
+							"BusinessRegistrationNo": "${RANDOM.STRING:7}${RANDOM.NUMBER:7}",
+							"BusinessName": "${RANDOM.STRING:15}${RANDOM.NUMBER:15}",
+							"BusinessCode": "",
+							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
+							"BusinessEmailAddress": "paulw${RANDOM.NUMBER.FIXED:6}@yopmail.com",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}",
+							"BusinessDescription": "Gift products ecommerce site which has been created for Paul Walker",
+							"WebsiteAddress": "www.tata${RANDOM.NUMBER:6}.com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						},
+						"TransactionCharges": [
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"ProgramCode": "ABC123"
+							},
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"ProgramCode": "ABC123"
+							}
+						]
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Businessboarding_Verify_API_with_blank_BusinessCode.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "178",
+					"Description": "Invalid Input Parameter(s)",
+					"DetailedSummary": {
+						"BusinessXpressID": "$NOT.NULL",
+						"BusinessCode": "",
+						"Status": "201",
+						"Message": "Empty/Invalid Business Code"
+					}
+				}
+			}
+		},
+		{
+			"name": "Businessboarding_Verify_API_with_valid_ContactPersonName_less_than_100A",
+			"url": "/v1/Businessboarding",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "${RANDOM.NUMBER:9}${RANDOM.NUMBER:9}",
+						"BusinessInfo": {
+							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
+							"BusinessName": "paul${RANDOM.NUMBER:8}",
+							"BusinessCode": "paul${RANDOM.NUMBER:8}",
+							"ContactPersonName": "${RANDOM.STRING:10} ${RANDOM.STRING:10} ${RANDOM.STRING:10}${RANDOM.STRING:10} ${RANDOM.STRING:10}${RANDOM.STRING:10}${RANDOM.STRING:10}${RANDOM.STRING:10}${RANDOM.STRING:10}",
+							"BusinessEmailAddress": "paulw${RANDOM.NUMBER.FIXED:6}@yopmail.com",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}",
+							"BusinessDescription": "Gift products ecommerce site which has been created for Paul Walker",
+							"WebsiteAddress": "www.tata${RANDOM.NUMBER:6}.com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						},
+						"TransactionCharges": [
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"ProgramCode": "ABC123"
+							},
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"ProgramCode": "ABC123"
+							}
+						]
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Businessboarding_Verify_API_with_valid_ContactPersonName_less_than_100A.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": {
+						"BusinessXpressID": "$NOT.NULL",
+						"BusinessCode": "${$.Businessboarding_Verify_API_with_valid_ContactPersonName_less_than_100A.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"Status": "198",
+						"Message": "T&C acceptance is pending"
+					}
+				}
+			}
+		},
+		{
+			"name": "Businessboarding_Verify_API_with_valid_ContactPersonName_more_than_100A",
+			"url": "/v1/Businessboarding",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "${RANDOM.NUMBER:9}${RANDOM.NUMBER:9}",
+						"BusinessInfo": {
+							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
+							"BusinessName": "paul${RANDOM.NUMBER:8}",
+							"BusinessCode": "paul${RANDOM.NUMBER:8}",
+							"ContactPersonName": "${RANDOM.STRING:10} ${RANDOM.STRING:10} ${RANDOM.STRING:10} ${RANDOM.STRING:10}${RANDOM.STRING:10} ${RANDOM.STRING:10}${RANDOM.STRING:10}${RANDOM.STRING:10}${RANDOM.STRING:10}${RANDOM.STRING:10}",
+							"BusinessEmailAddress": "paulw${RANDOM.NUMBER.FIXED:6}@yopmail.com",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}",
+							"BusinessDescription": "Gift products ecommerce site which has been created for Paul Walker",
+							"WebsiteAddress": "www.tata${RANDOM.NUMBER:6}.com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						},
+						"TransactionCharges": [
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"ProgramCode": "ABC123"
+							},
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"ProgramCode": "ABC123"
+							}
+						]
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Businessboarding_Verify_API_with_valid_ContactPersonName_more_than_100A.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "178",
+					"Description": "Invalid Input Parameter(s)",
+					"DetailedSummary": {
+						"BusinessXpressID": "$NOT.NULL",
+						"BusinessCode": "${$.Businessboarding_Verify_API_with_valid_ContactPersonName_more_than_100A.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"Status": "203",
+						"Message": "Empty/Invalid Contact Person Name"
+					}
+				}
+			}
+		},
+		{
+			"name": "Businessboarding_Verify_API_without_ContactPersonName",
+			"url": "/v1/Businessboarding",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "${RANDOM.NUMBER:9}${RANDOM.NUMBER:9}",
+						"BusinessInfo": {
+							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
+							"BusinessName": "paul${RANDOM.NUMBER:8}",
+							"BusinessCode": "paul${RANDOM.NUMBER:8}",
+							"BusinessEmailAddress": "paulw${RANDOM.NUMBER.FIXED:6}@yopmail.com",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}",
+							"BusinessDescription": "Gift products ecommerce site which has been created for Paul Walker",
+							"WebsiteAddress": "www.tata${RANDOM.NUMBER:6}.com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						},
+						"TransactionCharges": [
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"ProgramCode": "ABC123"
+							},
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"ProgramCode": "ABC123"
+							}
+						]
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Businessboarding_Verify_API_without_ContactPersonName.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "178",
+					"Description": "Invalid Input Parameter(s)",
+					"DetailedSummary": {
+						"BusinessXpressID": "$NOT.NULL",
+						"BusinessCode": "${$.Businessboarding_Verify_API_without_ContactPersonName.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"Status": "203",
+						"Message": "Empty/Invalid Contact Person Name"
+					}
+				}
+			}
+		},
+		{
+			"name": "Businessboarding_Verify_API_with_blank_ContactPersonName",
+			"url": "/v1/Businessboarding",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "${RANDOM.NUMBER:9}${RANDOM.NUMBER:9}",
+						"BusinessInfo": {
+							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
+							"BusinessName": "paul${RANDOM.NUMBER:8}",
+							"BusinessCode": "paul${RANDOM.NUMBER:8}",
+							"ContactPersonName": "",
+							"BusinessEmailAddress": "paulw${RANDOM.NUMBER.FIXED:6}@yopmail.com",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}",
+							"BusinessDescription": "Gift products ecommerce site which has been created for Paul Walker",
+							"WebsiteAddress": "www.tata${RANDOM.NUMBER:6}.com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						},
+						"TransactionCharges": [
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"ProgramCode": "ABC123"
+							},
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"ProgramCode": "ABC123"
+							}
+						]
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Businessboarding_Verify_API_with_blank_ContactPersonName.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "178",
+					"Description": "Invalid Input Parameter(s)",
+					"DetailedSummary": {
+						"BusinessXpressID": "$NOT.NULL",
+						"BusinessCode": "${$.Businessboarding_Verify_API_with_blank_ContactPersonName.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"Status": "203",
+						"Message": "Empty/Invalid Contact Person Name"
+					}
+				}
+			}
+		},
+		{
+			"name": "Businessboarding_Verify_API_with_valid_BusinessEmailAddress_less_than_equal_to_240AN_and_with_vallid_email_id_format",
+			"url": "/v1/Businessboarding",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "${RANDOM.STRING:15}${RANDOM.NUMBER:10}",
+						"BusinessInfo": {
+							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
+							"BusinessName": "paul${RANDOM.NUMBER:8}",
+							"BusinessCode": "paul${RANDOM.NUMBER:8}",
+							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
+							"BusinessEmailAddress": "${RANDOM.STRING:3}${RANDOM.NUMBER:15}${RANDOM.STRING:15}${RANDOM.NUMBER:15}${RANDOM.STRING:15}${RANDOM.NUMBER:15}${RANDOM.STRING:15}${RANDOM.STRING:15}${RANDOM.STRING:15}${RANDOM.STRING:15}${RANDOM.STRING:15}${RANDOM.STRING:15}${RANDOM.STRING:15}${RANDOM.STRING:15}${RANDOM.STRING:15}${RANDOM.STRING:15}@yopmail.com",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}",
+							"BusinessDescription": "Gift products ecommerce site which has been created for Paul Walker",
+							"WebsiteAddress": "www.tata${RANDOM.NUMBER:6}.com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						},
+						"TransactionCharges": [
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"ProgramCode": "ABC123"
+							},
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"ProgramCode": "ABC123"
+							}
+						]
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Businessboarding_Verify_API_with_valid_BusinessEmailAddress_less_than_equal_to_240AN_and_with_vallid_email_id_format.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": {
+						"BusinessXpressID": "$NOT.NULL",
+						"BusinessCode": "${$.Businessboarding_Verify_API_with_valid_BusinessEmailAddress_less_than_equal_to_240AN_and_with_vallid_email_id_format.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"Status": "198",
+						"Message": "T&C acceptance is pending"
+					}
+				}
+			}
+		},
+		{
+			"name": "Businessboarding_Verify_API_only_with_mandatory_field_Prerequisite_KYC",
+			"url": "/v1/Businessboarding",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "REQhp${RANDOM.NUMBER:8}${RANDOM.NUMBER:8}",
+						"BusinessInfo": {
+							"BusinessName": "paul${RANDOM.NUMBER:8}",
+							"BusinessCode": "paul${RANDOM.NUMBER:8}",
+							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
+							"BusinessEmailAddress": "paulw${RANDOM.NUMBER.FIXED:6}@yopmail.com",
+							"ISDCode": "",
+							"MobileNumber": "",
+							"BusinessDescription": "",
+							"WebsiteAddress": "",
+							"BusinessISOCountryCode": "",
+							"ContactKYCRequired": "Y"
+						},
+						"TransactionCharges": [
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"ProgramCode": "ABC123"
+							},
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"ProgramCode": "ABC123"
+							}
+						]
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Businessboarding_Verify_API_only_with_mandatory_field_Prerequisite_KYC.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": {
+						"BusinessXpressID": "$NOT.NULL",
+						"BusinessCode": "${$.Businessboarding_Verify_API_only_with_mandatory_field_Prerequisite_KYC.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"Status": "198",
+						"Message": "T&C acceptance is pending"
+					}
+				}
+			}
+		},
+		{
+			"name": "Businessboarding_Processbuyersupplierkyc",
+			"url": "/v1/Processbuyersupplierkyc",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"Details": {
+						"RequestID": "REQhp${RANDOM.NUMBER:8}${RANDOM.NUMBER:8}",
+						"BusinessCode": "${$.Businessboarding_Verify_API_only_with_mandatory_field_Prerequisite_KYC.response.body.DetailedSummary.BusinessCode}",
+						"BusinessXpressID": "${$.Businessboarding_Verify_API_only_with_mandatory_field_Prerequisite_KYC.response.body.DetailedSummary.BusinessXpressID}",
+						"ContactReferenceCode": "",
+						"ContactXpressID": "",
+						"BusinessNature": "publicCompany",
+						"BusinessProof": {
+							"DocumentType": "Industry",
+							"DocumentNumber": "19AABCU9603R1ZM",
+							"NameonDocument": "Business Ten",
+							"DocumentProof": "iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==",
+							"FileName": "trade.png",
+							"TaxId": "ABY8766661"
+						},
+						"AddressProof": {
+							"Address": "A101,UniqueBuilding,Twinstreet,Delhi",
+							"City": "xyz",
+							"Pincode": "110003",
+							"Country": "SGP",
+							"DocumentProof": "iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==",
+							"FileName": "electricity.png"
+						},
+						"BankProof": {
+							"DocumentType": "BankStatement",
+							"DocumentProof": "iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==",
+							"FileName": "electricity.png"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Businessboarding_Processbuyersupplierkyc.request.body.Details.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": {
+						"BusinessCode": "${$.Businessboarding_Processbuyersupplierkyc.request.body.Details.BusinessCode}",
+						"BusinessXpressID": "${$.Businessboarding_Processbuyersupplierkyc.request.body.Details.BusinessXpressID}",
+						"ContactReferenceCode": "",
+						"ContactXpressId": "",
+						"Status": "297",
+						"Message": "Your document(s) has been processed successfully"
+					}
+				}
+			}
+		},
+		{
+			"name": "Businessboarding_Verify_API_with_valid_BusinessEmailAddress_more_than_240AN_and_with_vallid_email_id_format",
+			"url": "/v1/Businessboarding",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "${RANDOM.STRING:15}${RANDOM.NUMBER:10}",
+						"BusinessInfo": {
+							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
+							"BusinessName": "paul${RANDOM.NUMBER:8}",
+							"BusinessCode": "paul${RANDOM.NUMBER:8}",
+							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
+							"BusinessEmailAddress": "${RANDOM.STRING:5}${RANDOM.NUMBER:15}${RANDOM.STRING:15}${RANDOM.NUMBER:15}${RANDOM.STRING:15}${RANDOM.NUMBER:15}${RANDOM.STRING:15}${RANDOM.STRING:15}${RANDOM.STRING:15}${RANDOM.STRING:15}${RANDOM.STRING:15}${RANDOM.STRING:15}${RANDOM.STRING:15}${RANDOM.STRING:15}${RANDOM.STRING:15}${RANDOM.STRING:15}@yopmail.com",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}",
+							"BusinessDescription": "Gift products ecommerce site which has been created for Paul Walker",
+							"WebsiteAddress": "www.tata${RANDOM.NUMBER:6}.com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						},
+						"TransactionCharges": [
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"ProgramCode": "ABC123"
+							},
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"ProgramCode": "ABC123"
+							}
+						]
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Businessboarding_Verify_API_with_valid_BusinessEmailAddress_more_than_240AN_and_with_vallid_email_id_format.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "178",
+					"Description": "Invalid Input Parameter(s)",
+					"DetailedSummary": {
+						"BusinessXpressID": "$NOT.NULL",
+						"BusinessCode": "${$.Businessboarding_Verify_API_with_valid_BusinessEmailAddress_more_than_240AN_and_with_vallid_email_id_format.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"Status": "205",
+						"Message": "Empty/Invalid Business email address"
+					}
+				}
+			}
+		},
+		{
+			"name": "Businessboarding_Verify_API_with_valid_BusinessEmailAddress_more_than_240AN_and_with_invallid_email_id_format",
+			"url": "/v1/Businessboarding",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "${RANDOM.STRING:15}${RANDOM.NUMBER:10}",
+						"BusinessInfo": {
+							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
+							"BusinessName": "paul${RANDOM.NUMBER:8}",
+							"BusinessCode": "paul${RANDOM.NUMBER:8}",
+							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
+							"BusinessEmailAddress": "${RANDOM.STRING:5}${RANDOM.NUMBER:15}${RANDOM.STRING:15}${RANDOM.NUMBER:15}${RANDOM.STRING:15}${RANDOM.NUMBER:15}${RANDOM.STRING:15}${RANDOM.STRING:15}${RANDOM.STRING:15}${RANDOM.STRING:15}${RANDOM.STRING:15}${RANDOM.STRING:15}${RANDOM.STRING:15}${RANDOM.STRING:15}${RANDOM.STRING:15}${RANDOM.STRING:16}yopmail.com",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}",
+							"BusinessDescription": "Gift products ecommerce site which has been created for Paul Walker",
+							"WebsiteAddress": "www.tata${RANDOM.NUMBER:6}.com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						},
+						"TransactionCharges": [
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"ProgramCode": "ABC123"
+							},
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"ProgramCode": "ABC123"
+							}
+						]
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Businessboarding_Verify_API_with_valid_BusinessEmailAddress_more_than_240AN_and_with_invallid_email_id_format.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "178",
+					"Description": "Invalid Input Parameter(s)",
+					"DetailedSummary": {
+						"BusinessXpressID": "$NOT.NULL",
+						"BusinessCode": "${$.Businessboarding_Verify_API_with_valid_BusinessEmailAddress_more_than_240AN_and_with_invallid_email_id_format.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"Status": "205",
+						"Message": "Empty/Invalid Business email address"
+					}
+				}
+			}
+		},
+		{
+			"name": "Businessboarding_Verify_API_without_BusinessEmailAddress",
+			"url": "/v1/Businessboarding",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "${RANDOM.STRING:15}${RANDOM.NUMBER:10}",
+						"BusinessInfo": {
+							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
+							"BusinessName": "paul${RANDOM.NUMBER:8}",
+							"BusinessCode": "paul${RANDOM.NUMBER:8}",
+							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}",
+							"BusinessDescription": "Gift products ecommerce site which has been created for Paul Walker",
+							"WebsiteAddress": "www.tata${RANDOM.NUMBER:6}.com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						},
+						"TransactionCharges": [
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"ProgramCode": "ABC123"
+							},
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"ProgramCode": "ABC123"
+							}
+						]
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Businessboarding_Verify_API_without_BusinessEmailAddress.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "178",
+					"Description": "Invalid Input Parameter(s)",
+					"DetailedSummary": {
+						"BusinessXpressID": "",
+						"BusinessCode": "${$.Businessboarding_Verify_API_without_BusinessEmailAddress.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"Status": "205",
+						"Message": "Empty/Invalid Business email address"
+					}
+				}
+			}
+		},
+		{
+			"name": "Businessboarding_Verify_API_with_blank_BusinessEmailAddress",
+			"url": "/v1/Businessboarding",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "${RANDOM.STRING:15}${RANDOM.NUMBER:10}",
+						"BusinessInfo": {
+							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
+							"BusinessName": "paul${RANDOM.NUMBER:8}",
+							"BusinessCode": "paul${RANDOM.NUMBER:8}",
+							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
+							"BusinessEmailAddress": "",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}",
+							"BusinessDescription": "Gift products ecommerce site which has been created for Paul Walker",
+							"WebsiteAddress": "www.tata${RANDOM.NUMBER:6}.com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						},
+						"TransactionCharges": [
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"ProgramCode": "ABC123"
+							},
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"ProgramCode": "ABC123"
+							}
+						]
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Businessboarding_Verify_API_with_blank_BusinessEmailAddress.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "178",
+					"Description": "Invalid Input Parameter(s)",
+					"DetailedSummary": {
+						"BusinessXpressID": "",
+						"BusinessCode": "${$.Businessboarding_Verify_API_with_blank_BusinessEmailAddress.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"Status": "205",
+						"Message": "Empty/Invalid Business email address"
 					}
 				}
 			}

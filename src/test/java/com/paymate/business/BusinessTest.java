@@ -16,6 +16,11 @@ import org.junit.runners.MethodSorters;
 public class BusinessTest {
 
 	@Test
+	@Scenario("PayMate/Business/Business_Boarding_PayMate.json")
+	public void test_Business_Boarding_PayMate_scenarios() throws Exception {
+	}
+
+	@Test
 	@Scenario("PayMate/Business/Business_BoardingCustom.json")
 	public void test_Business_Boarding_custom_scenarios() throws Exception {
 	}

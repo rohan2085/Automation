@@ -99,7 +99,6 @@
 							"BusinessXpressID": "",
 							"ContactPersonName": "MODIFY${$.Create_Business_boarding_000_198_TC_acceptance_is_pending_with_RequestID_lessThan_maxLength_10AN.request.body.BusinessDetails.BusinessInfo.ContactPersonName}",
 							"BusinessEmailAddress": "MODIFY${$.Create_Business_boarding_000_198_TC_acceptance_is_pending_with_RequestID_lessThan_maxLength_10AN.request.body.BusinessDetails.BusinessInfo.BusinessEmailAddress}",
-							"MobileNumber": "${MobileNumber}",
 							"BusinessDescription": "MODIFY Gift products ecommerce site which has been created for Paul Walker MODIFY",
 							"ContactKYCRequired": "N"
 						}
