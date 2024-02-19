@@ -22,7 +22,7 @@
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
 							"BusinessEmailAddress": "paulw${RANDOM.NUMBER.FIXED:6}@yopmail.com",
 							"ISDCode": "${ISDCode}",
-							"MobileNumber": "${MobileNumber}",
+							"MobileNumber": "${MobileNumber}${RANDOM.NUMBER:6}",
 							"BusinessDescription": "Gift products ecommerce site which has been created for Paul Walker",
 							"WebsiteAddress": "www.tata${RANDOM.NUMBER:6}.com",
 							"BusinessISOCountryCode": "${BusinessISOCountryCode}",

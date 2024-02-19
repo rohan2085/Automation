@@ -1,0 +1,1470 @@
+{
+	"scenarioName": "Business Collection Account flow",
+	"ignoreStepFailures": true,
+	"steps": [
+		{
+			"name": "Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending",
+			"url": "/v1/Businessboarding",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "REQhp${RANDOM.NUMBER:13}",
+						"BusinessInfo": {
+							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
+							"BusinessName": "paul${RANDOM.NUMBER:8}",
+							"BusinessCode": "paul${RANDOM.NUMBER:8}",
+							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
+							"BusinessEmailAddress": "paulw${RANDOM.NUMBER.FIXED:6}@yopmail.com",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}${RANDOM.NUMBER:6}",
+							"BusinessDescription": "Gift products ecommerce site which has been created for Paul Walker",
+							"WebsiteAddress": "www.tata${RANDOM.NUMBER:6}.com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						},
+						"TransactionCharges": [
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"ProgramCode": "ABC123"
+							},
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"ProgramCode": "ABC123"
+							}
+						]
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": {
+						"BusinessXpressID": "$NOT.NULL",
+						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"Status": "198",
+						"Message": "T&C acceptance is pending"
+					}
+				}
+			}
+		},
+		{
+			"name": "Create_Business_Collection_Account_with_valid_data_000_Your_request_has_been_processed_successfully_288_Account_has_been_set_as_a_default_settlement_account_01",
+			"url": "/v1/BusinessCollectionAccount",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"SettlementAccountDetails": {
+						"RequestID": "Reqm${RANDOM.NUMBER:13}",
+						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.response.body.DetailedSummary.BusinessXpressID}",
+						"AccountDetails": {
+							"AccountHolderName": "Paul Walker${RANDOM.STRING:10}",
+							"AccountNo": "${AccountNo}${RANDOM.NUMBER:6}",
+							"CurrencyCode": "${CurrencyCode}",
+							"RoutingNumber": "${RoutingNumber}",
+							"BICCode": "${BICCode}",
+							"BranchCity": "${BranchCity}"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Create_Business_Collection_Account_with_valid_data_000_Your_request_has_been_processed_successfully_288_Account_has_been_set_as_a_default_settlement_account_01.request.body.SettlementAccountDetails.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": {
+						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.response.body.DetailedSummary.BusinessXpressID}",
+						"Status": "288",
+						"Message": "Account has been set as a default settlement account"
+					}
+				}
+			}
+		},
+		{
+			"name": "Create_Business_Collection_Account_with_Invalid_requestid_morethan_30_AN_data_178_Invalid_Input_Parameter_s_609_Empty_Invalid_RequestID_02",
+			"url": "/v1/BusinessCollectionAccount",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"SettlementAccountDetails": {
+						"RequestID": "Reqm${RANDOM.NUMBER:13}request${RANDOM.NUMBER:13}",
+						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "",
+						"AccountDetails": {
+							"AccountHolderName": "Paul Walker${RANDOM.STRING:6}",
+							"AccountNo": "${AccountNo}${RANDOM.NUMBER:6}",
+							"CurrencyCode": "${CurrencyCode}",
+							"RoutingNumber": "${RoutingNumber}",
+							"BICCode": "${BICCode}",
+							"BranchCity": "${BranchCity}"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Create_Business_Collection_Account_with_Invalid_requestid_morethan_30_AN_data_178_Invalid_Input_Parameter_s_609_Empty_Invalid_RequestID_02.request.body.SettlementAccountDetails.RequestID}",
+					"StatusCode": "178",
+					"Description": "Invalid Input Parameter(s)",
+					"DetailedSummary": {
+						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "$NOT.NULL",
+						"Status": "609",
+						"Message": "Empty/Invalid RequestID"
+					}
+				}
+			}
+		},
+		{
+			"name": "Create_Business_Collection_Account_with_Invalid_requestid_duplicaterequestid_alreadyexisting_609_RequestId_already_processed_03",
+			"url": "/v1/BusinessCollectionAccount",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"SettlementAccountDetails": {
+						"RequestID": "${$.Create_Business_Collection_Account_with_valid_data_000_Your_request_has_been_processed_successfully_288_Account_has_been_set_as_a_default_settlement_account_01.request.body.SettlementAccountDetails.RequestID}",
+						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "",
+						"AccountDetails": {
+							"AccountHolderName": "Paul Walker${RANDOM.STRING:6}",
+							"AccountNo": "${AccountNo}${RANDOM.NUMBER:6}",
+							"CurrencyCode": "${CurrencyCode}",
+							"RoutingNumber": "${RoutingNumber}",
+							"BICCode": "${BICCode}",
+							"BranchCity": "${BranchCity}"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Create_Business_Collection_Account_with_Invalid_requestid_duplicaterequestid_alreadyexisting_609_RequestId_already_processed_03.request.body.SettlementAccountDetails.RequestID}",
+					"StatusCode": "609",
+					"Description": "RequestId already processed",
+					"DetailedSummary": {
+					}
+				}
+			}
+		},
+		{
+			"name": "Create_Business_Collection_Account_without_requestid_609_Empty_Invalid RequestId_04",
+			"url": "/v1/BusinessCollectionAccount",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"SettlementAccountDetails": {
+						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "",
+						"AccountDetails": {
+							"AccountHolderName": "Paul Walker${RANDOM.STRING:6}",
+							"AccountNo": "${AccountNo}${RANDOM.NUMBER:6}",
+							"CurrencyCode": "${CurrencyCode}",
+							"RoutingNumber": "${RoutingNumber}",
+							"BICCode": "${BICCode}",
+							"BranchCity": "${BranchCity}"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": null,
+					"StatusCode": "609",
+					"Description": "Empty/Invalid RequestId",
+					"DetailedSummary": {
+					}
+				}
+			}
+		},
+		{
+			"name": "Create_Business_Collection_Account_with_blank_requestid_609_Empty_Invalid_RequestId_05",
+			"url": "/v1/BusinessCollectionAccount",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"SettlementAccountDetails": {
+						"RequestID": "",
+						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "",
+						"AccountDetails": {
+							"AccountHolderName": "Paul Walker${RANDOM.STRING:6}",
+							"AccountNo": "${AccountNo}${RANDOM.NUMBER:6}",
+							"CurrencyCode": "SGD",
+							"RoutingNumber": "",
+							"BICCode": "IDIBSGSG",
+							"BranchCity": "Yushan"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Create_Business_Collection_Account_with_blank_requestid_609_Empty_Invalid_RequestId_05.request.body.SettlementAccountDetails.RequestID}",
+					"StatusCode": "609",
+					"Description": "Empty/Invalid RequestId",
+					"DetailedSummary": {
+					}
+				}
+			}
+		},
+		{
+			"name": "Create_Business_Collection_Account_with_blank_business_code_and_businessxpressid_178_Invalid_Input_Parameter_s_610_Either_Business_code_or_XpressId_is_mandatory_06",
+			"url": "/v1/BusinessCollectionAccount",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"SettlementAccountDetails": {
+						"RequestID": "Reqm${RANDOM.NUMBER:13}",
+						"BusinessCode": "",
+						"BusinessXpressID": "",
+						"AccountDetails": {
+							"AccountHolderName": "Paul Walker${RANDOM.STRING:6}",
+							"AccountNo": "${AccountNo}${RANDOM.NUMBER:6}",
+							"CurrencyCode": "${CurrencyCode}",
+							"RoutingNumber": "${RoutingNumber}",
+							"BICCode": "${BICCode}",
+							"BranchCity": "${BranchCity}"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Create_Business_Collection_Account_with_blank_business_code_and_businessxpressid_178_Invalid_Input_Parameter_s_610_Either_Business_code_or_XpressId_is_mandatory_06.request.body.SettlementAccountDetails.RequestID}",
+					"StatusCode": "178",
+					"Description": "Invalid Input Parameter(s)",
+					"DetailedSummary": {
+						"BusinessXpressID": "",
+						"BusinessCode": "",
+						"Status": "610",
+						"Message": "Either Business code or XpressId is mandatory"
+					}
+				}
+			}
+		},
+		{
+			"name": "Create_Business_Collection_Account_with_Valid_BusinessXpressID_and_Blank_Without_BusinessCode_000_Your_request_has_been_processed_successfully_288_Account_has_been_set_as_a_default_settlement_account_07",
+			"url": "/v1/BusinessCollectionAccount",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"SettlementAccountDetails": {
+						"RequestID": "Reqm${RANDOM.NUMBER:13}",
+						"BusinessCode": "",
+						"BusinessXpressID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.response.body.DetailedSummary.BusinessXpressID}",
+						"AccountDetails": {
+							"AccountHolderName": "Paul Walker${RANDOM.STRING:6}",
+							"AccountNo": "${AccountNo}${RANDOM.NUMBER:6}",
+							"CurrencyCode": "${CurrencyCode}",
+							"RoutingNumber": "${RoutingNumber}",
+							"BICCode": "${BICCode}",
+							"BranchCity": "${BranchCity}"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Create_Business_Collection_Account_with_Valid_BusinessXpressID_and_Blank_Without_BusinessCode_000_Your_request_has_been_processed_successfully_288_Account_has_been_set_as_a_default_settlement_account_07.request.body.SettlementAccountDetails.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": {
+						"BusinessCode": "",
+						"BusinessXpressID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.response.body.DetailedSummary.BusinessXpressID}",
+						"Status": "288",
+						"Message": "Account has been set as a default settlement account"
+					}
+				}
+			}
+		},
+		{
+			"name": "Create_Business_Collection_Account_Valid_business_code_and_Blank_Without_BusinessXpressID__Invalid_Input_Parameter_s_201_Account_has_been_set_as_a_default_settlement_account_08",
+			"url": "/v1/BusinessCollectionAccount",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"SettlementAccountDetails": {
+						"RequestID": "Reqm${RANDOM.NUMBER:13}",
+						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "",
+						"AccountDetails": {
+							"AccountHolderName": "Paul Walker${RANDOM.STRING:6}",
+							"AccountNo": "${AccountNo}${RANDOM.NUMBER:6}",
+							"CurrencyCode": "${CurrencyCode}",
+							"RoutingNumber": "${RoutingNumber}",
+							"BICCode": "${BICCode}",
+							"BranchCity": "${BranchCity}"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Create_Business_Collection_Account_Valid_business_code_and_Blank_Without_BusinessXpressID__Invalid_Input_Parameter_s_201_Account_has_been_set_as_a_default_settlement_account_08.request.body.SettlementAccountDetails.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": {
+						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "$NOT.NULL",
+						"Status": "288",
+						"Message": "Account has been set as a default settlement account"
+					}
+				}
+			}
+		},
+		{
+			"name": "Create_Business_Collection_Account_with_Invalid_BusinessCode_More_than_AN_30_Special_Char_and_Blank_Without_BusinessXpressID_178_Invalid_Input_Parameter_s_201_Empty_Invalid_BusinessCode_09",
+			"url": "/v1/BusinessCollectionAccount",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"SettlementAccountDetails": {
+						"RequestID": "Reqm${RANDOM.NUMBER:13}",
+						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}@@@@@@@@${RANDOM.NUMBER:13}",
+						"BusinessXpressID": "",
+						"AccountDetails": {
+							"AccountHolderName": "Paul Walker${RANDOM.STRING:6}",
+							"AccountNo": "${AccountNo}${RANDOM.NUMBER:6}",
+							"CurrencyCode": "${CurrencyCode}",
+							"RoutingNumber": "${RoutingNumber}",
+							"BICCode": "${BICCode}",
+							"BranchCity": "${BranchCity}"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Create_Business_Collection_Account_with_Invalid_BusinessCode_More_than_AN_30_Special_Char_and_Blank_Without_BusinessXpressID_178_Invalid_Input_Parameter_s_201_Empty_Invalid_BusinessCode_09.request.body.SettlementAccountDetails.RequestID}",
+					"StatusCode": "178",
+					"Description": "Invalid Input Parameter(s)",
+					"DetailedSummary": {
+						"BusinessXpressID": "$NOT.NULL",
+						"BusinessCode": "${$.Create_Business_Collection_Account_with_Invalid_BusinessCode_More_than_AN_30_Special_Char_and_Blank_Without_BusinessXpressID_178_Invalid_Input_Parameter_s_201_Empty_Invalid_BusinessCode_09.request.body.SettlementAccountDetails.BusinessCode}",
+						"Status": "201",
+						"Message": "Empty/Invalid Business Code"
+					}
+				}
+			}
+		},
+		{
+			"name": "Create_Business_Collection_Account_with_Invalid_BusinessXpressId_More_than_AN_30_Special_Char_and_Blank_Without_BusinessCode_178_Invalid_Input_Parameter_s_249_Empty_Invalid_Business_XpressID_10",
+			"url": "/v1/BusinessCollectionAccount",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"SettlementAccountDetails": {
+						"RequestID": "Reqm${RANDOM.NUMBER:13}",
+						"BusinessCode": "",
+						"BusinessXpressID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.response.body.DetailedSummary.BusinessXpressID}@@@@@@@@{RANDOM.NUMBER:13}",
+						"AccountDetails": {
+							"AccountHolderName": "Paul Walker${RANDOM.STRING:6}",
+							"AccountNo": "${AccountNo}${RANDOM.NUMBER:6}",
+							"CurrencyCode": "${CurrencyCode}",
+							"RoutingNumber": "${RoutingNumber}",
+							"BICCode": "${BICCode}",
+							"BranchCity": "${BranchCity}"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Create_Business_Collection_Account_with_Invalid_BusinessXpressId_More_than_AN_30_Special_Char_and_Blank_Without_BusinessCode_178_Invalid_Input_Parameter_s_249_Empty_Invalid_Business_XpressID_10.request.body.SettlementAccountDetails.RequestID}",
+					"StatusCode": "178",
+					"Description": "Invalid Input Parameter(s)",
+					"DetailedSummary": {
+						"BusinessXpressID": "${$.Create_Business_Collection_Account_with_Invalid_BusinessXpressId_More_than_AN_30_Special_Char_and_Blank_Without_BusinessCode_178_Invalid_Input_Parameter_s_249_Empty_Invalid_Business_XpressID_10.request.body.SettlementAccountDetails.BusinessXpressID}",
+						"BusinessCode": "",
+						"Status": "249",
+						"Message": "Empty/Invalid Business XpressID"
+					}
+				}
+			}
+		},
+		{
+			"name": "Create_Business_Collection_Account_API_with_Only_Invalid_BusinessCode_More_than_AN_30_Special_Char_and_Valid_BusinessXpressID_178_Invalid_Input_Parameter_s_201_Empty_Invalid_Business_Code_11",
+			"url": "/v1/BusinessCollectionAccount",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"SettlementAccountDetails": {
+						"RequestID": "Reqm${RANDOM.NUMBER:13}",
+						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}1234567tyuiop{RANDOM.NUMBER:13}",
+						"BusinessXpressID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.response.body.DetailedSummary.BusinessXpressID}",
+						"AccountDetails": {
+							"AccountHolderName": "Paul Walker${RANDOM.STRING:6}",
+							"AccountNo": "${AccountNo}${RANDOM.NUMBER:6}",
+							"CurrencyCode": "${CurrencyCode}",
+							"RoutingNumber": "${RoutingNumber}",
+							"BICCode": "${BICCode}",
+							"BranchCity": "${BranchCity}"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Create_Business_Collection_Account_API_with_Only_Invalid_BusinessCode_More_than_AN_30_Special_Char_and_Valid_BusinessXpressID_178_Invalid_Input_Parameter_s_201_Empty_Invalid_Business_Code_11.request.body.SettlementAccountDetails.RequestID}",
+					"StatusCode": "178",
+					"Description": "Invalid Input Parameter(s)",
+					"DetailedSummary": {
+						"BusinessCode": "${$.Create_Business_Collection_Account_API_with_Only_Invalid_BusinessCode_More_than_AN_30_Special_Char_and_Valid_BusinessXpressID_178_Invalid_Input_Parameter_s_201_Empty_Invalid_Business_Code_11.request.body.SettlementAccountDetails.BusinessCode}",
+						"BusinessXpressID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.response.body.DetailedSummary.BusinessXpressID}",
+						"Status": "201",
+						"Message": "Empty/Invalid Business Code"
+					}
+				}
+			}
+		},
+		{
+			"name": "Create_Business_Collection_Account_API_with_Only_Invalid_BusinessXpressID_More_than_AN_30_Special_Char_and_Valid_BusinessCode_178_Invalid_Input_Parameter_s_249_Empty_Invalid_Business_XpressID_12",
+			"url": "/v1/BusinessCollectionAccount",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"SettlementAccountDetails": {
+						"RequestID": "Reqm${RANDOM.NUMBER:13}",
+						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.response.body.DetailedSummary.BusinessXpressID}123456789{RANDOM.NUMBER:13}",
+						"AccountDetails": {
+							"AccountHolderName": "Paul Walker${RANDOM.STRING:6}",
+							"AccountNo": "${AccountNo}${RANDOM.NUMBER:6}",
+							"CurrencyCode": "${CurrencyCode}",
+							"RoutingNumber": "${RoutingNumber}",
+							"BICCode": "${BICCode}",
+							"BranchCity": "${BranchCity}"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Create_Business_Collection_Account_API_with_Only_Invalid_BusinessXpressID_More_than_AN_30_Special_Char_and_Valid_BusinessCode_178_Invalid_Input_Parameter_s_249_Empty_Invalid_Business_XpressID_12.request.body.SettlementAccountDetails.RequestID}",
+					"StatusCode": "178",
+					"Description": "Invalid Input Parameter(s)",
+					"DetailedSummary": {
+						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "${$.Create_Business_Collection_Account_API_with_Only_Invalid_BusinessXpressID_More_than_AN_30_Special_Char_and_Valid_BusinessCode_178_Invalid_Input_Parameter_s_249_Empty_Invalid_Business_XpressID_12.request.body.SettlementAccountDetails.BusinessXpressID}",
+						"Status": "249",
+						"Message": "Empty/Invalid Business XpressID"
+					}
+				}
+			}
+		},
+		{
+			"name": "Create_Business_Collection_Account_API_with_Only_Invalid_BusinessCode_More_than_AN_30_Special_Char_and_Blank_Without_BusinessXpressID_178_Invalid_Input_Parameter_s_successfully_201_Empty_Invalid_BusinessCode_13",
+			"url": "/v1/BusinessCollectionAccount",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"SettlementAccountDetails": {
+						"RequestID": "Reqm${RANDOM.NUMBER:13}",
+						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}999999{RANDOM.NUMBER:13}",
+						"BusinessXpressID": "",
+						"AccountDetails": {
+							"AccountHolderName": "Paul Walker${RANDOM.STRING:6}",
+							"AccountNo": "${AccountNo}${RANDOM.NUMBER:6}",
+							"CurrencyCode": "${CurrencyCode}",
+							"RoutingNumber": "${RoutingNumber}",
+							"BICCode": "${BICCode}",
+							"BranchCity": "${BranchCity}"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Create_Business_Collection_Account_API_with_Only_Invalid_BusinessCode_More_than_AN_30_Special_Char_and_Blank_Without_BusinessXpressID_178_Invalid_Input_Parameter_s_successfully_201_Empty_Invalid_BusinessCode_13.request.body.SettlementAccountDetails.RequestID}",
+					"StatusCode": "178",
+					"Description": "Invalid Input Parameter(s)",
+					"DetailedSummary": {
+						"BusinessCode": "${$.Create_Business_Collection_Account_API_with_Only_Invalid_BusinessCode_More_than_AN_30_Special_Char_and_Blank_Without_BusinessXpressID_178_Invalid_Input_Parameter_s_successfully_201_Empty_Invalid_BusinessCode_13.request.body.SettlementAccountDetails.BusinessCode}",
+						"BusinessXpressID": "",
+						"Status": "201",
+						"Message": "Empty/Invalid Business Code"
+					}
+				}
+			}
+		},
+		{
+			"name": "Create_Business_Collection_Account_API_with_Only_Invalid_BusinessXpressID_More_than_AN_Special_Char_and_Blank_Without_BusinessCode_178_Invalid_Input_Parameter_s_249_Empty_Invalid_Business_XpressID_14",
+			"url": "/v1/BusinessCollectionAccount",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"SettlementAccountDetails": {
+						"RequestID": "Reqm${RANDOM.NUMBER:13}",
+						"BusinessCode": "",
+						"BusinessXpressID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.response.body.DetailedSummary.BusinessXpressID}99999999999999{RANDOM.NUMBER:13}",
+						"AccountDetails": {
+							"AccountHolderName": "Paul Walker${RANDOM.STRING:6}",
+							"AccountNo": "${AccountNo}${RANDOM.NUMBER:6}",
+							"CurrencyCode": "${CurrencyCode}",
+							"RoutingNumber": "${RoutingNumber}",
+							"BICCode": "${BICCode}",
+							"BranchCity": "${BranchCity}"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Create_Business_Collection_Account_API_with_Only_Invalid_BusinessXpressID_More_than_AN_Special_Char_and_Blank_Without_BusinessCode_178_Invalid_Input_Parameter_s_249_Empty_Invalid_Business_XpressID_14.request.body.SettlementAccountDetails.RequestID}",
+					"StatusCode": "178",
+					"Description": "Invalid Input Parameter(s)",
+					"DetailedSummary": {
+						"BusinessCode": "",
+						"BusinessXpressID": "${$.Create_Business_Collection_Account_API_with_Only_Invalid_BusinessXpressID_More_than_AN_Special_Char_and_Blank_Without_BusinessCode_178_Invalid_Input_Parameter_s_249_Empty_Invalid_Business_XpressID_14.request.body.SettlementAccountDetails.BusinessXpressID}",
+						"Status": "249",
+						"Message": "Empty/Invalid Business XpressID"
+					}
+				}
+			}
+		},
+		{
+			"name": "Create_Business_Collection_Account_API_with_blank_Account_Holder_name_178_Invalid_Input_Parameter_s_235_Empty_Invalid_account_holder_name_15",
+			"url": "/v1/BusinessCollectionAccount",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"SettlementAccountDetails": {
+						"RequestID": "Reqm${RANDOM.NUMBER:13}",
+						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.response.body.DetailedSummary.BusinessXpressID}",
+						"AccountDetails": {
+							"AccountHolderName": "",
+							"AccountNo": "${AccountNo}${RANDOM.NUMBER:6}",
+							"CurrencyCode": "${CurrencyCode}",
+							"RoutingNumber": "${RoutingNumber}",
+							"BICCode": "${BICCode}",
+							"BranchCity": "${BranchCity}"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Create_Business_Collection_Account_API_with_blank_Account_Holder_name_178_Invalid_Input_Parameter_s_235_Empty_Invalid_account_holder_name_15.request.body.SettlementAccountDetails.RequestID}",
+					"StatusCode": "178",
+					"Description": "Invalid Input Parameter(s)",
+					"DetailedSummary": {
+						"BusinessXpressID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.response.body.DetailedSummary.BusinessXpressID}",
+						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"Status": "235",
+						"Message": "Empty / Invalid account holder name"
+					}
+				}
+			}
+		},
+		{
+			"name": "Create_Business_Collection_Account_API_without_Account_Holder_name_178_Invalid_Input_Parameter__235_Empty_Invalid_account_holder_namee_16",
+			"url": "/v1/BusinessCollectionAccount",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"SettlementAccountDetails": {
+						"RequestID": "Reqm${RANDOM.NUMBER:13}",
+						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.response.body.DetailedSummary.BusinessXpressID}",
+						"AccountDetails": {
+							"AccountNo": "${AccountNo}${RANDOM.NUMBER:6}",
+							"CurrencyCode": "${CurrencyCode}",
+							"RoutingNumber": "${RoutingNumber}",
+							"BICCode": "${BICCode}",
+							"BranchCity": "${BranchCity}"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Create_Business_Collection_Account_API_without_Account_Holder_name_178_Invalid_Input_Parameter__235_Empty_Invalid_account_holder_namee_16.request.body.SettlementAccountDetails.RequestID}",
+					"StatusCode": "178",
+					"Description": "Invalid Input Parameter(s)",
+					"DetailedSummary": {
+						"BusinessXpressID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.response.body.DetailedSummary.BusinessXpressID}",
+						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"Status": "235",
+						"Message": "Empty / Invalid account holder name"
+					}
+				}
+			}
+		},
+		{
+			"name": "Create_Business_Collection_Account_API_with_Invalid_Account_Holder_name_More_than_AN_100_Special_char_178_Invalid_Input_Parameter_s_235_Empty_Invalid_account_holder_name_17",
+			"url": "/v1/BusinessCollectionAccount",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"SettlementAccountDetails": {
+						"RequestID": "Reqm${RANDOM.NUMBER:13}",
+						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.response.body.DetailedSummary.BusinessXpressID}",
+						"AccountDetails": {
+							"AccountHolderName": "Paul Walker${RANDOM.STRING:6}${RANDOM.NUMBER:13}Reqm${RANDOM.NUMBER:13}Reqm${RANDOM.NUMBER:13}Reqm${RANDOM.NUMBER:13}Reqm${RANDOM.NUMBER:13}Reqm${RANDOM.NUMBER:13}Reqm${RANDOM.NUMBER:13}Reqm${RANDOM.NUMBER:13}Reqm${RANDOM.NUMBER:13}Reqm${RANDOM.NUMBER:13}",
+							"AccountNo": "${AccountNo}${RANDOM.NUMBER:6}",
+							"CurrencyCode": "${CurrencyCode}",
+							"RoutingNumber": "${RoutingNumber}",
+							"BICCode": "${BICCode}",
+							"BranchCity": "${BranchCity}"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Create_Business_Collection_Account_API_with_Invalid_Account_Holder_name_More_than_AN_100_Special_char_178_Invalid_Input_Parameter_s_235_Empty_Invalid_account_holder_name_17.request.body.SettlementAccountDetails.RequestID}",
+					"StatusCode": "178",
+					"Description": "Invalid Input Parameter(s)",
+					"DetailedSummary": {
+						"BusinessXpressID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.response.body.DetailedSummary.BusinessXpressID}",
+						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"Status": "235",
+						"Message": "Empty / Invalid account holder name"
+					}
+				}
+			}
+		},
+		{
+			"name": "Create_Business_Collection_Account_API_with_blank_AccountNo_178_Invalid_Input_Parameter_s_236_Empty_Invalid_Account_No__18",
+			"url": "/v1/BusinessCollectionAccount",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"SettlementAccountDetails": {
+						"RequestID": "Reqm${RANDOM.NUMBER:13}",
+						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.response.body.DetailedSummary.BusinessXpressID}",
+						"AccountDetails": {
+							"AccountHolderName": "Paul Walker${RANDOM.STRING:6}",
+							"AccountNo": "",
+							"CurrencyCode": "${CurrencyCode}",
+							"RoutingNumber": "${RoutingNumber}",
+							"BICCode": "${BICCode}",
+							"BranchCity": "${BranchCity}"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Create_Business_Collection_Account_API_with_blank_AccountNo_178_Invalid_Input_Parameter_s_236_Empty_Invalid_Account_No__18.request.body.SettlementAccountDetails.RequestID}",
+					"StatusCode": "178",
+					"Description": "Invalid Input Parameter(s)",
+					"DetailedSummary": {
+						"BusinessXpressID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.response.body.DetailedSummary.BusinessXpressID}",
+						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"Status": "236",
+						"Message": "Empty / Invalid Account No."
+					}
+				}
+			}
+		},
+		{
+			"name": "Create_Business_Collection_Account_API_without_AccountNo_178_Invalid_Input_Parameter_s_236_Empty_Invalid_Account_No_19",
+			"url": "/v1/BusinessCollectionAccount",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"SettlementAccountDetails": {
+						"RequestID": "Reqm${RANDOM.NUMBER:13}",
+						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.response.body.DetailedSummary.BusinessXpressID}",
+						"AccountDetails": {
+							"AccountHolderName": "Paul Walker${RANDOM.STRING:6}",
+							"CurrencyCode": "${CurrencyCode}",
+							"RoutingNumber": "${RoutingNumber}",
+							"BICCode": "${BICCode}",
+							"BranchCity": "${BranchCity}"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Create_Business_Collection_Account_API_without_AccountNo_178_Invalid_Input_Parameter_s_236_Empty_Invalid_Account_No_19.request.body.SettlementAccountDetails.RequestID}",
+					"StatusCode": "178",
+					"Description": "Invalid Input Parameter(s)",
+					"DetailedSummary": {
+						"BusinessXpressID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.response.body.DetailedSummary.BusinessXpressID}",
+						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"Status": "236",
+						"Message": "Empty / Invalid Account No."
+					}
+				}
+			}
+		},
+		{
+			"name": "Create_Business_Collection_Account_API_with_Invalid_AccountNo_More_than_AN_30_Special_char_178_Invalid_Input_Parameter_s_236_Empty_Invalid_Account_No_20",
+			"url": "/v1/BusinessCollectionAccount",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"SettlementAccountDetails": {
+						"RequestID": "Reqm${RANDOM.NUMBER:13}",
+						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.response.body.DetailedSummary.BusinessXpressID}",
+						"AccountDetails": {
+							"AccountHolderName": "Paul Walker${RANDOM.STRING:6}",
+							"AccountNo": "${AccountNo}111111111111111111111111111",
+							"CurrencyCode": "${CurrencyCode}",
+							"RoutingNumber": "${RoutingNumber}",
+							"BICCode": "${BICCode}",
+							"BranchCity": "${BranchCity}"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Create_Business_Collection_Account_API_with_Invalid_AccountNo_More_than_AN_30_Special_char_178_Invalid_Input_Parameter_s_236_Empty_Invalid_Account_No_20.request.body.SettlementAccountDetails.RequestID}",
+					"StatusCode": "178",
+					"Description": "Invalid Input Parameter(s)",
+					"DetailedSummary": {
+						"BusinessXpressID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.response.body.DetailedSummary.BusinessXpressID}",
+						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"Status": "236",
+						"Message": "Empty / Invalid Account No."
+					}
+				}
+			}
+		},
+		{
+			"name": "Create_Business_Collection_Account_API_with_Blank_CurrancyCode_000_Your_request_has_been_processed_successfully_288_Account_has_been_set_as_a_default_settlement_account_21",
+			"url": "/v1/BusinessCollectionAccount",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"SettlementAccountDetails": {
+						"RequestID": "Reqm${RANDOM.NUMBER:13}",
+						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.response.body.DetailedSummary.BusinessXpressID}",
+						"AccountDetails": {
+							"AccountHolderName": "Paul Walker${RANDOM.STRING:6}",
+							"AccountNo": "${AccountNo}${RANDOM.NUMBER:6}",
+							"CurrencyCode": "",
+							"RoutingNumber": "${RoutingNumber}",
+							"BICCode": "${BICCode}",
+							"BranchCity": "${BranchCity}"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Create_Business_Collection_Account_API_with_Blank_CurrancyCode_000_Your_request_has_been_processed_successfully_288_Account_has_been_set_as_a_default_settlement_account_21.request.body.SettlementAccountDetails.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": {
+						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.response.body.DetailedSummary.BusinessXpressID}",
+						"Status": "288",
+						"Message": "Account has been set as a default settlement account"
+					}
+				}
+			}
+		},
+		{
+			"name": "Create_Business_Collection_Account_API_without_CurrancyCode_000_Your_request_has_been_processed_successfully_288_Account_has_been_set_as_a_default_settlement_account_22",
+			"url": "/v1/BusinessCollectionAccount",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"SettlementAccountDetails": {
+						"RequestID": "Reqm${RANDOM.NUMBER:13}",
+						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.response.body.DetailedSummary.BusinessXpressID}",
+						"AccountDetails": {
+							"AccountNo": "${AccountNo}${RANDOM.NUMBER:6}",
+							"RoutingNumber": "${RoutingNumber}",
+							"BICCode": "${BICCode}",
+							"BranchCity": "${BranchCity}"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Create_Business_Collection_Account_API_without_CurrancyCode_000_Your_request_has_been_processed_successfully_288_Account_has_been_set_as_a_default_settlement_account_22.request.body.SettlementAccountDetails.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": {
+						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.response.body.DetailedSummary.BusinessXpressID}",
+						"Status": "288",
+						"Message": "Account has been set as a default settlement account"
+					}
+				}
+			}
+		},
+		{
+			"name": "Create_Business_Collection_API_with_Invalid_CurrancyCode_More_than_AN_3_Special_char_178_Invalid_Input_Parameter_s_245_Empty_Invalid_Currency_Code_23",
+			"url": "/v1/BusinessCollectionAccount",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"SettlementAccountDetails": {
+						"RequestID": "Reqm${RANDOM.NUMBER:13}",
+						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.response.body.DetailedSummary.BusinessXpressID}",
+						"AccountDetails": {
+							"AccountHolderName": "Paul Walker${RANDOM.STRING:6}",
+							"AccountNo": "${AccountNo}${RANDOM.NUMBER:6}",
+							"CurrencyCode": "${CurrencyCode}pppppp",
+							"RoutingNumber": "${RoutingNumber}",
+							"BICCode": "${BICCode}",
+							"BranchCity": "${BranchCity}"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Create_Business_Collection_API_with_Invalid_CurrancyCode_More_than_AN_3_Special_char_178_Invalid_Input_Parameter_s_245_Empty_Invalid_Currency_Code_23.request.body.SettlementAccountDetails.RequestID}",
+					"StatusCode": "178",
+					"Description": "Invalid Input Parameter(s)",
+					"DetailedSummary": {
+						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.response.body.DetailedSummary.BusinessXpressID}",
+						"Status": "245",
+						"Message": "Empty / Invalid Currency Code"
+					}
+				}
+			}
+		}
+	]
+}

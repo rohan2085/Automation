@@ -1,7 +1,7 @@
 {
 	"scenarioName": "Business Boarding Custom flow",
 	"ignoreStepFailures": true,
-	"steps": [
+	"steps": [ 
 		{
 			"name": "${0}",
 			"url": "/v1/Businessboarding",

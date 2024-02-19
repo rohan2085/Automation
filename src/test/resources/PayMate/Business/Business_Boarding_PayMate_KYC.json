@@ -1,0 +1,162 @@
+{
+	"scenarioName": "Business Boarding flow KYC",
+	"ignoreStepFailures": true,
+	"steps": [
+		{
+			"name": "Businessboarding_Verify_API_only_with_mandatory_field_Prerequisite_KYC",
+			"url": "/v1/Businessboarding",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "REQhp${RANDOM.NUMBER:8}${RANDOM.NUMBER:8}",
+						"BusinessInfo": {
+							"BusinessName": "paul${RANDOM.NUMBER:8}",
+							"BusinessCode": "paul${RANDOM.NUMBER:8}",
+							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
+							"BusinessEmailAddress": "paulw${RANDOM.NUMBER.FIXED:6}@yopmail.com",
+							"ISDCode": "",
+							"MobileNumber": "",
+							"BusinessDescription": "",
+							"WebsiteAddress": "",
+							"BusinessISOCountryCode": "",
+							"ContactKYCRequired": "Y"
+						},
+						"TransactionCharges": [
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"ProgramCode": "ABC123"
+							},
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"ProgramCode": "ABC123"
+							}
+						]
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Businessboarding_Verify_API_only_with_mandatory_field_Prerequisite_KYC.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": {
+						"BusinessXpressID": "$NOT.NULL",
+						"BusinessCode": "${$.Businessboarding_Verify_API_only_with_mandatory_field_Prerequisite_KYC.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"Status": "198",
+						"Message": "T&C acceptance is pending"
+					}
+				}
+			}
+		},
+		{
+			"name": "Businessboarding_Processbuyersupplierkyc",
+			"url": "/v1/Processbuyersupplierkyc",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"Details": {
+						"RequestID": "REQhp${RANDOM.NUMBER:8}${RANDOM.NUMBER:8}",
+						"BusinessCode": "${$.Businessboarding_Verify_API_only_with_mandatory_field_Prerequisite_KYC.response.body.DetailedSummary.BusinessCode}",
+						"BusinessXpressID": "${$.Businessboarding_Verify_API_only_with_mandatory_field_Prerequisite_KYC.response.body.DetailedSummary.BusinessXpressID}",
+						"ContactReferenceCode": "",
+						"ContactXpressID": "",
+						"BusinessNature": "publicCompany",
+						"BusinessProof": {
+							"DocumentType": "Industry",
+							"DocumentNumber": "19AABCU9603R1ZM",
+							"NameonDocument": "Business Ten",
+							"DocumentProof": "iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==",
+							"FileName": "trade.png",
+							"TaxId": "ABY8766661"
+						},
+						"AddressProof": {
+							"Address": "A101,UniqueBuilding,Twinstreet,Delhi",
+							"City": "xyz",
+							"Pincode": "110003",
+							"Country": "SGP",
+							"DocumentProof": "iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==",
+							"FileName": "electricity.png"
+						},
+						"BankProof": {
+							"DocumentType": "BankStatement",
+							"DocumentProof": "iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==",
+							"FileName": "electricity.png"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Businessboarding_Processbuyersupplierkyc.request.body.Details.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": {
+						"BusinessCode": "${$.Businessboarding_Processbuyersupplierkyc.request.body.Details.BusinessCode}",
+						"BusinessXpressID": "${$.Businessboarding_Processbuyersupplierkyc.request.body.Details.BusinessXpressID}",
+						"ContactReferenceCode": "",
+						"ContactXpressId": "",
+						"Status": "297",
+						"Message": "Your document(s) has been processed successfully"
+					}
+				}
+			}
+		}
+	]
+}
