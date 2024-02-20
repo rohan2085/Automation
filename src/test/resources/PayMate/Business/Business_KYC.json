@@ -73,8 +73,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Businessboarding_Verify_API_only_with_mandatory_field.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
+						"Status": "291",
+						"Message": "KYC Under Review"
 					}
 				}
 			}
@@ -307,15 +307,16 @@
 					"Description": "Invalid Input Parameter(s)",
 					"DetailedSummary": {
 						"BusinessCode": "${$.Businessboarding_Processbuyersupplierkyc_ContactReferenceCode_MoreThan30.request.body.Details.BusinessCode}",
-						"BusinessXpressID":"${$.Businessboarding_Processbuyersupplierkyc_ContactReferenceCode_MoreThan30.request.body.Details.BusinessXpressID}",
-						"ContactReferenceCode":"${$.Businessboarding_Processbuyersupplierkyc_ContactReferenceCode_MoreThan30.request.body.Details.ContactReferenceCode}",
+						"BusinessXpressID": "${$.Businessboarding_Processbuyersupplierkyc_ContactReferenceCode_MoreThan30.request.body.Details.BusinessXpressID}",
+						"ContactReferenceCode": "${$.Businessboarding_Processbuyersupplierkyc_ContactReferenceCode_MoreThan30.request.body.Details.ContactReferenceCode}",
 						"ContactXpressId": "$NULL",
 						"Status": "302",
 						"Message": "Empty / Invalid ReferenceCode"
 					}
 				}
 			}
-		},{
+		},
+		{
 			"name": "Businessboarding_Processbuyersupplierkyc_ContactXpressId_MoreThan15",
 			"url": "/v1/Processbuyersupplierkyc",
 			"operation": "POST",
@@ -385,8 +386,8 @@
 					"Description": "Invalid Input Parameter(s)",
 					"DetailedSummary": {
 						"BusinessCode": "${$.Businessboarding_Processbuyersupplierkyc_ContactXpressId_MoreThan15.request.body.Details.BusinessCode}",
-						"BusinessXpressID":"${$.Businessboarding_Processbuyersupplierkyc_ContactXpressId_MoreThan15.request.body.Details.BusinessXpressID}",
-						"ContactReferenceCode":"",
+						"BusinessXpressID": "${$.Businessboarding_Processbuyersupplierkyc_ContactXpressId_MoreThan15.request.body.Details.BusinessXpressID}",
+						"ContactReferenceCode": "",
 						"ContactXpressID": "${$.Businessboarding_Processbuyersupplierkyc_ContactXpressId_MoreThan15.request.body.Details.ContactXpressID}",
 						"Status": "314",
 						"Message": "Empty/Invalid Contact XpressId"

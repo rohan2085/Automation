@@ -3,7 +3,7 @@
 	"ignoreStepFailures": true,
 	"steps": [
 		{
-			"name": "Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending",
+			"name": "Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review",
 			"url": "/v1/Businessboarding",
 			"operation": "POST",
 			"request": {
@@ -70,7 +70,7 @@
 			}
 		},
 		{
-			"name": "Create_Business_boarding_000_198_TC_acceptance_is_pending_with_RequestID_maxLength_30AN",
+			"name": "Create_Business_boarding_000_291_KYC_Under_Review_with_RequestID_maxLength_30AN",
 			"url": "/v1/Businessboarding",
 			"operation": "POST",
 			"request": {
@@ -135,14 +135,14 @@
 					]
 				},
 				"body": {
-					"RequestID": "${$.Create_Business_boarding_000_198_TC_acceptance_is_pending_with_RequestID_maxLength_30AN.request.body.BusinessDetails.RequestID}",
+					"RequestID": "${$.Create_Business_boarding_000_291_KYC_Under_Review_with_RequestID_maxLength_30AN.request.body.BusinessDetails.RequestID}",
 					"StatusCode": "000",
 					"Description": "Your request has been processed successfully",
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
-						"BusinessCode": "${$.Create_Business_boarding_000_198_TC_acceptance_is_pending_with_RequestID_maxLength_30AN.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
+						"BusinessCode": "${$.Create_Business_boarding_000_291_KYC_Under_Review_with_RequestID_maxLength_30AN.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						 "Status" : "291",
+						 "Message" : "KYC Under Review"
 					}
 				}
 			}
@@ -159,7 +159,7 @@
 				},
 				"body": {
 					"BusinessDetails": {
-						"RequestID": "${$.Create_Business_boarding_000_198_TC_acceptance_is_pending_with_RequestID_maxLength_30AN.request.body.BusinessDetails.RequestID}",
+						"RequestID": "${$.Create_Business_boarding_000_291_KYC_Under_Review_with_RequestID_maxLength_30AN.request.body.BusinessDetails.RequestID}",
 						"BusinessInfo": {
 							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
 							"BusinessName": "paul${RANDOM.NUMBER:8}",
@@ -681,7 +681,7 @@
 			}
 		},
 		{
-			"name": "Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_BusinessRegistrationNo_maxLength_30AN",
+			"name": "Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review_BusinessRegistrationNo_maxLength_30AN",
 			"url": "/v1/Businessboarding",
 			"operation": "POST",
 			"request": {
@@ -746,20 +746,20 @@
 					]
 				},
 				"body": {
-					"RequestID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_BusinessRegistrationNo_maxLength_30AN.request.body.BusinessDetails.RequestID}",
+					"RequestID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review_BusinessRegistrationNo_maxLength_30AN.request.body.BusinessDetails.RequestID}",
 					"StatusCode": "000",
 					"Description": "Your request has been processed successfully",
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
-						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_BusinessRegistrationNo_maxLength_30AN.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
+						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review_BusinessRegistrationNo_maxLength_30AN.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						 "Status" : "291",
+						 "Message" : "KYC Under Review"
 					}
 				}
 			}
 		},
 		{
-			"name": "Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_BusinessRegistrationNo_with_SPACE",
+			"name": "Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review_BusinessRegistrationNo_with_SPACE",
 			"url": "/v1/Businessboarding",
 			"operation": "POST",
 			"request": {
@@ -824,14 +824,14 @@
 					]
 				},
 				"body": {
-					"RequestID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_BusinessRegistrationNo_with_SPACE.request.body.BusinessDetails.RequestID}",
+					"RequestID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review_BusinessRegistrationNo_with_SPACE.request.body.BusinessDetails.RequestID}",
 					"StatusCode": "000",
 					"Description": "Your request has been processed successfully",
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
-						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_BusinessRegistrationNo_with_SPACE.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
+						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review_BusinessRegistrationNo_with_SPACE.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						 "Status" : "291",
+						 "Message" : "KYC Under Review"
 					}
 				}
 			}
@@ -915,7 +915,7 @@
 			}
 		},
 		{
-			"name": "Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_when_BusinessRegistrationNo_is_blank_empty",
+			"name": "Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review_when_BusinessRegistrationNo_is_blank_empty",
 			"url": "/v1/Businessboarding",
 			"operation": "POST",
 			"request": {
@@ -980,14 +980,14 @@
 					]
 				},
 				"body": {
-					"RequestID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_when_BusinessRegistrationNo_is_blank_empty.request.body.BusinessDetails.RequestID}",
+					"RequestID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review_when_BusinessRegistrationNo_is_blank_empty.request.body.BusinessDetails.RequestID}",
 					"StatusCode": "000",
 					"Description": "Your request has been processed successfully",
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
-						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_when_BusinessRegistrationNo_is_blank_empty.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
+						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review_when_BusinessRegistrationNo_is_blank_empty.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						 "Status" : "291",
+						 "Message" : "KYC Under Review"
 					}
 				}
 			}
@@ -1149,7 +1149,7 @@
 			}
 		},
 		{
-			"name": "Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_when_BusinessRegistrationNo_removed_parameter_from_request",
+			"name": "Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review_when_BusinessRegistrationNo_removed_parameter_from_request",
 			"url": "/v1/Businessboarding",
 			"operation": "POST",
 			"request": {
@@ -1213,20 +1213,20 @@
 					]
 				},
 				"body": {
-					"RequestID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_when_BusinessRegistrationNo_removed_parameter_from_request.request.body.BusinessDetails.RequestID}",
+					"RequestID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review_when_BusinessRegistrationNo_removed_parameter_from_request.request.body.BusinessDetails.RequestID}",
 					"StatusCode": "000",
 					"Description": "Your request has been processed successfully",
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
-						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_when_BusinessRegistrationNo_removed_parameter_from_request.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
+						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review_when_BusinessRegistrationNo_removed_parameter_from_request.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						 "Status" : "291",
+						 "Message" : "KYC Under Review"
 					}
 				}
 			}
 		},
 		{
-			"name": "Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_BusinessRegistrationNo_lessThan_maxLength_10AN",
+			"name": "Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review_BusinessRegistrationNo_lessThan_maxLength_10AN",
 			"url": "/v1/Businessboarding",
 			"operation": "POST",
 			"request": {
@@ -1291,20 +1291,20 @@
 					]
 				},
 				"body": {
-					"RequestID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_BusinessRegistrationNo_lessThan_maxLength_10AN.request.body.BusinessDetails.RequestID}",
+					"RequestID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review_BusinessRegistrationNo_lessThan_maxLength_10AN.request.body.BusinessDetails.RequestID}",
 					"StatusCode": "000",
 					"Description": "Your request has been processed successfully",
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
-						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_BusinessRegistrationNo_lessThan_maxLength_10AN.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
+						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review_BusinessRegistrationNo_lessThan_maxLength_10AN.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						 "Status" : "291",
+						 "Message" : "KYC Under Review"
 					}
 				}
 			}
 		},
 		{
-			"name": "Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_when_BusinessRegistrationNo_is_Duplicated_means_is_already_exist",
+			"name": "Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review_when_BusinessRegistrationNo_is_Duplicated_means_is_already_exist",
 			"url": "/v1/Businessboarding",
 			"operation": "POST",
 			"request": {
@@ -1317,7 +1317,7 @@
 					"BusinessDetails": {
 						"RequestID": "REQhp${RANDOM.NUMBER:13}",
 						"BusinessInfo": {
-							"BusinessRegistrationNo": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_BusinessRegistrationNo_lessThan_maxLength_10AN.request.body.BusinessDetails.BusinessInfo.BusinessRegistrationNo}",
+							"BusinessRegistrationNo": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review_BusinessRegistrationNo_lessThan_maxLength_10AN.request.body.BusinessDetails.BusinessInfo.BusinessRegistrationNo}",
 							"BusinessName": "paul${RANDOM.NUMBER:8}",
 							"BusinessCode": "paul${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
@@ -1369,20 +1369,20 @@
 					]
 				},
 				"body": {
-					"RequestID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_when_BusinessRegistrationNo_is_Duplicated_means_is_already_exist.request.body.BusinessDetails.RequestID}",
+					"RequestID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review_when_BusinessRegistrationNo_is_Duplicated_means_is_already_exist.request.body.BusinessDetails.RequestID}",
 					"StatusCode": "000",
 					"Description": "Your request has been processed successfully",
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
-						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_when_BusinessRegistrationNo_is_Duplicated_means_is_already_exist.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
+						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review_when_BusinessRegistrationNo_is_Duplicated_means_is_already_exist.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						 "Status" : "291",
+						 "Message" : "KYC Under Review"
 					}
 				}
 			}
 		},
 		{
-			"name": "Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_BusinessName_maxLength_100AN",
+			"name": "Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review_BusinessName_maxLength_100AN",
 			"url": "/v1/Businessboarding",
 			"operation": "POST",
 			"request": {
@@ -1447,20 +1447,20 @@
 					]
 				},
 				"body": {
-					"RequestID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_BusinessName_maxLength_100AN.request.body.BusinessDetails.RequestID}",
+					"RequestID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review_BusinessName_maxLength_100AN.request.body.BusinessDetails.RequestID}",
 					"StatusCode": "000",
 					"Description": "Your request has been processed successfully",
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
-						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_BusinessName_maxLength_100AN.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
+						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review_BusinessName_maxLength_100AN.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						 "Status" : "291",
+						 "Message" : "KYC Under Review"
 					}
 				}
 			}
 		},
 		{
-			"name": "Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_BusinessName_with_SPACE",
+			"name": "Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review_BusinessName_with_SPACE",
 			"url": "/v1/Businessboarding",
 			"operation": "POST",
 			"request": {
@@ -1525,14 +1525,14 @@
 					]
 				},
 				"body": {
-					"RequestID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_BusinessName_with_SPACE.request.body.BusinessDetails.RequestID}",
+					"RequestID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review_BusinessName_with_SPACE.request.body.BusinessDetails.RequestID}",
 					"StatusCode": "000",
 					"Description": "Your request has been processed successfully",
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
-						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_BusinessName_with_SPACE.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
+						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review_BusinessName_with_SPACE.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						 "Status" : "291",
+						 "Message" : "KYC Under Review"
 					}
 				}
 			}
@@ -1927,7 +1927,7 @@
 			}
 		},
 		{
-			"name": "Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_BusinessName_with_allowed_special_chars",
+			"name": "Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review_BusinessName_with_allowed_special_chars",
 			"url": "/v1/Businessboarding",
 			"operation": "POST",
 			"request": {
@@ -1992,20 +1992,20 @@
 					]
 				},
 				"body": {
-					"RequestID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_BusinessName_with_allowed_special_chars.request.body.BusinessDetails.RequestID}",
+					"RequestID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review_BusinessName_with_allowed_special_chars.request.body.BusinessDetails.RequestID}",
 					"StatusCode": "000",
 					"Description": "Your request has been processed successfully",
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
-						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_BusinessName_with_allowed_special_chars.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
+						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review_BusinessName_with_allowed_special_chars.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						 "Status" : "291",
+						 "Message" : "KYC Under Review"
 					}
 				}
 			}
 		},
 		{
-			"name": "Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_when_BusinessName_is_Duplicated_means_is_already_exist",
+			"name": "Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review_when_BusinessName_is_Duplicated_means_is_already_exist",
 			"url": "/v1/Businessboarding",
 			"operation": "POST",
 			"request": {
@@ -2019,7 +2019,7 @@
 						"RequestID": "REQhp${RANDOM.NUMBER:13}",
 						"BusinessInfo": {
 							"BusinessRegistrationNo": "${RANDOM.NUMBER:8}${RANDOM.STRING:8}",
-							"BusinessName": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_BusinessName_with_allowed_special_chars.request.body.BusinessDetails.BusinessInfo.BusinessName}",
+							"BusinessName": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review_BusinessName_with_allowed_special_chars.request.body.BusinessDetails.BusinessInfo.BusinessName}",
 							"BusinessCode": "paul${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
 							"BusinessEmailAddress": "paulw${RANDOM.NUMBER.FIXED:6}@yopmail.com",
@@ -2070,20 +2070,20 @@
 					]
 				},
 				"body": {
-					"RequestID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_when_BusinessName_is_Duplicated_means_is_already_exist.request.body.BusinessDetails.RequestID}",
+					"RequestID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review_when_BusinessName_is_Duplicated_means_is_already_exist.request.body.BusinessDetails.RequestID}",
 					"StatusCode": "000",
 					"Description": "Your request has been processed successfully",
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
-						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_when_BusinessName_is_Duplicated_means_is_already_exist.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
+						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review_when_BusinessName_is_Duplicated_means_is_already_exist.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						 "Status" : "291",
+						 "Message" : "KYC Under Review"
 					}
 				}
 			}
 		},
 		{
-			"name": "Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_BusinessCode_maxLength_30AN",
+			"name": "Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review_BusinessCode_maxLength_30AN",
 			"url": "/v1/Businessboarding",
 			"operation": "POST",
 			"request": {
@@ -2147,14 +2147,14 @@
 					]
 				},
 				"body": {
-					"RequestID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_BusinessCode_maxLength_30AN.request.body.BusinessDetails.RequestID}",
+					"RequestID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review_BusinessCode_maxLength_30AN.request.body.BusinessDetails.RequestID}",
 					"StatusCode": "000",
 					"Description": "Your request has been processed successfully",
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
-						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending_BusinessCode_maxLength_30AN.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
+						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review_BusinessCode_maxLength_30AN.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						 "Status" : "291",
+						 "Message" : "KYC Under Review"
 					}
 				}
 			}

@@ -74,8 +74,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Businessboarding_Verify_API_only_with_mandatory_field.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
+						"Status": "291",
+						"Message": "KYC Under Review"
 					}
 				}
 			}
@@ -226,8 +226,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Businessboarding_Verify_API_with_Same_Duplicate_Business_Name.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
+						"Status": "291",
+						"Message": "KYC Under Review"
 					}
 				}
 			}
@@ -382,8 +382,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Businessboarding_Verify_API_with_all_fields_data.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
+						"Status": "291",
+						"Message": "KYC Under Review"
 					}
 				}
 			}
@@ -837,8 +837,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Businessboarding_Verify_API_with_valid_RequestID_field_AN30.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
+						"Status": "291",
+						"Message": "KYC Under Review"
 					}
 				}
 			}
@@ -1330,8 +1330,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Businessboarding_Verify_API_with_valid_BusinessName_less_than_100AN_with_allowed_special_characters.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
+						"Status": "291",
+						"Message": "KYC Under Review"
 					}
 				}
 			}
@@ -1719,8 +1719,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Businessboarding_Verify_API_with_valid_BusinessCode_less_than_or_equal_30AN.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
+						"Status": "291",
+						"Message": "KYC Under Review"
 					}
 				}
 			}
@@ -2030,8 +2030,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Businessboarding_Verify_API_with_valid_ContactPersonName_less_than_100A.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
+						 "Status" : "291",
+						 "Message" : "KYC Under Review"
 					}
 				}
 			}
@@ -2341,8 +2341,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Businessboarding_Verify_API_with_valid_BusinessEmailAddress_less_than_equal_to_240AN_and_with_vallid_email_id_format.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
+						 "Status" : "291",
+						 "Message" : "KYC Under Review"
 					}
 				}
 			}
@@ -2730,8 +2730,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Businessboarding_Verify_API_with_valid_ISDCode_3AN_0To9.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
+						 "Status" : "291",
+						 "Message" : "KYC Under Review"
 					}
 				}
 			}
@@ -2886,8 +2886,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Businessboarding_Verify_API_with_blank_ISDCode.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
+						 "Status" : "291",
+						 "Message" : "KYC Under Review"
 					}
 				}
 			}
@@ -2963,8 +2963,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Businessboarding_Verify_API_without_ISDCode.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
+						 "Status" : "291",
+						 "Message" : "KYC Under Review"
 					}
 				}
 			}
@@ -3041,8 +3041,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Businessboarding_Verify_API_with_valid_MobileNumber_N.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
+						 "Status" : "291",
+						 "Message" : "KYC Under Review"
 					}
 				}
 			}
@@ -3196,8 +3196,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Businessboarding_Verify_API_without_MobileNumber_field.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
+						 "Status" : "291",
+						 "Message" : "KYC Under Review"
 					}
 				}
 			}
@@ -3274,8 +3274,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Businessboarding_Verify_API_with_blank_MobileNumber_field.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
+						 "Status" : "291",
+						 "Message" : "KYC Under Review"
 					}
 				}
 			}
@@ -3352,8 +3352,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Businessboarding_Verify_API_with_BusinessDescription_250AN.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
+						 "Status" : "291",
+						 "Message" : "KYC Under Review"
 					}
 				}
 			}
@@ -3507,8 +3507,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Businessboarding_Verify_API_without_BusinessDescription.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
+						 "Status" : "291",
+						 "Message" : "KYC Under Review"
 					}
 				}
 			}
@@ -3585,8 +3585,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Businessboarding_Verify_API_with_blank_BusinessDescription.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
+						 "Status" : "291",
+						 "Message" : "KYC Under Review"
 					}
 				}
 			}
@@ -3662,8 +3662,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Businessboarding_Verify_API_with_valid_WebsiteAddress_100AN.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
+						 "Status" : "291",
+						 "Message" : "KYC Under Review"
 					}
 				}
 			}
@@ -3892,8 +3892,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Businessboarding_Verify_API_without_WebsiteAddress.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
+						 "Status" : "291",
+						 "Message" : "KYC Under Review"
 					}
 				}
 			}
@@ -3969,8 +3969,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Businessboarding_Verify_API_with_blank_WebsiteAddress.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
+						 "Status" : "291",
+						 "Message" : "KYC Under Review"
 					}
 				}
 			}
@@ -4046,8 +4046,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Businessboarding_Verify_API_with_valid_BusinessISOCountryCode_3AN.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
+						 "Status" : "291",
+						 "Message" : "KYC Under Review"
 					}
 				}
 			}
@@ -4199,8 +4199,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Businessboarding_Verify_API_with_out_BusinessISOCountryCode.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
+						 "Status" : "291",
+						 "Message" : "KYC Under Review"
 					}
 				}
 			}
@@ -4276,8 +4276,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Businessboarding_Verify_API_with_blank_BusinessISOCountryCode.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
+						 "Status" : "291",
+						 "Message" : "KYC Under Review"
 					}
 				}
 			}
@@ -4353,8 +4353,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Businessboarding_Verify_API_with_ContactKYCRequired_1A_Value_define_N.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
+						 "Status" : "291",
+						 "Message" : "KYC Under Review"
 					}
 				}
 			}
@@ -4430,8 +4430,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Businessboarding_Verify_API_with_ContactKYCRequired_1A_Value_define_Y.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
+						 "Status" : "291",
+						 "Message" : "KYC Under Review"
 					}
 				}
 			}
@@ -4738,8 +4738,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Businessboarding_Verify_API_with_ServiceType_Payments.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
+						 "Status" : "291",
+						 "Message" : "KYC Under Review"
 					}
 				}
 			}
@@ -4810,8 +4810,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Businessboarding_Verify_API_with_ServiceType_Collections.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
+						 "Status" : "291",
+						 "Message" : "KYC Under Review"
 					}
 				}
 			}
@@ -5097,8 +5097,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Businessboarding_Verify_API_with_PaymentMode_only_CreditCard.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
+						 "Status" : "291",
+						 "Message" : "KYC Under Review"
 					}
 				}
 			}
@@ -5169,8 +5169,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Businessboarding_Verify_API_with_PaymentMode_only_DebitCard.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
+						 "Status" : "291",
+						 "Message" : "KYC Under Review"
 					}
 				}
 			}
@@ -5241,8 +5241,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Businessboarding_Verify_API_with_PaymentMode_only_NetBanking.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
+						 "Status" : "291",
+						 "Message" : "KYC Under Review"
 					}
 				}
 			}
@@ -5313,8 +5313,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Businessboarding_Verify_API_with_PaymentMode_only_XpressAccount.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
+						 "Status" : "291",
+						 "Message" : "KYC Under Review"
 					}
 				}
 			}
@@ -5600,8 +5600,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Businessboarding_Verify_API_with_valid_processing_rate.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
+						 "Status" : "291",
+						 "Message" : "KYC Under Review"
 					}
 				}
 			}
@@ -5742,7 +5742,7 @@
 					"StatusCode": "178",
 					"Description": "Invalid Input Parameter(s)",
 					"DetailedSummary": {
-						"BusinessXpressID":  "$NOT.NULL",
+						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Businessboarding_Verify_API_with_invalid_processing_rate_more_than_N18_2.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
 						"Status": "212",
 						"Message": "Empty/Invalid processing rate"

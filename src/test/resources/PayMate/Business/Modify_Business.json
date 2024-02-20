@@ -74,8 +74,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Create_Business_With_Valid_Data.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
+						"Status": "291",
+						"Message": "KYC Under Review"
 					}
 				}
 			}
@@ -687,8 +687,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
+						"Status": "291",
+						"Message": "KYC Under Review"
 					}
 				}
 			}

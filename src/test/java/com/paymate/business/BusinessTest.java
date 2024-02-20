@@ -16,13 +16,23 @@ import org.junit.runners.MethodSorters;
 public class BusinessTest {
 
 	@Test
-	@Scenario("PayMate/Business/Business_Boarding_PayMate.json")
-	public void test_Business_Boarding_PayMate_scenarios() throws Exception {
+	@Scenario("PayMate/Business/Business_Collection_Account.json")
+	public void test_Business_Collection_Account_scenarios() throws Exception {
 	}
 
 	@Test
-	@Scenario("PayMate/Business/Business_BoardingCustom.json")
-	public void test_Business_Boarding_custom_scenarios() throws Exception {
+	@Scenario("PayMate/Business/Set_Transaction_charges.json")
+	public void test_Set_Transaction_Charges_scenarios() throws Exception {
+	}
+
+	@Test
+	@Scenario("PayMate/Business/Business_KYC.json")
+	public void test_Business_KYC_scenarios() throws Exception {
+	}
+
+	@Test
+	@Scenario("PayMate/Business/Business_Boarding_PayMate.json")
+	public void test_Business_Boarding_PayMate_scenarios() throws Exception {
 	}
 
 	@Test
@@ -43,6 +53,16 @@ public class BusinessTest {
 	@Test
 	@Scenario("PayMate/Business/Delete_Business.json")
 	public void test_Delete_Business_scenarios() throws Exception {
+	}
+
+	@Test
+	@Scenario("PayMate/Business/Business_Boarding_RequestID.json")
+	public void test_Business_Boarding_RequestID_scenarios() throws Exception {
+	}
+
+	@Test
+	@Scenario("PayMate/Business/Business_BoardingCustom.json")
+	public void test_Business_Boarding_custom_scenarios() throws Exception {
 	}
 
 }

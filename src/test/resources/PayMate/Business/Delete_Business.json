@@ -3,7 +3,7 @@
 	"ignoreStepFailures": true,
 	"steps": [
 		{
-			"name": "Create_Business_boarding_000_198_TC_acceptance_is_pending_with_RequestID_lessThan_maxLength_10AN",
+			"name": "Create_Business_boarding_000_291_KYC_Under_Review_with_RequestID_lessThan_maxLength_10AN",
 			"url": "/v1/Businessboarding",
 			"operation": "POST",
 			"request": {
@@ -68,14 +68,14 @@
 					]
 				},
 				"body": {
-					"RequestID": "${$.Create_Business_boarding_000_198_TC_acceptance_is_pending_with_RequestID_lessThan_maxLength_10AN.request.body.BusinessDetails.RequestID}",
+					"RequestID": "${$.Create_Business_boarding_000_291_KYC_Under_Review_with_RequestID_lessThan_maxLength_10AN.request.body.BusinessDetails.RequestID}",
 					"StatusCode": "000",
 					"Description": "Your request has been processed successfully",
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
-						"BusinessCode": "${$.Create_Business_boarding_000_198_TC_acceptance_is_pending_with_RequestID_lessThan_maxLength_10AN.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
+						"BusinessCode": "${$.Create_Business_boarding_000_291_KYC_Under_Review_with_RequestID_lessThan_maxLength_10AN.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"Status": "291",
+						"Message": "KYC Under Review"
 					}
 				}
 			}
@@ -92,13 +92,13 @@
 				},
 				"body": {
 					"BusinessDetails": {
-						"RequestID": "M${$.Create_Business_boarding_000_198_TC_acceptance_is_pending_with_RequestID_lessThan_maxLength_10AN.request.body.BusinessDetails.RequestID}${RANDOM.NUMBER:6}",
+						"RequestID": "M${$.Create_Business_boarding_000_291_KYC_Under_Review_with_RequestID_lessThan_maxLength_10AN.request.body.BusinessDetails.RequestID}${RANDOM.NUMBER:6}",
 						"BusinessInfo": {
-							"BusinessName": "MODIFY${$.Create_Business_boarding_000_198_TC_acceptance_is_pending_with_RequestID_lessThan_maxLength_10AN.request.body.BusinessDetails.BusinessInfo.BusinessName}",
-							"BusinessCode": "${$.Create_Business_boarding_000_198_TC_acceptance_is_pending_with_RequestID_lessThan_maxLength_10AN.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+							"BusinessName": "MODIFY${$.Create_Business_boarding_000_291_KYC_Under_Review_with_RequestID_lessThan_maxLength_10AN.request.body.BusinessDetails.BusinessInfo.BusinessName}",
+							"BusinessCode": "${$.Create_Business_boarding_000_291_KYC_Under_Review_with_RequestID_lessThan_maxLength_10AN.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
 							"BusinessXpressID": "",
-							"ContactPersonName": "MODIFY${$.Create_Business_boarding_000_198_TC_acceptance_is_pending_with_RequestID_lessThan_maxLength_10AN.request.body.BusinessDetails.BusinessInfo.ContactPersonName}",
-							"BusinessEmailAddress": "MODIFY${$.Create_Business_boarding_000_198_TC_acceptance_is_pending_with_RequestID_lessThan_maxLength_10AN.request.body.BusinessDetails.BusinessInfo.BusinessEmailAddress}",
+							"ContactPersonName": "MODIFY${$.Create_Business_boarding_000_291_KYC_Under_Review_with_RequestID_lessThan_maxLength_10AN.request.body.BusinessDetails.BusinessInfo.ContactPersonName}",
+							"BusinessEmailAddress": "MODIFY${$.Create_Business_boarding_000_291_KYC_Under_Review_with_RequestID_lessThan_maxLength_10AN.request.body.BusinessDetails.BusinessInfo.BusinessEmailAddress}",
 							"BusinessDescription": "MODIFY Gift products ecommerce site which has been created for Paul Walker MODIFY",
 							"ContactKYCRequired": "N"
 						}
@@ -153,7 +153,7 @@
 				"body": {
 					"BusinessDetails": {
 						"RequestID": "${RANDOM.NUMBER:5}${RANDOM.NUMBER:5}",
-						"BusinessCode": "${$.Create_Business_boarding_000_198_TC_acceptance_is_pending_with_RequestID_lessThan_maxLength_10AN.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessCode": "${$.Create_Business_boarding_000_291_KYC_Under_Review_with_RequestID_lessThan_maxLength_10AN.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
 						"BusinessXpressID": "",
 						"Reason": "There has been no recent activity from the business in the past few months."
 					}
@@ -207,7 +207,7 @@
 				"body": {
 					"BusinessDetails": {
 						"RequestID": "${RANDOM.NUMBER:5}${RANDOM.NUMBER:5}",
-						"BusinessCode": "${$.Create_Business_boarding_000_198_TC_acceptance_is_pending_with_RequestID_lessThan_maxLength_10AN.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessCode": "${$.Create_Business_boarding_000_291_KYC_Under_Review_with_RequestID_lessThan_maxLength_10AN.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
 						"BusinessXpressID": "",
 						"Reason": "There has been no recent activity from the business in the past few months second time."
 					}

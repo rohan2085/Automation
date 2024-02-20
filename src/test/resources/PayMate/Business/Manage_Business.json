@@ -3,7 +3,7 @@
 	"ignoreStepFailures": true,
 	"steps": [
 		{
-			"name": "Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending",
+			"name": "Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review",
 			"url": "/v1/Businessboarding",
 			"operation": "POST",
 			"request": {
@@ -68,14 +68,14 @@
 					]
 				},
 				"body": {
-					"RequestID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.RequestID}",
+					"RequestID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.RequestID}",
 					"StatusCode": "000",
 					"Description": "Your request has been processed successfully",
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
-						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "198",
-						"Message": "T&C acceptance is pending"
+						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"Status": "291",
+						"Message": "KYC Under Review"
 					}
 				}
 			}
@@ -92,7 +92,7 @@
 				},
 				"body": {
 					"RequestID": "Reqm${RANDOM.NUMBER:13}",
-					"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+					"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
 					"BusinessXpressID": "",
 					"FromDate": "${LOCAL.DATETIME.NOW:dd-MM-yyyy}",
 					"ToDate": "${LOCAL.DATETIME.NOW:dd-MM-yyyy}",
@@ -129,19 +129,19 @@
 					"DetailedSummary": [
 						{
 							"BusinessDetails": {
-								"BusinessName": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessName}",
-								"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-								"ContactPersonName": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.ContactPersonName}",
-								"BusinessEmailAddress": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessEmailAddress}",
-								"ISDCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.ISDCode}",
-								"MobileNumber": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.MobileNumber}",
-								"WebsiteAddress": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.WebsiteAddress}",
-								"BusinessDescription": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessDescription}",
-								"ContactKYCRequired": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.ContactKYCRequired}",
+								"BusinessName": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.BusinessInfo.BusinessName}",
+								"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+								"ContactPersonName": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.BusinessInfo.ContactPersonName}",
+								"BusinessEmailAddress": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.BusinessInfo.BusinessEmailAddress}",
+								"ISDCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.BusinessInfo.ISDCode}",
+								"MobileNumber": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.BusinessInfo.MobileNumber}",
+								"WebsiteAddress": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.BusinessInfo.WebsiteAddress}",
+								"BusinessDescription": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.BusinessInfo.BusinessDescription}",
+								"ContactKYCRequired": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.BusinessInfo.ContactKYCRequired}",
 								"BusinessStatus": "299",
 								"StatusRemark": "Business Registered",
 								"RegistrationDate": "${LOCAL.DATETIME.NOW:dd/MM/yyyy}",
-								"BusinessXpressID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.response.body.DetailedSummary.BusinessXpressID}",
+								"BusinessXpressID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.response.body.DetailedSummary.BusinessXpressID}",
 								"XpressAccountNo": null,
 								"XpressAccountBalance": 0.0
 							},
