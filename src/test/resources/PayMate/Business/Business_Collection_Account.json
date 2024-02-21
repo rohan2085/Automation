@@ -1241,7 +1241,7 @@
 						"BusinessXpressID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.response.body.DetailedSummary.BusinessXpressID}",
 						"AccountDetails": {
 							"AccountHolderName": "Paul Walker${RANDOM.STRING:6}",
-							"AccountNo": "${AccountNo}111111111111111111111111111",
+							"AccountNo": "${AccountNo}1111111111111111111111111111",
 							"CurrencyCode": "${CurrencyCode}",
 							"RoutingNumber": "${RoutingNumber}",
 							"BICCode": "${BICCode}",
