@@ -74,8 +74,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						 "Status" : "291",
-						 "Message" : "KYC Under Review"
+						"Status": "291",
+						"Message": "KYC Under Review"
 					}
 				}
 			}
@@ -1362,6 +1362,7 @@
 						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
 						"BusinessXpressID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.response.body.DetailedSummary.BusinessXpressID}",
 						"AccountDetails": {
+							"AccountHolderName": "Paul Walker${RANDOM.STRING:10}",
 							"AccountNo": "${AccountNo}${RANDOM.NUMBER:6}",
 							"RoutingNumber": "${RoutingNumber}",
 							"BICCode": "${BICCode}",
