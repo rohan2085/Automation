@@ -153,7 +153,11 @@
 									"IssuerCode": null
 								}
 							],
-							"TermsConditions": null,
+							"TermsConditions": {
+								"AcceptedBy": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.BusinessInfo.BusinessEmailAddress}",
+								"AcceptanceDateTime": "$NOT.NULL",
+								"BusinessIPAddress": "$NOT.NULL"
+							},
 							"KYCDetails": {
 								"BusinessNature": null,
 								"StatusCode": 290,
