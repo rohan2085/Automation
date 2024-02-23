@@ -16,7 +16,7 @@
 					"BusinessDetails": {
 						"RequestID": "${RANDOM.NUMBER:5}${RANDOM.NUMBER:5}",
 						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
+							"BusinessRegistrationNo": "${BusinessRegistrationNo}",
 							"BusinessName": "paul${RANDOM.NUMBER:8}",
 							"BusinessCode": "paul${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
@@ -243,7 +243,7 @@
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Modify_Business_boarding_000_219_Your_business_information_has_been_updated_successfully_01.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
 						"Status": "197",
-						"Message": "Your business already Deleted"
+						"Message": "Your business already deleted"
 					}
 				}
 			}

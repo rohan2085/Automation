@@ -16,7 +16,7 @@
 					"BusinessDetails": {
 						"RequestID": "${RANDOM.NUMBER:5}${RANDOM.NUMBER:5}",
 						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
+							"BusinessRegistrationNo": "${BusinessRegistrationNo}",
 							"BusinessName": "enterprise${RANDOM.NUMBER:8}",
 							"BusinessCode": "enter${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Nilesh patil${RANDOM.STRING:6}",

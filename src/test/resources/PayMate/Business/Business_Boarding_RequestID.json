@@ -16,7 +16,7 @@
 					"BusinessDetails": {
 						"RequestID": "REQhp${RANDOM.NUMBER:15}${RANDOM.NUMBER:10}",
 						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
+							"BusinessRegistrationNo": "${BusinessRegistrationNo}",
 							"BusinessName": "paul${RANDOM.NUMBER:8}",
 							"BusinessCode": "paul${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
@@ -94,7 +94,7 @@
 					"BusinessDetails": {
 						"RequestID": "${RANDOM.NUMBER:15}${RANDOM.NUMBER:15}",
 						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
+							"BusinessRegistrationNo": "${BusinessRegistrationNo}",
 							"BusinessName": "paul${RANDOM.NUMBER:8}",
 							"BusinessCode": "paul${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
@@ -172,7 +172,7 @@
 					"BusinessDetails": {
 						"RequestID": "${RANDOM.STRING:15}${RANDOM.STRING:15}",
 						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
+							"BusinessRegistrationNo": "${BusinessRegistrationNo}",
 							"BusinessName": "paul${RANDOM.NUMBER:8}",
 							"BusinessCode": "paul${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
@@ -250,7 +250,7 @@
 					"BusinessDetails": {
 						"RequestID": "${$.Create_Business_boarding_000_291_KYC_Under_Review_with_RequestID_maxLength_30AN.request.body.BusinessDetails.RequestID}",
 						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
+							"BusinessRegistrationNo": "${BusinessRegistrationNo}",
 							"BusinessName": "paul${RANDOM.NUMBER:8}",
 							"BusinessCode": "paul${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
@@ -324,7 +324,7 @@
 					"BusinessDetails": {
 						"RequestID": " REQhp${RANDOM.NUMBER:15}${RANDOM.NUMBER:9}",
 						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
+							"BusinessRegistrationNo": "${BusinessRegistrationNo}",
 							"BusinessName": "paul${RANDOM.NUMBER:8}",
 							"BusinessCode": "paul${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
@@ -402,7 +402,7 @@
 					"BusinessDetails": {
 						"RequestID": " REQ${RANDOM.NUMBER:15}${RANDOM.NUMBER:9} ",
 						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
+							"BusinessRegistrationNo": "${BusinessRegistrationNo}",
 							"BusinessName": "paul${RANDOM.NUMBER:8}",
 							"BusinessCode": "paul${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
@@ -480,7 +480,7 @@
 					"BusinessDetails": {
 						"RequestID": "REQhp${RANDOM.NUMBER:15}${RANDOM.NUMBER:9} ",
 						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
+							"BusinessRegistrationNo": "${BusinessRegistrationNo}",
 							"BusinessName": "paul${RANDOM.NUMBER:8}",
 							"BusinessCode": "paul${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
@@ -558,7 +558,7 @@
 					"BusinessDetails": {
 						"RequestID": "REQhp ${RANDOM.NUMBER:15}",
 						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
+							"BusinessRegistrationNo": "${BusinessRegistrationNo}",
 							"BusinessName": "paul${RANDOM.NUMBER:8}",
 							"BusinessCode": "paul${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
@@ -636,7 +636,7 @@
 					"BusinessDetails": {
 						"RequestID": "REQhp${RANDOM.NUMBER:15}${RANDOM.NUMBER:11}",
 						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
+							"BusinessRegistrationNo": "${BusinessRegistrationNo}",
 							"BusinessName": "paul${RANDOM.NUMBER:8}",
 							"BusinessCode": "paul${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
@@ -714,7 +714,7 @@
 					"BusinessDetails": {
 						"RequestID": "",
 						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
+							"BusinessRegistrationNo": "${BusinessRegistrationNo}",
 							"BusinessName": "paul${RANDOM.NUMBER:8}",
 							"BusinessCode": "paul${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
@@ -788,7 +788,7 @@
 					"BusinessDetails": {
 						"RequestID": "_&^%@${RANDOM.STRING:6})(*{}",
 						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
+							"BusinessRegistrationNo": "${BusinessRegistrationNo}",
 							"BusinessName": "paul${RANDOM.NUMBER:8}",
 							"BusinessCode": "paul${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
@@ -866,7 +866,7 @@
 					"BusinessDetails": {
 						"RequestID": "SELECT * FROM business WHERE request_id=10",
 						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
+							"BusinessRegistrationNo": "${BusinessRegistrationNo}",
 							"BusinessName": "paul${RANDOM.NUMBER:8}",
 							"BusinessCode": "paul${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
@@ -943,7 +943,7 @@
 				"body": {
 					"BusinessDetails": {
 						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
+							"BusinessRegistrationNo": "${BusinessRegistrationNo}",
 							"BusinessName": "paul${RANDOM.NUMBER:8}",
 							"BusinessCode": "paul${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
@@ -1017,7 +1017,7 @@
 					"BusinessDetails": {
 						"requestid": "${RANDOM.STRING:6}${RANDOM.STRING:6}${RANDOM.NUMBER:6}",
 						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
+							"BusinessRegistrationNo": "${BusinessRegistrationNo}",
 							"BusinessName": "paul${RANDOM.NUMBER:8}",
 							"BusinessCode": "paul${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
@@ -1095,7 +1095,7 @@
 					"BusinessDetails": {
 						"RequestID": "${RANDOM.STRING:6}%20${RANDOM.NUMBER:6}",
 						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
+							"BusinessRegistrationNo": "${BusinessRegistrationNo}",
 							"BusinessName": "paul${RANDOM.NUMBER:8}",
 							"BusinessCode": "paul${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
@@ -1173,7 +1173,7 @@
 					"BusinessDetails": {
 						"RequestID": "\u0050\u0075\u0070\u0075${RANDOM.NUMBER:6}",
 						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
+							"BusinessRegistrationNo": "${BusinessRegistrationNo}",
 							"BusinessName": "paul${RANDOM.NUMBER:8}",
 							"BusinessCode": "paul${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",

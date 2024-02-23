@@ -107,9 +107,9 @@
 						},
 						"AddressProof": {
 							"Address": "A101,UniqueBuilding,Twinstreet,Delhi",
-							"City": "xyz",
-							"Pincode": "110003",
-							"Country": "SGP",
+							"City": "${City}",
+							"Pincode": "${PinCode}",
+							"Country": "${BusinessISOCountryCode}",
 							"DocumentProof": "iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==",
 							"FileName": "electricity.png"
 						},
@@ -186,9 +186,9 @@
 						},
 						"AddressProof": {
 							"Address": "A101,UniqueBuilding,Twinstreet,Delhi",
-							"City": "xyz",
-							"Pincode": "110003",
-							"Country": "SGP",
+							"City": "${City}",
+							"Pincode": "${PinCode}",
+							"Country": "${BusinessISOCountryCode}",
 							"DocumentProof": "iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==",
 							"FileName": "electricity.png"
 						},
@@ -265,9 +265,9 @@
 						},
 						"AddressProof": {
 							"Address": "A101,UniqueBuilding,Twinstreet,Delhi",
-							"City": "xyz",
-							"Pincode": "110003",
-							"Country": "SGP",
+							"City": "${City}",
+							"Pincode": "${PinCode}",
+							"Country": "${BusinessISOCountryCode}",
 							"DocumentProof": "iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==",
 							"FileName": "electricity.png"
 						},
@@ -344,9 +344,9 @@
 						},
 						"AddressProof": {
 							"Address": "A101,UniqueBuilding,Twinstreet,Delhi",
-							"City": "xyz",
-							"Pincode": "110003",
-							"Country": "SGP",
+							"City": "${City}",
+							"Pincode": "${PinCode}",
+							"Country": "${BusinessISOCountryCode}",
 							"DocumentProof": "iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==",
 							"FileName": "electricity.png"
 						},

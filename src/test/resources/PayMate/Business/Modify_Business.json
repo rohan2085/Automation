@@ -16,7 +16,7 @@
 					"BusinessDetails": {
 						"RequestID": "REQhp${RANDOM.NUMBER:13}",
 						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
+							"BusinessRegistrationNo": "${BusinessRegistrationNo}",
 							"BusinessName": "paul${RANDOM.NUMBER:8}",
 							"BusinessCode": "paul${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
@@ -629,7 +629,7 @@
 					"BusinessDetails": {
 						"RequestID": "Rakhi${RANDOM.NUMBER:16}",
 						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
+							"BusinessRegistrationNo": "${BusinessRegistrationNo}",
 							"BusinessName": "Rakhi${RANDOM.NUMBER:8}",
 							"BusinessCode": "Rakhi${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Rakhi Deshmukh${RANDOM.STRING:6}",

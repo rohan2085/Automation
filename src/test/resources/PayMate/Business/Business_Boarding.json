@@ -16,7 +16,7 @@
 					"BusinessDetails": {
 						"RequestID": "REQhp${RANDOM.NUMBER:13}",
 						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
+							"BusinessRegistrationNo": "${BusinessRegistrationNo}",
 							"BusinessName": "paul${RANDOM.NUMBER:8}",
 							"BusinessCode": "paul${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
@@ -83,7 +83,7 @@
 					"BusinessDetails": {
 						"RequestID": "REQhp${RANDOM.NUMBER:15}${RANDOM.NUMBER:10}",
 						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
+							"BusinessRegistrationNo": "${BusinessRegistrationNo}",
 							"BusinessName": "paul${RANDOM.NUMBER:8}",
 							"BusinessCode": "paul${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
@@ -141,8 +141,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Create_Business_boarding_000_291_KYC_Under_Review_with_RequestID_maxLength_30AN.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						 "Status" : "291",
-						 "Message" : "KYC Under Review"
+						"Status": "291",
+						"Message": "KYC Under Review"
 					}
 				}
 			}
@@ -161,7 +161,7 @@
 					"BusinessDetails": {
 						"RequestID": "${$.Create_Business_boarding_000_291_KYC_Under_Review_with_RequestID_maxLength_30AN.request.body.BusinessDetails.RequestID}",
 						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
+							"BusinessRegistrationNo": "${BusinessRegistrationNo}",
 							"BusinessName": "paul${RANDOM.NUMBER:8}",
 							"BusinessCode": "paul${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
@@ -235,7 +235,7 @@
 					"BusinessDetails": {
 						"RequestID": " REQhp${RANDOM.NUMBER:15}${RANDOM.NUMBER:9}",
 						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
+							"BusinessRegistrationNo": "${BusinessRegistrationNo}",
 							"BusinessName": "paul${RANDOM.NUMBER:8}",
 							"BusinessCode": "paul${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
@@ -313,7 +313,7 @@
 					"BusinessDetails": {
 						"RequestID": "REQhp${RANDOM.NUMBER:15}${RANDOM.NUMBER:11}",
 						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
+							"BusinessRegistrationNo": "${BusinessRegistrationNo}",
 							"BusinessName": "paul${RANDOM.NUMBER:8}",
 							"BusinessCode": "paul${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
@@ -391,7 +391,7 @@
 					"BusinessDetails": {
 						"RequestID": "",
 						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
+							"BusinessRegistrationNo": "${BusinessRegistrationNo}",
 							"BusinessName": "paul${RANDOM.NUMBER:8}",
 							"BusinessCode": "paul${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
@@ -465,7 +465,7 @@
 					"BusinessDetails": {
 						"RequestID": "_&^%@${RANDOM.STRING:6})(*{}",
 						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
+							"BusinessRegistrationNo": "${BusinessRegistrationNo}",
 							"BusinessName": "paul${RANDOM.NUMBER:8}",
 							"BusinessCode": "paul${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
@@ -543,7 +543,7 @@
 					"BusinessDetails": {
 						"RequestID": "SELECT * FROM business WHERE request_id=10",
 						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
+							"BusinessRegistrationNo": "${BusinessRegistrationNo}",
 							"BusinessName": "paul${RANDOM.NUMBER:8}",
 							"BusinessCode": "paul${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
@@ -620,7 +620,7 @@
 				"body": {
 					"BusinessDetails": {
 						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
+							"BusinessRegistrationNo": "${BusinessRegistrationNo}",
 							"BusinessName": "paul${RANDOM.NUMBER:8}",
 							"BusinessCode": "paul${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
@@ -752,8 +752,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review_BusinessRegistrationNo_maxLength_30AN.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						 "Status" : "291",
-						 "Message" : "KYC Under Review"
+						"Status": "291",
+						"Message": "KYC Under Review"
 					}
 				}
 			}
@@ -772,7 +772,7 @@
 					"BusinessDetails": {
 						"RequestID": "REQhp${RANDOM.NUMBER:13}",
 						"BusinessInfo": {
-							"BusinessRegistrationNo": " ${RANDOM.NUMBER:9}${RANDOM.STRING:10}",
+							"BusinessRegistrationNo": " ${BusinessRegistrationNo}",
 							"BusinessName": "paul${RANDOM.NUMBER:8}",
 							"BusinessCode": "paul${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
@@ -830,8 +830,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review_BusinessRegistrationNo_with_SPACE.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						 "Status" : "291",
-						 "Message" : "KYC Under Review"
+						"Status": "291",
+						"Message": "KYC Under Review"
 					}
 				}
 			}
@@ -986,8 +986,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review_when_BusinessRegistrationNo_is_blank_empty.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						 "Status" : "291",
-						 "Message" : "KYC Under Review"
+						"Status": "291",
+						"Message": "KYC Under Review"
 					}
 				}
 			}
@@ -1219,8 +1219,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review_when_BusinessRegistrationNo_removed_parameter_from_request.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						 "Status" : "291",
-						 "Message" : "KYC Under Review"
+						"Status": "291",
+						"Message": "KYC Under Review"
 					}
 				}
 			}
@@ -1239,7 +1239,7 @@
 					"BusinessDetails": {
 						"RequestID": "REQhp${RANDOM.NUMBER:13}",
 						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:5}${RANDOM.STRING:5}",
+							"BusinessRegistrationNo": "${BusinessRegistrationNo}",
 							"BusinessName": "paul${RANDOM.NUMBER:8}",
 							"BusinessCode": "paul${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
@@ -1297,8 +1297,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review_BusinessRegistrationNo_lessThan_maxLength_10AN.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						 "Status" : "291",
-						 "Message" : "KYC Under Review"
+						"Status": "291",
+						"Message": "KYC Under Review"
 					}
 				}
 			}
@@ -1375,8 +1375,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review_when_BusinessRegistrationNo_is_Duplicated_means_is_already_exist.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						 "Status" : "291",
-						 "Message" : "KYC Under Review"
+						"Status": "291",
+						"Message": "KYC Under Review"
 					}
 				}
 			}
@@ -1395,7 +1395,7 @@
 					"BusinessDetails": {
 						"RequestID": "REQhp${RANDOM.NUMBER:13}",
 						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:5}${RANDOM.STRING:5}",
+							"BusinessRegistrationNo": "${BusinessRegistrationNo}",
 							"BusinessName": "paulw${RANDOM.STRING:5}${RANDOM.STRING:15}${RANDOM.STRING:15}${RANDOM.STRING:15}${RANDOM.NUMBER:15}${RANDOM.NUMBER:15}${RANDOM.NUMBER:15}",
 							"BusinessCode": "paul${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
@@ -1453,8 +1453,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review_BusinessName_maxLength_100AN.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						 "Status" : "291",
-						 "Message" : "KYC Under Review"
+						"Status": "291",
+						"Message": "KYC Under Review"
 					}
 				}
 			}
@@ -1473,7 +1473,7 @@
 					"BusinessDetails": {
 						"RequestID": "REQhp${RANDOM.NUMBER:13}",
 						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}${RANDOM.STRING:10}",
+							"BusinessRegistrationNo": "${BusinessRegistrationNo}",
 							"BusinessName": " paul${RANDOM.NUMBER:8}${RANDOM.STRING:10}",
 							"BusinessCode": "paul${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
@@ -1531,8 +1531,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review_BusinessName_with_SPACE.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						 "Status" : "291",
-						 "Message" : "KYC Under Review"
+						"Status": "291",
+						"Message": "KYC Under Review"
 					}
 				}
 			}
@@ -1551,7 +1551,7 @@
 					"BusinessDetails": {
 						"RequestID": "REQhp${RANDOM.NUMBER:13}",
 						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:7}${RANDOM.STRING:7}",
+							"BusinessRegistrationNo": "${BusinessRegistrationNo}",
 							"BusinessName": "paulw${RANDOM.STRING:6}${RANDOM.STRING:15}${RANDOM.STRING:15}${RANDOM.STRING:15}${RANDOM.NUMBER:15}${RANDOM.NUMBER:15}${RANDOM.NUMBER:15}",
 							"BusinessCode": "paul${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
@@ -1629,7 +1629,7 @@
 					"BusinessDetails": {
 						"RequestID": "REQhp${RANDOM.NUMBER:13}",
 						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:8}${RANDOM.STRING:8}",
+							"BusinessRegistrationNo": "${BusinessRegistrationNo}",
 							"BusinessName": "",
 							"BusinessCode": "paul${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
@@ -1707,7 +1707,7 @@
 					"BusinessDetails": {
 						"RequestID": "REQhp${RANDOM.NUMBER:13}",
 						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.STRING:7}${RANDOM.NUMBER:7}",
+							"BusinessRegistrationNo": "${BusinessRegistrationNo}",
 							"BusinessName": "_&^%@${RANDOM.STRING:6})(*{}",
 							"BusinessCode": "paul${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
@@ -1785,7 +1785,7 @@
 					"BusinessDetails": {
 						"RequestID": "REQhp${RANDOM.NUMBER:13}",
 						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:8}${RANDOM.STRING:8}",
+							"BusinessRegistrationNo": "${BusinessRegistrationNo}",
 							"BusinessName": "SELECT * FROM business WHERE id = 10;",
 							"BusinessCode": "paul${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
@@ -1863,7 +1863,7 @@
 					"BusinessDetails": {
 						"RequestID": "REQhp${RANDOM.NUMBER:13}",
 						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.STRING:8}${RANDOM.NUMBER:8}",
+							"BusinessRegistrationNo": "${BusinessRegistrationNo}",
 							"BusinessCode": "paul${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
 							"BusinessEmailAddress": "paulw${RANDOM.NUMBER.FIXED:6}@yopmail.com",
@@ -1940,7 +1940,7 @@
 					"BusinessDetails": {
 						"RequestID": "REQhp${RANDOM.NUMBER:13}",
 						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:7}${RANDOM.STRING:7}",
+							"BusinessRegistrationNo": "${BusinessRegistrationNo}",
 							"BusinessName": ".@&!${RANDOM.NUMBER:8}'_-/()",
 							"BusinessCode": "paul${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
@@ -1998,8 +1998,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review_BusinessName_with_allowed_special_chars.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						 "Status" : "291",
-						 "Message" : "KYC Under Review"
+						"Status": "291",
+						"Message": "KYC Under Review"
 					}
 				}
 			}
@@ -2018,7 +2018,7 @@
 					"BusinessDetails": {
 						"RequestID": "REQhp${RANDOM.NUMBER:13}",
 						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:8}${RANDOM.STRING:8}",
+							"BusinessRegistrationNo": "${BusinessRegistrationNo}",
 							"BusinessName": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review_BusinessName_with_allowed_special_chars.request.body.BusinessDetails.BusinessInfo.BusinessName}",
 							"BusinessCode": "paul${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
@@ -2076,8 +2076,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review_when_BusinessName_is_Duplicated_means_is_already_exist.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						 "Status" : "291",
-						 "Message" : "KYC Under Review"
+						"Status": "291",
+						"Message": "KYC Under Review"
 					}
 				}
 			}
@@ -2096,7 +2096,7 @@
 					"BusinessDetails": {
 						"RequestID": "REQhp${RANDOM.NUMBER:13}",
 						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:5}${RANDOM.STRING:4}",
+							"BusinessRegistrationNo": "${BusinessRegistrationNo}",
 							"BusinessName": "paul${RANDOM.STRING:5}${RANDOM.NUMBER:6}",
 							"BusinessCode": "paulw${RANDOM.STRING:10}${RANDOM.NUMBER:15}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
@@ -2153,8 +2153,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review_BusinessCode_maxLength_30AN.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						 "Status" : "291",
-						 "Message" : "KYC Under Review"
+						"Status": "291",
+						"Message": "KYC Under Review"
 					}
 				}
 			}
@@ -2173,7 +2173,7 @@
 					"BusinessDetails": {
 						"RequestID": "REQhp${RANDOM.NUMBER:13}",
 						"BusinessInfo": {
-							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}${RANDOM.STRING:10}",
+							"BusinessRegistrationNo": "${BusinessRegistrationNo}",
 							"BusinessName": "paul${RANDOM.NUMBER:8}${RANDOM.STRING:10}",
 							"BusinessCode": " paul${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
