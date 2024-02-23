@@ -1,5 +1,5 @@
 {
-	"scenarioName": "Business Boarding flow KYC",
+	"scenarioName": "Business Boarding flows KYC",
 	"ignoreStepFailures": true,
 	"steps": [
 		{

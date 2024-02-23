@@ -1,5 +1,5 @@
 {
-	"scenarioName": "Set transaction charges",
+	"scenarioName": "Set transaction charges flows",
 	"ignoreStepFailures": true,
 	"steps": [
 		{
