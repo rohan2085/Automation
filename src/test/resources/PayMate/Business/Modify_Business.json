@@ -814,18 +814,20 @@
 					"TerminalId": "${TerminalId-TOKEN}",
 					"XpressId": "${XpressId-TOKEN}"
 				},
-				"BusinessDetails": {
-					"RequestID": "${$.Create_Business_With_Valid_Data.request.body.BusinessDetails.RequestID}${RANDOM.NUMBER:6}",
-					"BusinessInfo": {
-						"BusinessCode": "${$.Create_Business_With_Valid_Data.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"BusinessName": "Wilmar updated@&!'_-/()",
-						"ContactPersonName": "Paul Walkerupdate${RANDOM.STRING:6}",
-						"ISDCode": "${ISDCode}",
-						"MobileNumber": "${MobileNumber}${RANDOM.NUMBER:6}",
-						"BusinessDescription": "Gift products ecommerce site updated",
-						"WebsiteAddress": "www.tataupdate${RANDOM.NUMBER:6}.com",
-						"BusinessISOCountryCode": "${BusinessISOCountryCode}",
-						"ContactKYCRequired": "Y"
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "${$.Create_Business_With_Valid_Data.request.body.BusinessDetails.RequestID}${RANDOM.NUMBER:6}",
+						"BusinessInfo": {
+							"BusinessCode": "${$.Create_Business_With_Valid_Data.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+							"BusinessName": "Wilmar updated@&!'_-/()",
+							"ContactPersonName": "Paul Walkerupdate${RANDOM.STRING:6}",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}${RANDOM.NUMBER:6}",
+							"BusinessDescription": "Gift products ecommerce site updated",
+							"WebsiteAddress": "www.tataupdate${RANDOM.NUMBER:6}.com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						}
 					}
 				}
 			},
