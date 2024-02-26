@@ -16,7 +16,7 @@
 					"BusinessDetails": {
 						"RequestID": "REQhp${RANDOM.NUMBER:13}",
 						"BusinessInfo": {
-							"BusinessRegistrationNo": "${BusinessRegistrationNo}",
+							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
 							"BusinessName": "paul${RANDOM.NUMBER:8}",
 							"BusinessCode": "paul${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
@@ -36,7 +36,7 @@
 								"ProgramCode": "ABC123"
 							},
 							{
-								"ServiceType": "Payments",
+								"ServiceType": "Collections",
 								"PaymentMode": "CreditCard",
 								"ProcessingRate": "2.00",
 								"ProgramCode": "ABC123"
@@ -96,7 +96,7 @@
 						"BusinessInfo": {
 							"BusinessCode": "${$.Create_Business_With_Valid_Data.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
 							"BusinessName": "Wilmar Modified",
-							"ContactPersonName": "Paul Walkerupdate${RANDOM.STRING:10}",
+							"ContactPersonName": "Paul Walkerupdate${RANDOM.STRING:6}",
 							"ISDCode": "${ISDCode}",
 							"MobileNumber": "${MobileNumber}${RANDOM.NUMBER:6}",
 							"BusinessDescription": "Gift products ecommerce site updated",
@@ -143,6 +143,69 @@
 			}
 		},
 		{
+			"name": "Modify_Business_Info_With_already_registered_emailAddress",
+			"url": "/v1/modifybusiness",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "${$.Create_Business_With_Valid_Data.request.body.BusinessDetails.RequestID}${RANDOM.NUMBER:6}",
+						"BusinessInfo": {
+							"BusinessCode": "${$.Create_Business_With_Valid_Data.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+							"BusinessName": "Wilmar Modified",
+							"BusinessEmailAddress": "paulw1834@yopmail.com",
+							"ContactPersonName": "Paul Walkerupdate${RANDOM.STRING:6}",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}${RANDOM.NUMBER:6}",
+							"BusinessDescription": "Gift products ecommerce site updated",
+							"WebsiteAddress": "www.tataupdate${RANDOM.NUMBER:6}.com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Modify_Business_Info_With_already_registered_emailAddress.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "178",
+					"Description": "Invalid Input Parameter(s)",
+					"DetailedSummary": {
+						"BusinessCode": "${$.Modify_Business_Info_With_already_registered_emailAddress.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "$NOT.NULL",
+						"Status": "255",
+						"Message": "The entered email address is already registered. Please provide another email address."
+					}
+				}
+			}
+		},
+		{
 			"name": "Modify_Business_With_Duplicate_RequestID",
 			"url": "/v1/modifybusiness",
 			"operation": "POST",
@@ -159,7 +222,7 @@
 							"BusinessCode": "${$.Create_Business_With_Valid_Data.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
 							"BusinessName": "Wilmar Modified",
 							"ContactPersonName": "Paul Walkerupdate${RANDOM.STRING:6}",
-							"ISDCode": "${ISDCode}",
+							"ISDCode": "{ISDCode}",
 							"MobileNumber": "${MobileNumber}${RANDOM.NUMBER:6}",
 							"BusinessDescription": "Gift products ecommerce site updated",
 							"WebsiteAddress": "www.tataupdate${RANDOM.NUMBER:6}.com",
@@ -616,6 +679,939 @@
 			}
 		},
 		{
+			"name": "Modify_Business_Info_WithOnly_BusinessCode",
+			"url": "/v1/modifybusiness",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "${$.Create_Business_With_Valid_Data.request.body.BusinessDetails.RequestID}${RANDOM.NUMBER:6}",
+						"BusinessInfo": {
+							"BusinessCode": "${$.Create_Business_With_Valid_Data.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+							"BusinessXpressID": "",
+							"BusinessName": "Wilmar Modified",
+							"ContactPersonName": "Paul Walkerupdate${RANDOM.STRING:6}",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}${RANDOM.NUMBER:6}",
+							"BusinessDescription": "Gift products ecommerce site updated",
+							"WebsiteAddress": "www.tataupdate${RANDOM.NUMBER:6}.com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Modify_Business_Info_WithOnly_BusinessCode.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": {
+						"BusinessCode": "${$.Modify_Business_Info_WithOnly_BusinessCode.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "$NOT.NULL",
+						"Status": "219",
+						"Message": "Your business information has been updated successfully"
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify_Business_Info_WithOnly_BusinessXpressID",
+			"url": "/v1/modifybusiness",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "${$.Create_Business_With_Valid_Data.request.body.BusinessDetails.RequestID}${RANDOM.NUMBER:6}",
+						"BusinessInfo": {
+							"BusinessCode": "",
+							"BusinessXpressID": "${$.Create_Business_With_Valid_Data.response.body.DetailedSummary.BusinessXpressID}",
+							"BusinessName": "Wilmar Modified",
+							"ContactPersonName": "Paul Walkerupdate${RANDOM.STRING:6}",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}${RANDOM.NUMBER:6}",
+							"BusinessDescription": "Gift products ecommerce site updated",
+							"WebsiteAddress": "www.tataupdate${RANDOM.NUMBER:6}.com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Modify_Business_Info_WithOnly_BusinessXpressID.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": {
+						"BusinessCode": "$NOT.NULL",
+						"BusinessXpressID": "${$.Modify_Business_Info_WithOnly_BusinessXpressID.request.body.BusinessDetails.BusinessInfo.BusinessXpressID}",
+						"Status": "219",
+						"Message": "Your business information has been updated successfully"
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify_Business_Info_withSpecialCharacters",
+			"url": "/v1/modifybusiness",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"BusinessDetails": {
+					"RequestID": "${$.Create_Business_With_Valid_Data.request.body.BusinessDetails.RequestID}${RANDOM.NUMBER:6}",
+					"BusinessInfo": {
+						"BusinessCode": "${$.Create_Business_With_Valid_Data.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessName": "Wilmar updated@&!'_-/()",
+						"ContactPersonName": "Paul Walkerupdate${RANDOM.STRING:6}",
+						"ISDCode": "${ISDCode}",
+						"MobileNumber": "${MobileNumber}${RANDOM.NUMBER:6}",
+						"BusinessDescription": "Gift products ecommerce site updated",
+						"WebsiteAddress": "www.tataupdate${RANDOM.NUMBER:6}.com",
+						"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+						"ContactKYCRequired": "Y"
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Modify_Business_Info_withSpecialCharacters.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": {
+						"BusinessCode": "${$.Modify_Business_Info_withSpecialCharacters.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "$NOT.NULL",
+						"Status": "219",
+						"Message": "Your business information has been updated successfully"
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify_Business_Info_With_BusinessName_Morethan_100ANvalue",
+			"url": "/v1/modifybusiness",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "${$.Create_Business_With_Valid_Data.request.body.BusinessDetails.RequestID}${RANDOM.NUMBER:6}",
+						"BusinessInfo": {
+							"BusinessCode": "${$.Create_Business_With_Valid_Data.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+							"BusinessName": "czdfvdxhbfcgnjghndgdtgrgedrtertgrdgdfgdfhgerhregrgreczdfvdxhbfcgnjghndgdtgrgedrtertgrdgdfgdfhgerhregrgre",
+							"ContactPersonName": "Paul Walkerupdate${RANDOM.STRING:6}",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}${RANDOM.NUMBER:6}",
+							"BusinessDescription": "Gift products ecommerce site updated",
+							"WebsiteAddress": "www.tataupdate${RANDOM.NUMBER:6}.com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Modify_Business_Info_With_BusinessName_Morethan_100ANvalue.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "178",
+					"Description": "Invalid Input Parameter(s)",
+					"DetailedSummary": {
+						"BusinessCode": "${$.Modify_Business_Info_With_BusinessName_Morethan_100ANvalue.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": null,
+						"Status": "202",
+						"Message": "Empty/Invalid Business Name"
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify_Business_Info_Without_BusinessName",
+			"url": "/v1/modifybusiness",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "${$.Create_Business_With_Valid_Data.request.body.BusinessDetails.RequestID}${RANDOM.NUMBER:6}",
+						"BusinessInfo": {
+							"BusinessCode": "${$.Create_Business_With_Valid_Data.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+							"ContactPersonName": "Paul Walkerupdate${RANDOM.STRING:6}",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}${RANDOM.NUMBER:6}",
+							"BusinessDescription": "Gift products ecommerce site updated",
+							"WebsiteAddress": "www.tataupdate${RANDOM.NUMBER:6}.com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Modify_Business_Info_Without_BusinessName.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": {
+						"BusinessCode": "${$.Modify_Business_Info_Without_BusinessName.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "$NOT.NULL",
+						"Status": "219",
+						"Message": "Your business information has been updated successfully"
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify_Business_Info_With_NotAllowed_SpecialCharacters",
+			"url": "/v1/modifybusiness",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "${$.Create_Business_With_Valid_Data.request.body.BusinessDetails.RequestID}${RANDOM.NUMBER:6}",
+						"BusinessInfo": {
+							"BusinessCode": "${$.Create_Business_With_Valid_Data.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+							"BusinessName": "czdfvdxhbfcg***********",
+							"ContactPersonName": "Paul Walkerupdate${RANDOM.STRING:6}",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}${RANDOM.NUMBER:6}",
+							"BusinessDescription": "Gift products ecommerce site updated",
+							"WebsiteAddress": "www.tataupdate${RANDOM.NUMBER:6}.com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Modify_Business_Info_With_NotAllowed_SpecialCharacters.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "178",
+					"Description": "Invalid Input Parameter(s)",
+					"DetailedSummary": {
+						"BusinessXpressID": null,
+						"BusinessCode": "${$.Modify_Business_Info_With_NotAllowed_SpecialCharacters.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"Status": "202",
+						"Message": "Empty/Invalid Business Name"
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify_Business_Info_ContactPersonName_moreThan_AN100",
+			"url": "/v1/modifybusiness",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "${$.Create_Business_With_Valid_Data.request.body.BusinessDetails.RequestID}${RANDOM.NUMBER:6}",
+						"BusinessInfo": {
+							"BusinessCode": "${$.Create_Business_With_Valid_Data.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+							"BusinessName": "Wilmar Modified",
+							"ContactPersonName": "wilmar rai updatedwilmar rai updatedwilmar rai updatedwilmar rai updatedwilmar rai updatedwilmar rai updatedwilmar rai updatedwilmar rai updatedwilmar rai updatedwilmar rai updatedwilmar rai updatedwilmar rai updatedwilmar rai updatedwilmar rai updated",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}${RANDOM.NUMBER:6}",
+							"BusinessDescription": "Gift products ecommerce site updated",
+							"WebsiteAddress": "www.tataupdate${RANDOM.NUMBER:6}.com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Modify_Business_Info_ContactPersonName_moreThan_AN100.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "178",
+					"Description": "Invalid Input Parameter(s)",
+					"DetailedSummary": {
+						"BusinessCode": "${$.Modify_Business_Info_ContactPersonName_moreThan_AN100.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": null,
+						"Status": "203",
+						"Message": "Empty/Invalid Contact Person Name"
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify_Business_Info_withBlank_BusinessName",
+			"url": "/v1/modifybusiness",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "${$.Create_Business_With_Valid_Data.request.body.BusinessDetails.RequestID}${RANDOM.NUMBER:6}",
+						"BusinessInfo": {
+							"BusinessCode": "${$.Create_Business_With_Valid_Data.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+							"BusinessName": "",
+							"ContactPersonName": "Paul Walkerupdate${RANDOM.STRING:6}",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}${RANDOM.NUMBER:6}",
+							"BusinessDescription": "Gift products ecommerce site updated",
+							"WebsiteAddress": "www.tataupdate${RANDOM.NUMBER:6}.com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Modify_Business_Info_withBlank_BusinessName.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": {
+						"BusinessCode": "${$.Modify_Business_Info_withBlank_BusinessName.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "${$.Create_Business_With_Valid_Data.response.body.DetailedSummary.BusinessXpressID}",
+						"Status": "219",
+						"Message": "Your business information has been updated successfully"
+					}
+				}
+			}
+		},
+		//
+		{
+			"name": "Modify_Business_With_ContactName_Exact100AN_value",
+			"url": "/v1/modifybusiness",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "${$.Create_Business_With_Valid_Data.request.body.BusinessDetails.RequestID}${RANDOM.NUMBER:6}",
+						"BusinessInfo": {
+							"BusinessCode": "${$.Create_Business_With_Valid_Data.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+							"BusinessName": "wilmar rai updatedwilmar rai updatedwilmar rai updatedwilmar rai updatedwilmar rai updatedwilmar rai",
+							"ContactPersonName": "Paul Walkerupdate${RANDOM.STRING:6}",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}${RANDOM.NUMBER:6}",
+							"BusinessDescription": "Gift products ecommerce site updated",
+							"WebsiteAddress": "www.tataupdate${RANDOM.NUMBER:6}.com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Modify_Business_With_ContactName_Exact100AN_value.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": {
+						"BusinessCode": "${$.Modify_Business_With_ContactName_Exact100AN_value.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "$NOT.NULL",
+						"Status": "219",
+						"Message": "Your business information has been updated successfully"
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify_Business_Info_without_ContactPersonName",
+			"url": "/v1/modifybusiness",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "${$.Create_Business_With_Valid_Data.request.body.BusinessDetails.RequestID}${RANDOM.NUMBER:6}",
+						"BusinessInfo": {
+							"BusinessCode": "${$.Create_Business_With_Valid_Data.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+							"BusinessName": "Wilmar Modified",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}${RANDOM.NUMBER:6}",
+							"BusinessDescription": "Gift products ecommerce site updated",
+							"WebsiteAddress": "www.tataupdate${RANDOM.NUMBER:6}.com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Modify_Business_Info_without_ContactPersonName.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": {
+						"BusinessCode": "${$.Modify_Business_Info_without_ContactPersonName.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "$NOT.NULL",
+						"Status": "219",
+						"Message": "Your business information has been updated successfully"
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify_Business_Info_WithBlank_ContactPersonName",
+			"url": "/v1/modifybusiness",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "${$.Create_Business_With_Valid_Data.request.body.BusinessDetails.RequestID}${RANDOM.NUMBER:6}",
+						"BusinessInfo": {
+							"BusinessCode": "${$.Create_Business_With_Valid_Data.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+							"BusinessName": "Wilmar Modified",
+							"ContactPersonName": "",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}${RANDOM.NUMBER:6}",
+							"BusinessDescription": "Gift products ecommerce site updated",
+							"WebsiteAddress": "www.tataupdate${RANDOM.NUMBER:6}.com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Modify_Business_Info_WithBlank_ContactPersonName.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": {
+						"BusinessCode": "${$.Modify_Business_Info_WithBlank_ContactPersonName.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "$NOT.NULL",
+						"Status": "219",
+						"Message": "Your business information has been updated successfully"
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify_Business_Info_EmailAddress_lessthanAN240_and_with_invallidEmailId_format",
+			"url": "/v1/modifybusiness",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "${$.Create_Business_With_Valid_Data.request.body.BusinessDetails.RequestID}${RANDOM.NUMBER:6}",
+						"BusinessInfo": {
+							"BusinessCode": "${$.Create_Business_With_Valid_Data.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+							"BusinessName": "Wilmar Modified",
+							"ContactPersonName": "Paul Walkerupdate${RANDOM.STRING:6}",
+							"BusinessEmailAddress": "FNP1234FNP1234FNP1234FNP1234F2dsfsFNP1234FNP1234FNP1234FNP1234F2dsfsFNP1234FNP1234FNP1234FNP1234F2dsfsFNP1234FNP1234FNP1234FNP1234F2dsfsFNP1234FNP1234FNP1234FNP1234F2dsfsFNP1234FNP1234FNP1234FNP1234F2dsfs@yopmail",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}${RANDOM.NUMBER:6}",
+							"BusinessDescription": "Gift products ecommerce site updated",
+							"WebsiteAddress": "www.tataupdate${RANDOM.NUMBER:6}.com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Modify_Business_Info_EmailAddress_lessthanAN240_and_with_invallidEmailId_format.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "178",
+					"Description": "Invalid Input Parameter(s)",
+					"DetailedSummary": {
+						"BusinessCode": "${$.Modify_Business_Info_EmailAddress_lessthanAN240_and_with_invallidEmailId_format.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": null,
+						"Status": "205",
+						"Message": "Empty/Invalid Business email address"
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify_Business_Info_EmailAddress_moreThanAN240_and_with_vallidEmailId_format",
+			"url": "/v1/modifybusiness",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "${$.Create_Business_With_Valid_Data.request.body.BusinessDetails.RequestID}${RANDOM.NUMBER:6}",
+						"BusinessInfo": {
+							"BusinessCode": "${$.Create_Business_With_Valid_Data.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+							"BusinessName": "Wilmar Modified",
+							"ContactPersonName": "Paul Walkerupdate${RANDOM.STRING:6}",
+							"BusinessEmailAddress": "FNP1234FNP1234FNP1234FNP1234F2dsfsFNP1234FNP1234FNP1234FNP1234F2dsfsFNP1234FNP1234FNP1234FNP1234F2dsfsFNP1234FNP1234FNP1234FNP1234F2dsfsFNP1234FNP1234FNP1234FNP1234F2dsfsFNP1234FNP1234FNP1234FNP1234F2dsfssxcsdzvgdfbfd34232353gszgvdgv.zscdsadcds@yopmail.com",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}${RANDOM.NUMBER:6}",
+							"BusinessDescription": "Gift products ecommerce site updated",
+							"WebsiteAddress": "www.tataupdate${RANDOM.NUMBER:6}.com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Modify_Business_Info_EmailAddress_moreThanAN240_and_with_vallidEmailId_format.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "178",
+					"Description": "Invalid Input Parameter(s)",
+					"DetailedSummary": {
+						"BusinessCode": "${$.Modify_Business_Info_EmailAddress_moreThanAN240_and_with_vallidEmailId_format.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": null,
+						"Status": "205",
+						"Message": "Empty/Invalid Business email address"
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify_Business_Info_EmailAddress_moreThanAN240_and_with_invallidEmailId_format",
+			"url": "/v1/modifybusiness",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "${$.Create_Business_With_Valid_Data.request.body.BusinessDetails.RequestID}${RANDOM.NUMBER:6}",
+						"BusinessInfo": {
+							"BusinessCode": "${$.Create_Business_With_Valid_Data.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+							"BusinessName": "Wilmar Modified",
+							"ContactPersonName": "Paul Walkerupdate${RANDOM.STRING:6}",
+							"BusinessEmailAddress": "FNP1234FNP1234FNP1234FNP1234F2dsfsFNP1234FNP1234FNP1234FNP1234F2dsfsFNP1234FNP1234FNP1234FNP1234F2dsfsFNP1234FNP1234FNP1234FNP1234F2dsfsFNP1234FNP1234FNP1234FNP1234F2dsfsFNP1234FNP1234FNP1234FNP1234F2dsfssxcsdzvgdfbfd34232353gszgvdgv.zscdsadcds.com",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}${RANDOM.NUMBER:6}",
+							"BusinessDescription": "Gift products ecommerce site updated",
+							"WebsiteAddress": "www.tataupdate${RANDOM.NUMBER:6}.com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Modify_Business_Info_EmailAddress_moreThanAN240_and_with_invallidEmailId_format.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "178",
+					"Description": "Invalid Input Parameter(s)",
+					"DetailedSummary": {
+						"BusinessCode": "${$.Modify_Business_Info_EmailAddress_moreThanAN240_and_with_invallidEmailId_format.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": null,
+						"Status": "205",
+						"Message": "Empty/Invalid Business email address"
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify_Business_Info_EmailAddress_lessThanAN240_and_with_vallidEmailId_format",
+			"url": "/v1/modifybusiness",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "${$.Create_Business_With_Valid_Data.request.body.BusinessDetails.RequestID}${RANDOM.NUMBER:6}",
+						"BusinessInfo": {
+							"BusinessCode": "${$.Create_Business_With_Valid_Data.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+							"BusinessName": "Wilmar Modified",
+							"ContactPersonName": "Paul Walkerupdate${RANDOM.STRING:6}",
+							"BusinessEmailAddress": "mgshare1${RANDOM.NUMBER:6}@yopmail.com",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}${RANDOM.NUMBER:6}",
+							"BusinessDescription": "Gift products ecommerce site updated",
+							"WebsiteAddress": "www.tataupdate${RANDOM.NUMBER:6}.com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Modify_Business_Info_EmailAddress_lessThanAN240_and_with_vallidEmailId_format.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": {
+						"BusinessCode": "${$.Modify_Business_Info_EmailAddress_lessThanAN240_and_with_vallidEmailId_format.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "$NOT.NULL",
+						"Status": "219",
+						"Message": "Your business information has been updated successfully"
+					}
+				}
+			}
+		},
+		{
 			"name": "Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending",
 			"url": "/v1/Businessboarding",
 			"operation": "POST",
@@ -629,7 +1625,7 @@
 					"BusinessDetails": {
 						"RequestID": "Rakhi${RANDOM.NUMBER:16}",
 						"BusinessInfo": {
-							"BusinessRegistrationNo": "${BusinessRegistrationNo}",
+							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
 							"BusinessName": "Rakhi${RANDOM.NUMBER:8}",
 							"BusinessCode": "Rakhi${RANDOM.NUMBER:8}",
 							"ContactPersonName": "Rakhi Deshmukh${RANDOM.STRING:6}",
@@ -694,7 +1690,7 @@
 			}
 		},
 		{
-			"name": "Modify_Business_boarding_with_valid_data",
+			"name": "Modify_Business_boarding_with_valid_data_1",
 			"url": "/v1/modifybusiness",
 			"operation": "POST",
 			"request": {
@@ -713,7 +1709,7 @@
 							"ContactPersonName": "Rakhi D${RANDOM.STRING:6}",
 							"BusinessEmailAddress": "M${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessEmailAddress}",
 							"ISDCode": "${ISDCode}",
-							"MobileNumber": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.MobileNumber}",
+							"MobileNumber": "${MobileNumber}${RANDOM.NUMBER:6}",
 							"BusinessDescription": "Modify deshmukh",
 							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
 							"ContactKYCRequired": "N"
@@ -744,11 +1740,11 @@
 					]
 				},
 				"body": {
-					"RequestID": "${$.Modify_Business_boarding_with_valid_data.request.body.BusinessDetails.RequestID}",
+					"RequestID": "${$.Modify_Business_boarding_with_valid_data_1.request.body.BusinessDetails.RequestID}",
 					"StatusCode": "000",
 					"Description": "Your request has been processed successfully",
 					"DetailedSummary": {
-						"BusinessCode": "${$.Modify_Business_boarding_with_valid_data.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessCode": "${$.Modify_Business_boarding_with_valid_data_1.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
 						"BusinessXpressID": "$NOT.NULL",
 						"Status": "219",
 						"Message": "Your business information has been updated successfully"
@@ -757,7 +1753,7 @@
 			}
 		},
 		{
-			"name": "Modify_Business_boarding_with_invalid_BusinessISOCountryCode",
+			"name": "Modify_Business_boarding_with_invalid_BusinessISOCountryCode_2",
 			"url": "/v1/modifybusiness",
 			"operation": "POST",
 			"request": {
@@ -776,132 +1772,6 @@
 							"ContactPersonName": "Rakhi D${RANDOM.STRING:6}",
 							"BusinessEmailAddress": "M${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessEmailAddress}",
 							"ISDCode": "${ISDCode}",
-							"MobileNumber": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.MobileNumber}",
-							"BusinessDescription": "Modify deshmukh",
-							"BusinessISOCountryCode": "${BusinessISOCountryCode}jdh",
-							"ContactKYCRequired": "N"
-						}
-					}
-				}
-			},
-			"assertions": {
-				"status": 200,
-				"headers": {
-					"Date": [
-						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
-					],
-					"Server": [
-						"Webserver"
-					],
-					"Transfer-Encoding": [
-						"chunked"
-					],
-					"X-Frame-Options": [
-						"DENY"
-					],
-					"Content-Type": [
-						"text/plain; charset=utf-8"
-					],
-					"Strict-Transport-Security": [
-						"max-age=31536000"
-					]
-				},
-				"body": {
-					"RequestID": "${$.Modify_Business_boarding_with_invalid_BusinessISOCountryCode.request.body.BusinessDetails.RequestID}",
-					"StatusCode": "178",
-					"Description": "Invalid Input Parameter(s)",
-					"DetailedSummary": {
-						"BusinessCode": "${$.Modify_Business_boarding_with_invalid_BusinessISOCountryCode.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"BusinessXpressID": "$NOT.NULL",
-						"Status": "244",
-						"Message": "Empty/Invalid Business Country"
-					}
-				}
-			}
-		},
-		{
-			"name": "Modify_Business_boarding_with_Blank_ISD_and_Valid_MobileNo",
-			"url": "/v1/modifybusiness",
-			"operation": "POST",
-			"request": {
-				"headers": {
-					"MerchantId": "${MerchandId-TOKEN}",
-					"TerminalId": "${TerminalId-TOKEN}",
-					"XpressId": "${XpressId-TOKEN}"
-				},
-				"body": {
-					"BusinessDetails": {
-						"RequestID": "Rakhi${RANDOM.NUMBER:16}",
-						"BusinessInfo": {
-							"BusinessName": "Deshmukhenterprice${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessName}",
-							"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-							"BusinessXpressID": "",
-							"ContactPersonName": "Rakhi D${RANDOM.STRING:6}",
-							"BusinessEmailAddress": "M${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessEmailAddress}",
-							"ISDCode": "",
-							"MobileNumber": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.MobileNumber}",
-							"BusinessDescription": "Modify deshmukh",
-							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
-							"ContactKYCRequired": "N"
-						}
-					}
-				}
-			},
-			"assertions": {
-				"status": 200,
-				"headers": {
-					"Date": [
-						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
-					],
-					"Server": [
-						"Webserver"
-					],
-					"Transfer-Encoding": [
-						"chunked"
-					],
-					"X-Frame-Options": [
-						"DENY"
-					],
-					"Content-Type": [
-						"text/plain; charset=utf-8"
-					],
-					"Strict-Transport-Security": [
-						"max-age=31536000"
-					]
-				},
-				"body": {
-					"RequestID": "${$.Modify_Business_boarding_with_Blank_ISD_and_Valid_MobileNo.request.body.BusinessDetails.RequestID}",
-					"StatusCode": "000",
-					"Description": "Your request has been processed successfully",
-					"DetailedSummary": {
-						"BusinessCode": "${$.Modify_Business_boarding_with_Blank_ISD_and_Valid_MobileNo.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"BusinessXpressID": "$NOT.NULL",
-						"Status": "219",
-						"Message": "Your business information has been updated successfully"
-					}
-				}
-			}
-		},
-		{
-			"name": "Modify_Business_boarding_with_Invalid_ISD_and_Valid_MobileNo",
-			"url": "/v1/modifybusiness",
-			"operation": "POST",
-			"request": {
-				"headers": {
-					"MerchantId": "${MerchandId-TOKEN}",
-					"TerminalId": "${TerminalId-TOKEN}",
-					"XpressId": "${XpressId-TOKEN}"
-				},
-				"body": {
-					"BusinessDetails": {
-						"RequestID": "Rakhi${RANDOM.NUMBER:16}",
-						"BusinessInfo": {
-							"BusinessName": "Deshmukhenterprice${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessName}",
-							"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-							"BusinessXpressID": "",
-							"ContactPersonName": "Rakhi D${RANDOM.STRING:6}",
-							"BusinessEmailAddress": "M${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessEmailAddress}",
-							"ISDCode": "${ISDCode}22",
 							"MobileNumber": "${MobileNumber}${RANDOM.NUMBER:6}",
 							"BusinessDescription": "Modify deshmukh",
 							"BusinessISOCountryCode": "${BusinessISOCountryCode}jdh",
@@ -933,11 +1803,137 @@
 					]
 				},
 				"body": {
-					"RequestID": "${$.Modify_Business_boarding_with_Invalid_ISD_and_Valid_MobileNo.request.body.BusinessDetails.RequestID}",
+					"RequestID": "${$.Modify_Business_boarding_with_invalid_BusinessISOCountryCode_2.request.body.BusinessDetails.RequestID}",
 					"StatusCode": "178",
 					"Description": "Invalid Input Parameter(s)",
 					"DetailedSummary": {
-						"BusinessCode": "${$.Modify_Business_boarding_with_Invalid_ISD_and_Valid_MobileNo.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessCode": "${$.Modify_Business_boarding_with_invalid_BusinessISOCountryCode_2.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "$NOT.NULL",
+						"Status": "244",
+						"Message": "Empty/Invalid Business Country"
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify_Business_boarding_with_Blank_ISD_and_Valid_MobileNo_3",
+			"url": "/v1/modifybusiness",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "Rakhi${RANDOM.NUMBER:16}",
+						"BusinessInfo": {
+							"BusinessName": "Deshmukhenterprice${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessName}",
+							"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+							"BusinessXpressID": "",
+							"ContactPersonName": "Rakhi D${RANDOM.STRING:6}",
+							"BusinessEmailAddress": "M${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessEmailAddress}",
+							"ISDCode": "",
+							"MobileNumber": "${MobileNumber}${RANDOM.NUMBER:6}",
+							"BusinessDescription": "Modify deshmukh",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "N"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Modify_Business_boarding_with_Blank_ISD_and_Valid_MobileNo_3.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": {
+						"BusinessCode": "${$.Modify_Business_boarding_with_Blank_ISD_and_Valid_MobileNo_3.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "$NOT.NULL",
+						"Status": "219",
+						"Message": "Your business information has been updated successfully"
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify_Business_boarding_with_Invalid_ISD_and_Valid_MobileNo_4",
+			"url": "/v1/modifybusiness",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "Rakhi${RANDOM.NUMBER:16}",
+						"BusinessInfo": {
+							"BusinessName": "Deshmukhenterprice${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessName}",
+							"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+							"BusinessXpressID": "",
+							"ContactPersonName": "Rakhi D${RANDOM.STRING:6}",
+							"BusinessEmailAddress": "M${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessEmailAddress}",
+							"ISDCode": "${ISDCode}22",
+							"MobileNumber": "${MobileNumber}",
+							"BusinessDescription": "Modify deshmukh",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}jdh",
+							"ContactKYCRequired": "N"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Modify_Business_boarding_with_Invalid_ISD_and_Valid_MobileNo_4.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "178",
+					"Description": "Invalid Input Parameter(s)",
+					"DetailedSummary": {
+						"BusinessCode": "${$.Modify_Business_boarding_with_Invalid_ISD_and_Valid_MobileNo_4.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
 						"BusinessXpressID": "$NOT.NULL",
 						"Status": "204",
 						"Message": "Empty/Invalid ISD Code"
@@ -946,7 +1942,7 @@
 			}
 		},
 		{
-			"name": "Modify_Business_boarding_with_valid_ISD_and_Invalid_MobileNo_morethan8",
+			"name": "Modify_Business_boarding_with_valid_ISD_and_Invalid_MobileNo_morethan8_5",
 			"url": "/v1/modifybusiness",
 			"operation": "POST",
 			"request": {
@@ -996,11 +1992,11 @@
 					]
 				},
 				"body": {
-					"RequestID": "${$.Modify_Business_boarding_with_valid_ISD_and_Invalid_MobileNo_morethan8.request.body.BusinessDetails.RequestID}",
+					"RequestID": "${$.Modify_Business_boarding_with_valid_ISD_and_Invalid_MobileNo_morethan8_5.request.body.BusinessDetails.RequestID}",
 					"StatusCode": "178",
 					"Description": "Invalid Input Parameter(s)",
 					"DetailedSummary": {
-						"BusinessCode": "${$.Modify_Business_boarding_with_valid_ISD_and_Invalid_MobileNo_morethan8.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessCode": "${$.Modify_Business_boarding_with_valid_ISD_and_Invalid_MobileNo_morethan8_5.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
 						"BusinessXpressID": "$NOT.NULL",
 						"Status": "206",
 						"Message": "Empty/Invalid Mobile Number"
@@ -1009,7 +2005,7 @@
 			}
 		},
 		{
-			"name": "Modify_Business_boarding_with_valid_ISD_and_Blank_MobileNo_",
+			"name": "Modify_Business_boarding_with_valid_ISD_and_Blank_MobileNo_6",
 			"url": "/v1/modifybusiness",
 			"operation": "POST",
 			"request": {
@@ -1059,11 +2055,11 @@
 					]
 				},
 				"body": {
-					"RequestID": "${$.Modify_Business_boarding_with_valid_ISD_and_Blank_MobileNo_.request.body.BusinessDetails.RequestID}",
+					"RequestID": "${$.Modify_Business_boarding_with_valid_ISD_and_Blank_MobileNo_6.request.body.BusinessDetails.RequestID}",
 					"StatusCode": "000",
 					"Description": "Your request has been processed successfully",
 					"DetailedSummary": {
-						"BusinessCode": "${$.Modify_Business_boarding_with_valid_ISD_and_Blank_MobileNo_.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessCode": "${$.Modify_Business_boarding_with_valid_ISD_and_Blank_MobileNo_6.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
 						"BusinessXpressID": "$NOT.NULL",
 						"Status": "219",
 						"Message": "Your business information has been updated successfully"
@@ -1072,7 +2068,7 @@
 			}
 		},
 		{
-			"name": "Modify_Business_boarding_without_ISD_and_mobileNo_Parameter",
+			"name": "Modify_Business_boarding_without_ISD_and_mobileNo_Parameter_7",
 			"url": "/v1/modifybusiness",
 			"operation": "POST",
 			"request": {
@@ -1120,11 +2116,11 @@
 					]
 				},
 				"body": {
-					"RequestID": "${$.Modify_Business_boarding_without_ISD_and_mobileNo_Parameter.request.body.BusinessDetails.RequestID}",
+					"RequestID": "${$.Modify_Business_boarding_without_ISD_and_mobileNo_Parameter_7.request.body.BusinessDetails.RequestID}",
 					"StatusCode": "000",
 					"Description": "Your request has been processed successfully",
 					"DetailedSummary": {
-						"BusinessCode": "${$.Modify_Business_boarding_without_ISD_and_mobileNo_Parameter.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessCode": "${$.Modify_Business_boarding_without_ISD_and_mobileNo_Parameter_7.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
 						"BusinessXpressID": "$NOT.NULL",
 						"Status": "219",
 						"Message": "Your business information has been updated successfully"
@@ -1133,7 +2129,7 @@
 			}
 		},
 		{
-			"name": "Modify_Business_boarding_with_Update_ContactKYCRequired",
+			"name": "Modify_Business_boarding_with_Update_ContactKYCRequired_8",
 			"url": "/v1/modifybusiness",
 			"operation": "POST",
 			"request": {
@@ -1152,7 +2148,7 @@
 							"ContactPersonName": "Rakhi D${RANDOM.STRING:6}",
 							"BusinessEmailAddress": "M${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessEmailAddress}",
 							"ISDCode": "${ISDCode}",
-							"MobileNumber": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.MobileNumber}",
+							"MobileNumber": "${MobileNumber}${RANDOM.NUMBER:6}",
 							"BusinessDescription": "Modify deshmukh",
 							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
 							"ContactKYCRequired": "Y"
@@ -1183,11 +2179,11 @@
 					]
 				},
 				"body": {
-					"RequestID": "${$.Modify_Business_boarding_with_Update_ContactKYCRequired.request.body.BusinessDetails.RequestID}",
+					"RequestID": "${$.Modify_Business_boarding_with_Update_ContactKYCRequired_8.request.body.BusinessDetails.RequestID}",
 					"StatusCode": "000",
 					"Description": "Your request has been processed successfully",
 					"DetailedSummary": {
-						"BusinessCode": "${$.Modify_Business_boarding_with_Update_ContactKYCRequired.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessCode": "${$.Modify_Business_boarding_with_Update_ContactKYCRequired_8.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
 						"BusinessXpressID": "$NOT.NULL",
 						"Status": "219",
 						"Message": "Your business information has been updated successfully"
@@ -1196,7 +2192,7 @@
 			}
 		},
 		{
-			"name": "Modify_Business_boarding_with_ContactKYCRequired_Blank",
+			"name": "Modify_Business_boarding_with_ContactKYCRequired_Blank_9",
 			"url": "/v1/modifybusiness",
 			"operation": "POST",
 			"request": {
@@ -1215,7 +2211,7 @@
 							"ContactPersonName": "Rakhi D${RANDOM.STRING:6}",
 							"BusinessEmailAddress": "M${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessEmailAddress}",
 							"ISDCode": "${ISDCode}",
-							"MobileNumber": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.MobileNumber}",
+							"MobileNumber": "${MobileNumber}${RANDOM.NUMBER:6}",
 							"BusinessDescription": "Modify deshmukh",
 							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
 							"ContactKYCRequired": ""
@@ -1246,11 +2242,11 @@
 					]
 				},
 				"body": {
-					"RequestID": "${$.Modify_Business_boarding_with_ContactKYCRequired_Blank.request.body.BusinessDetails.RequestID}",
+					"RequestID": "${$.Modify_Business_boarding_with_ContactKYCRequired_Blank_9.request.body.BusinessDetails.RequestID}",
 					"StatusCode": "000",
 					"Description": "Your request has been processed successfully",
 					"DetailedSummary": {
-						"BusinessCode": "${$.Modify_Business_boarding_with_ContactKYCRequired_Blank.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessCode": "${$.Modify_Business_boarding_with_ContactKYCRequired_Blank_9.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
 						"BusinessXpressID": "$NOT.NULL",
 						"Status": "219",
 						"Message": "Your business information has been updated successfully"
@@ -1259,7 +2255,7 @@
 			}
 		},
 		{
-			"name": "Modify_Business_boarding_without_ContactKYCRequired",
+			"name": "Modify_Business_boarding_without_ContactKYCRequired_10",
 			"url": "/v1/modifybusiness",
 			"operation": "POST",
 			"request": {
@@ -1278,7 +2274,7 @@
 							"ContactPersonName": "Rakhi D${RANDOM.STRING:6}",
 							"BusinessEmailAddress": "M${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessEmailAddress}",
 							"ISDCode": "${ISDCode}",
-							"MobileNumber": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.MobileNumber}",
+							"MobileNumber": "${MobileNumber}${RANDOM.NUMBER:6}",
 							"BusinessDescription": "Modify deshmukh",
 							"BusinessISOCountryCode": "${BusinessISOCountryCode}"
 						}
@@ -1308,11 +2304,11 @@
 					]
 				},
 				"body": {
-					"RequestID": "${$.Modify_Business_boarding_without_ContactKYCRequired.request.body.BusinessDetails.RequestID}",
+					"RequestID": "${$.Modify_Business_boarding_without_ContactKYCRequired_10.request.body.BusinessDetails.RequestID}",
 					"StatusCode": "000",
 					"Description": "Your request has been processed successfully",
 					"DetailedSummary": {
-						"BusinessCode": "${$.Modify_Business_boarding_without_ContactKYCRequired.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessCode": "${$.Modify_Business_boarding_without_ContactKYCRequired_10.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
 						"BusinessXpressID": "$NOT.NULL",
 						"Status": "219",
 						"Message": "Your business information has been updated successfully"
@@ -1321,7 +2317,7 @@
 			}
 		},
 		{
-			"name": "Modify_Business_boarding_with_ContactKYCRequired_MoreThan1",
+			"name": "Modify_Business_boarding_with_ContactKYCRequired_MoreThan1_11",
 			"url": "/v1/modifybusiness",
 			"operation": "POST",
 			"request": {
@@ -1340,7 +2336,7 @@
 							"ContactPersonName": "Rakhi D${RANDOM.STRING:6}",
 							"BusinessEmailAddress": "M${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessEmailAddress}",
 							"ISDCode": "${ISDCode}",
-							"MobileNumber": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.MobileNumber}",
+							"MobileNumber": "${MobileNumber}${RANDOM.NUMBER:6}",
 							"BusinessDescription": "Modify deshmukh",
 							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
 							"ContactKYCRequired": "YY"
@@ -1371,14 +2367,1223 @@
 					]
 				},
 				"body": {
-					"RequestID": "${$.Modify_Business_boarding_with_ContactKYCRequired_MoreThan1.request.body.BusinessDetails.RequestID}",
+					"RequestID": "${$.Modify_Business_boarding_with_ContactKYCRequired_MoreThan1_11.request.body.BusinessDetails.RequestID}",
 					"StatusCode": "178",
 					"Description": "Invalid Input Parameter(s)",
 					"DetailedSummary": {
-						"BusinessCode": "${$.Modify_Business_boarding_with_ContactKYCRequired_MoreThan1.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessCode": "${$.Modify_Business_boarding_with_ContactKYCRequired_MoreThan1_11.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
 						"BusinessXpressID": "$NOT.NULL",
 						"Status": "208",
 						"Message": "Empty/Invalid ContactKYCRequired"
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify_Business_boarding_with_ContactKYCRequired_Y_12",
+			"url": "/v1/modifybusiness",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "Rakhi${RANDOM.NUMBER:16}",
+						"BusinessInfo": {
+							"BusinessName": "Deshmukhenterprice${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessName}",
+							"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+							"BusinessXpressID": "",
+							"ContactPersonName": "Rakhi D${RANDOM.STRING:6}",
+							"BusinessEmailAddress": "M${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessEmailAddress}",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}${RANDOM.NUMBER:6}",
+							"BusinessDescription": "Modify deshmukh",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Modify_Business_boarding_with_ContactKYCRequired_Y_12.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": {
+						"BusinessCode": "${$.Modify_Business_boarding_with_ContactKYCRequired_Y_12.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "$NOT.NULL",
+						"Status": "219",
+						"Message": "Your business information has been updated successfully"
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify_Business_boarding_with_ContactKYCRequired_N_13",
+			"url": "/v1/modifybusiness",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "Rakhi${RANDOM.NUMBER:16}",
+						"BusinessInfo": {
+							"BusinessName": "Deshmukhenterprice${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessName}",
+							"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+							"BusinessXpressID": "",
+							"ContactPersonName": "Rakhi D${RANDOM.STRING:6}",
+							"BusinessEmailAddress": "M${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessEmailAddress}",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}${RANDOM.NUMBER:6}",
+							"BusinessDescription": "Modify deshmukh",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Modify_Business_boarding_with_ContactKYCRequired_N_13.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": {
+						"BusinessCode": "${$.Modify_Business_boarding_with_ContactKYCRequired_N_13.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "$NOT.NULL",
+						"Status": "219",
+						"Message": "Your business information has been updated successfully"
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify_Business_boarding_with_BusinessISOCountryCode_MoreThan3_14",
+			"url": "/v1/modifybusiness",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "Rakhi${RANDOM.NUMBER:16}",
+						"BusinessInfo": {
+							"BusinessName": "Deshmukhenterprice${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessName}",
+							"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+							"BusinessXpressID": "",
+							"ContactPersonName": "Rakhi D${RANDOM.STRING:6}",
+							"BusinessEmailAddress": "M${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessEmailAddress}",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}${RANDOM.NUMBER:6}",
+							"BusinessDescription": "Modify deshmukh",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}hhh",
+							"ContactKYCRequired": "Y"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Modify_Business_boarding_with_BusinessISOCountryCode_MoreThan3_14.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "178",
+					"Description": "Invalid Input Parameter(s)",
+					"DetailedSummary": {
+						"BusinessCode": "${$.Modify_Business_boarding_with_BusinessISOCountryCode_MoreThan3_14.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "$NOT.NULL",
+						"Status": "244",
+						"Message": "Empty/Invalid Business Country"
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify_Business_boarding_with_Valid3_BusinessISOCountryCode_15",
+			"url": "/v1/modifybusiness",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "Rakhi${RANDOM.NUMBER:16}",
+						"BusinessInfo": {
+							"BusinessName": "Deshmukhenterprice${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessName}",
+							"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+							"BusinessXpressID": "",
+							"ContactPersonName": "Rakhi D${RANDOM.STRING:6}",
+							"BusinessEmailAddress": "M${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessEmailAddress}",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}${RANDOM.NUMBER:6}",
+							"BusinessDescription": "Modify deshmukh",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Modify_Business_boarding_with_Valid3_BusinessISOCountryCode_15.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": {
+						"BusinessCode": "${$.Modify_Business_boarding_with_Valid3_BusinessISOCountryCode_15.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "$NOT.NULL",
+						"Status": "219",
+						"Message": "Your business information has been updated successfully"
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify_Business_boarding_with_Blank_WebsiteAddress_16",
+			"url": "/v1/modifybusiness",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "Rakhi${RANDOM.NUMBER:16}",
+						"BusinessInfo": {
+							"BusinessName": "Deshmukhenterprice${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessName}",
+							"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+							"BusinessXpressID": "",
+							"ContactPersonName": "Rakhi D${RANDOM.STRING:6}",
+							"BusinessEmailAddress": "M${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessEmailAddress}",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}${RANDOM.NUMBER:6}",
+							"BusinessDescription": "Modify deshmukh",
+							"WebsiteAddress": "",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Modify_Business_boarding_with_Blank_WebsiteAddress_16.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": {
+						"BusinessCode": "${$.Modify_Business_boarding_with_Blank_WebsiteAddress_16.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "$NOT.NULL",
+						"Status": "219",
+						"Message": "Your business information has been updated successfully"
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify_Business_boarding_without_WebsiteAddress_17",
+			"url": "/v1/modifybusiness",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "Rakhi${RANDOM.NUMBER:16}",
+						"BusinessInfo": {
+							"BusinessName": "Deshmukhenterprice${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessName}",
+							"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+							"BusinessXpressID": "",
+							"ContactPersonName": "Rakhi D${RANDOM.STRING:6}",
+							"BusinessEmailAddress": "M${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessEmailAddress}",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}${RANDOM.NUMBER:6}",
+							"BusinessDescription": "Modify deshmukh",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Modify_Business_boarding_without_WebsiteAddress_17.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": {
+						"BusinessCode": "${$.Modify_Business_boarding_without_WebsiteAddress_17.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "$NOT.NULL",
+						"Status": "219",
+						"Message": "Your business information has been updated successfully"
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify_Business_boarding_with_Invalid_WebsiteAddress_18",
+			"url": "/v1/modifybusiness",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "Rakhi${RANDOM.NUMBER:16}",
+						"BusinessInfo": {
+							"BusinessName": "Deshmukhenterprice${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessName}",
+							"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+							"BusinessXpressID": "",
+							"ContactPersonName": "Rakhi D${RANDOM.STRING:6}",
+							"BusinessEmailAddress": "M${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessEmailAddress}",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}${RANDOM.NUMBER:6}",
+							"BusinessDescription": "Modify deshmukh",
+							"WebsiteAddress": "w.tata${RANDOM.NUMBER:6}com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Modify_Business_boarding_with_Invalid_WebsiteAddress_18.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "178",
+					"Description": "Invalid Input Parameter(s)",
+					"DetailedSummary": {
+						"BusinessCode": "${$.Modify_Business_boarding_with_Invalid_WebsiteAddress_18.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "$NOT.NULL",
+						"Status": "209",
+						"Message": "Invalid website address"
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify_Business_boarding_with_Invalid_WebsiteAddress_MoreThan100_19",
+			"url": "/v1/modifybusiness",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "Rakhi${RANDOM.NUMBER:16}",
+						"BusinessInfo": {
+							"BusinessName": "Deshmukhenterprice${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessName}",
+							"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+							"BusinessXpressID": "",
+							"ContactPersonName": "Rakhi D${RANDOM.STRING:6}",
+							"BusinessEmailAddress": "M${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessEmailAddress}",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}${RANDOM.NUMBER:6}",
+							"BusinessDescription": "Modify deshmukh",
+							"WebsiteAddress": "w.FNPFNPFNPFNPFNPFNPFNPFNPFNPFNPFNPFNPFNPFNPFNPFNPFNPFNPFNPFNPFNPFNPFNPFNPFNPFNPFNPFNPFNPFNPFNPFNPFNPWNPW${RANDOM.NUMBER:6}com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Modify_Business_boarding_with_Invalid_WebsiteAddress_MoreThan100_19.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "178",
+					"Description": "Invalid Input Parameter(s)",
+					"DetailedSummary": {
+						"BusinessXpressID": "",
+						"BusinessCode": "${$.Modify_Business_boarding_with_Invalid_WebsiteAddress_MoreThan100_19.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"Status": "209",
+						"Message": "Invalid website address"
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify_Business_boarding_with_WebsiteAddress_value100_20",
+			"url": "/v1/modifybusiness",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "Rakhi${RANDOM.NUMBER:16}",
+						"BusinessInfo": {
+							"BusinessName": "Deshmukhenterprice${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessName}",
+							"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+							"BusinessXpressID": "",
+							"ContactPersonName": "Rakhi D${RANDOM.STRING:6}",
+							"BusinessEmailAddress": "M${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessEmailAddress}",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}${RANDOM.NUMBER:6}",
+							"BusinessDescription": "Modify deshmukh",
+							"WebsiteAddress": "www.wilmarupdatedwilmarupdatedwilmarupdatedwilmarupdatedwilmarupdatedwilmarupdatedwilmarud${RANDOM.NUMBER:6}.com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Modify_Business_boarding_with_WebsiteAddress_value100_20.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": {
+						"BusinessCode": "${$.Modify_Business_boarding_with_WebsiteAddress_value100_20.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "$NOT.NULL",
+						"Status": "219",
+						"Message": "Your business information has been updated successfully"
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify_Business_boarding_with_Blank_BusinessDescription_21",
+			"url": "/v1/modifybusiness",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "Rakhi${RANDOM.NUMBER:16}",
+						"BusinessInfo": {
+							"BusinessName": "Deshmukhenterprice${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessName}",
+							"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+							"BusinessXpressID": "",
+							"ContactPersonName": "Rakhi D${RANDOM.STRING:6}",
+							"BusinessEmailAddress": "M${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessEmailAddress}",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}${RANDOM.NUMBER:6}",
+							"BusinessDescription": " ",
+							"WebsiteAddress": "www.google.com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Modify_Business_boarding_with_Blank_BusinessDescription_21.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": {
+						"BusinessCode": "${$.Modify_Business_boarding_with_Blank_BusinessDescription_21.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "$NOT.NULL",
+						"Status": "219",
+						"Message": "Your business information has been updated successfully"
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify_Business_boarding_without_BusinessDescription_22",
+			"url": "/v1/modifybusiness",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "Rakhi${RANDOM.NUMBER:16}",
+						"BusinessInfo": {
+							"BusinessName": "Deshmukhenterprice${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessName}",
+							"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+							"BusinessXpressID": "",
+							"ContactPersonName": "Rakhi D${RANDOM.STRING:6}",
+							"BusinessEmailAddress": "M${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessEmailAddress}",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}${RANDOM.NUMBER:6}",
+							"WebsiteAddress": "www.google.com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Modify_Business_boarding_without_BusinessDescription_22.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": {
+						"BusinessCode": "${$.Modify_Business_boarding_without_BusinessDescription_22.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "$NOT.NULL",
+						"Status": "219",
+						"Message": "Your business information has been updated successfully"
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify_Business_boarding_with_BusinessDescription_MoreThan_Value250_23",
+			"url": "/v1/modifybusiness",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "Rakhi${RANDOM.NUMBER:16}",
+						"BusinessInfo": {
+							"BusinessName": "Deshmukhenterprice${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessName}",
+							"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+							"BusinessXpressID": "",
+							"ContactPersonName": "Rakhi D${RANDOM.STRING:6}",
+							"BusinessEmailAddress": "M${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessEmailAddress}",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}${RANDOM.NUMBER:6}",
+							"BusinessDescription": "FNP1234FNP1234FNP1234FNP1234F2dsfsFNP1234FNP1234FNP1234FNP1234F2dsfsFNP1234FNP1234FNP1234FNP1234F2dsfsFNP1234FNP1234FNP1234FNP1234F2dsfsFNP1234FNP1234FNP1234FNP1234F2dsfsFNP1234FNP1234FNP1234FNP1234F2dsfssxcsdzvgdfbfd34232353gszgvdgv.zscdsadcdsFNP1234FNP1234FNP1234FNP1234F2dsfsFNP1234FNP1234FNP1234FNP1234F2dsfsFNP1234FNP1234FNP1234FNP1234F2dsfsFNP1234FNP1234FNP1234FNP1234F2dsfsFNP1234FNP1234FNP1234FNP1234F2dsfsFNP1234FNP1234FNP1234FNP1234F2dsfssxcsdzvgdfbfd34232353gszgvdgv.zscdsadcdsFNP1234FNP1234FNP1234FNP",
+							"WebsiteAddress": "www.google.com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Modify_Business_boarding_with_BusinessDescription_MoreThan_Value250_23.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "178",
+					"Description": "Invalid Input Parameter(s)",
+					"DetailedSummary": {
+						"BusinessCode": "${$.Modify_Business_boarding_with_BusinessDescription_MoreThan_Value250_23.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "$NOT.NULL",
+						"Status": "241",
+						"Message": "Invalid Business description or length exceeded"
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify_Business_boarding_with_BusinessDescription_Value250_24",
+			"url": "/v1/modifybusiness",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "Rakhi${RANDOM.NUMBER:16}",
+						"BusinessInfo": {
+							"BusinessName": "Deshmukhenterprice${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessName}",
+							"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+							"BusinessXpressID": "",
+							"ContactPersonName": "Rakhi D${RANDOM.STRING:6}",
+							"BusinessEmailAddress": "M${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessEmailAddress}",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}${RANDOM.NUMBER:6}",
+							"BusinessDescription": "Gift products ecommerce site updatedGift products ecommerce site updatedGift products ecommerce site updatedGift products ecommerce site updatedGift products ecommerce site updatedGift p ecommerce site updatedGift p ecommerce site updatedGift p ecomm",
+							"WebsiteAddress": "www.google.com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Modify_Business_boarding_with_BusinessDescription_Value250_24.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": {
+						"BusinessCode": "${$.Modify_Business_boarding_with_BusinessDescription_Value250_24.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "$NOT.NULL",
+						"Status": "219",
+						"Message": "Your business information has been updated successfully"
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify_Business_boarding_with_Blank_MobileNumber_25",
+			"url": "/v1/modifybusiness",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "Rakhi${RANDOM.NUMBER:16}",
+						"BusinessInfo": {
+							"BusinessName": "Deshmukhenterprice${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessName}",
+							"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+							"BusinessXpressID": "",
+							"ContactPersonName": "Rakhi D${RANDOM.STRING:6}",
+							"BusinessEmailAddress": "M${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessEmailAddress}",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "",
+							"BusinessDescription": "Gift products ecommerce site updatedGift products ecommerce site updatedGift products ecommerce site u",
+							"WebsiteAddress": "www.google.com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Modify_Business_boarding_with_Blank_MobileNumber_25.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": {
+						"BusinessCode": "${$.Modify_Business_boarding_with_Blank_MobileNumber_25.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "$NOT.NULL",
+						"Status": "219",
+						"Message": "Your business information has been updated successfully"
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify_Business_boarding_without_MobileNumber_26",
+			"url": "/v1/modifybusiness",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "Rakhi${RANDOM.NUMBER:16}",
+						"BusinessInfo": {
+							"BusinessName": "Deshmukhenterprice${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessName}",
+							"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+							"BusinessXpressID": "",
+							"ContactPersonName": "Rakhi D${RANDOM.STRING:6}",
+							"BusinessEmailAddress": "M${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessEmailAddress}",
+							"ISDCode": "${ISDCode}",
+							"BusinessDescription": "Gift products ecommerce site updatedGift products ecommerce site updatedGift products ecommerce site u",
+							"WebsiteAddress": "www.google.com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Modify_Business_boarding_without_MobileNumber_26.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": {
+						"BusinessCode": "${$.Modify_Business_boarding_without_MobileNumber_26.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "$NOT.NULL",
+						"Status": "219",
+						"Message": "Your business information has been updated successfully"
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify_Business_boarding_with_Blank_ISDCode_27",
+			"url": "/v1/modifybusiness",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "Rakhi${RANDOM.NUMBER:16}",
+						"BusinessInfo": {
+							"BusinessName": "Deshmukhenterprice${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessName}",
+							"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+							"BusinessXpressID": "",
+							"ContactPersonName": "Rakhi D${RANDOM.STRING:6}",
+							"BusinessEmailAddress": "M${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessEmailAddress}",
+							"ISDCode": "",
+							"MobileNumber": "${MobileNumber}${RANDOM.NUMBER:6}",
+							"BusinessDescription": "Gift products ecommerce site updatedGift products ecommerce site updatedGift products ecommerce site u",
+							"WebsiteAddress": "www.google.com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Modify_Business_boarding_with_Blank_ISDCode_27.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": {
+						"BusinessCode": "${$.Modify_Business_boarding_with_Blank_ISDCode_27.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "$NOT.NULL",
+						"Status": "219",
+						"Message": "Your business information has been updated successfully"
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify_Business_boarding_with_Invalid_ISDCode_28",
+			"url": "/v1/modifybusiness",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "Rakhi${RANDOM.NUMBER:16}",
+						"BusinessInfo": {
+							"BusinessName": "Deshmukhenterprice${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessName}",
+							"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+							"BusinessXpressID": "",
+							"ContactPersonName": "Rakhi D${RANDOM.STRING:6}",
+							"BusinessEmailAddress": "M${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessEmailAddress}",
+							"ISDCode": "${ISDCode}89",
+							"MobileNumber": "${MobileNumber}${RANDOM.NUMBER:6}",
+							"BusinessDescription": "Gift products ecommerce site updatedGift products ecommerce site updatedGift products ecommerce site u",
+							"WebsiteAddress": "www.google.com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Modify_Business_boarding_with_Invalid_ISDCode_28.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "178",
+					"Description": "Invalid Input Parameter(s)",
+					"DetailedSummary": {
+						"BusinessCode": "${$.Modify_Business_boarding_with_Invalid_ISDCode_28.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "$NOT.NULL",
+						"Status": "204",
+						"Message": "Empty/Invalid ISD Code"
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify_Business_boarding_with_Valid_ISDCode_29",
+			"url": "/v1/modifybusiness",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "Rakhi${RANDOM.NUMBER:16}",
+						"BusinessInfo": {
+							"BusinessName": "Deshmukhenterprice${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessName}",
+							"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+							"BusinessXpressID": "",
+							"ContactPersonName": "Rakhi D${RANDOM.STRING:6}",
+							"BusinessEmailAddress": "M${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessEmailAddress}",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}${RANDOM.NUMBER:6}",
+							"BusinessDescription": "Gift products ecommerce site updatedGift products ecommerce site updatedGift products ecommerce site u",
+							"WebsiteAddress": "www.google.com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Modify_Business_boarding_with_Valid_ISDCode_29.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": {
+						"BusinessCode": "${$.Modify_Business_boarding_with_Valid_ISDCode_29.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "$NOT.NULL",
+						"Status": "219",
+						"Message": "Your business information has been updated successfully"
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify_Business_boarding_with_Blank_BusinessEmailAddress_30",
+			"url": "/v1/modifybusiness",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "Rakhi${RANDOM.NUMBER:16}",
+						"BusinessInfo": {
+							"BusinessName": "Deshmukhenterprice${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessName}",
+							"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_198_TC_acceptance_is_pending.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+							"BusinessXpressID": "",
+							"ContactPersonName": "Rakhi D${RANDOM.STRING:6}",
+							"BusinessEmailAddress": "",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}${RANDOM.NUMBER:6}",
+							"BusinessDescription": "Gift products ecommerce site updatedGift products ecommerce site updatedGift products ecommerce site u",
+							"WebsiteAddress": "www.google.com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						}
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Modify_Business_boarding_with_Blank_BusinessEmailAddress_30.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": {
+						"BusinessCode": "${$.Modify_Business_boarding_with_Blank_BusinessEmailAddress_30.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"BusinessXpressID": "$NOT.NULL",
+						"Status": "219",
+						"Message": "Your business information has been updated successfully"
 					}
 				}
 			}

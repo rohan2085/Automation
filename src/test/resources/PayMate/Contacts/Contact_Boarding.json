@@ -1,0 +1,847 @@
+{
+	"scenarioName": "PayMate Contact Onboarding Flow",
+	"ignoreStepFailures": true,
+	"steps": [
+		{
+			"name": "Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review",
+			"url": "/v1/Businessboarding",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "REQhp${RANDOM.NUMBER:13}",
+						"BusinessInfo": {
+							"BusinessRegistrationNo": "${BusinessRegistrationNo}",
+							"BusinessName": "paul${RANDOM.NUMBER:8}",
+							"BusinessCode": "paul${RANDOM.NUMBER:8}",
+							"ContactPersonName": "Paul Walker${RANDOM.STRING:6}",
+							"BusinessEmailAddress": "paulw${RANDOM.NUMBER:6}@yopmail.com",
+							"ISDCode": "+65",
+							"MobileNumber": "80${RANDOM.NUMBER:6}",
+							"BusinessDescription": "Gift products ecommerce site which has been created for Paul Walker",
+							"WebsiteAddress": "www.tata${RANDOM.NUMBER:6}.com",
+							"BusinessISOCountryCode": "SGP",
+							"ContactKYCRequired": "Y"
+						},
+						"TransactionCharges": [
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"IssuerCode": "",
+								"ProgramCode": "ABC123"
+							},
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"IssuerCode": "",
+								"ProgramCode": "ABC123"
+							}
+						]
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": {
+						"BusinessXpressID": "$NOT.NULL",
+						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"Status": "291",
+						"Message": "KYC Under Review"
+					}
+				}
+			}
+		},
+		{
+			"name": "Contact_Boarding_with_typeSupplier__valid_Data_000_Your_request_has_been_processed_successfully",
+			"url": "/v1/contactboarding",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"RequestID": "REQhp${RANDOM.NUMBER:13}",
+					"ContactDetails": [
+						{
+							"ContactInformation": {
+								"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+								"BusinessXpressID": "",
+								"CompanyName": "Sue${RANDOM.STRING:6}",
+								"CompanyNickName": "",
+								"ReferenceCode": "Sue${RANDOM.NUMBER:6}",
+								"ContactPersonName": "Sue${RANDOM.STRING:6}",
+								"CompanyEmailAddress": "sue${RANDOM.NUMBER:6}@yopmail.com",
+								"CountryCode": "SGP",
+								"ISDCode": "+65",
+								"MobileNumber": "80${RANDOM.NUMBER:6}",
+								"CompanyWebsite": "www.dsbl.com",
+								"CompanyDescription": "fin tech company",
+								"ContactType": "Supplier"
+							},
+							"BankAccountDetails": {
+								"AccountHolderName": "Sue${RANDOM.STRING:6}",
+								"AccountNo": "${RANDOM.NUMBER:10}",
+								"CurrencyCode": "SGD",
+								"RoutingNumber": "",
+								"BICCode": "DBSSSGSG",
+								"BranchCity": "yishun",
+								"CountryCode": "SGP"
+							}
+						}
+					]
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Contact_Boarding_with_typeSupplier__valid_Data_000_Your_request_has_been_processed_successfully.request.body.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": [
+						{
+							"ReferenceCode": "${$.Contact_Boarding_with_typeSupplier__valid_Data_000_Your_request_has_been_processed_successfully.request.body.ContactDetails[0].ContactInformation.ReferenceCode}",
+							"ContactXpressID": "$NOT.NULL",
+							"Status": "300",
+							"Message": "Contact added successfully",
+							"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+							"BusinessXpressID": ""
+						}
+					]
+				}
+			}
+		},
+		{
+			"name": "Contact_Boarding_typeBoth_with_valid_Data_000_Your_request_has_been_processed_successfully",
+			"url": "/v1/contactboarding",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"RequestID": "REQhp${RANDOM.NUMBER:13}",
+					"ContactDetails": [
+						{
+							"ContactInformation": {
+								"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+								"BusinessXpressID": "",
+								"CompanyName": "Sue${RANDOM.STRING:6}",
+								"CompanyNickName": "",
+								"ReferenceCode": "Sue${RANDOM.NUMBER:6}",
+								"ContactPersonName": "Sue${RANDOM.STRING:6}",
+								"CompanyEmailAddress": "sue${RANDOM.NUMBER:6}@yopmail.com",
+								"CountryCode": "SGP",
+								"ISDCode": "+65",
+								"MobileNumber": "80${RANDOM.NUMBER:6}",
+								"CompanyWebsite": "www.dsbl.com",
+								"CompanyDescription": "fin tech company",
+								"ContactType": "Both"
+							},
+							"BankAccountDetails": {
+								"AccountHolderName": "Sue${RANDOM.STRING:6}",
+								"AccountNo": "${RANDOM.NUMBER:10}",
+								"CurrencyCode": "SGD",
+								"RoutingNumber": "",
+								"BICCode": "DBSSSGSG",
+								"BranchCity": "yishun",
+								"CountryCode": "SGP"
+							}
+						}
+					]
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Contact_Boarding_typeBoth_with_valid_Data_000_Your_request_has_been_processed_successfully.request.body.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": [
+						{
+							"ReferenceCode": "${$.Contact_Boarding_typeBoth_with_valid_Data_000_Your_request_has_been_processed_successfully.request.body.ContactDetails[0].ContactInformation.ReferenceCode}",
+							"ContactXpressID": "$NOT.NULL",
+							"Status": "300",
+							"Message": "Contact added successfully",
+							"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+							"BusinessXpressID": ""
+						}
+					]
+				}
+			}
+		},
+		{
+			"name": "Contact_Boarding_typeBuyer_with_valid_Data_000_Your_request_has_been_processed_successfully",
+			"url": "/v1/contactboarding",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"RequestID": "REQhp${RANDOM.NUMBER:13}",
+					"ContactDetails": [
+						{
+							"ContactInformation": {
+								"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+								"BusinessXpressID": "",
+								"CompanyName": "Sue${RANDOM.STRING:6}",
+								"CompanyNickName": "",
+								"ReferenceCode": "Sue${RANDOM.NUMBER:6}",
+								"ContactPersonName": "Sue${RANDOM.STRING:6}",
+								"CompanyEmailAddress": "sue${RANDOM.NUMBER:6}@yopmail.com",
+								"CountryCode": "SGP",
+								"ISDCode": "+65",
+								"MobileNumber": "80${RANDOM.NUMBER:6}",
+								"CompanyWebsite": "www.dsbl.com",
+								"CompanyDescription": "fin tech company",
+								"ContactType": "Buyer"
+							},
+							"BankAccountDetails": {
+								"AccountHolderName": "Sue${RANDOM.STRING:6}",
+								"AccountNo": "${RANDOM.NUMBER:10}",
+								"CurrencyCode": "SGD",
+								"RoutingNumber": "",
+								"BICCode": "DBSSSGSG",
+								"BranchCity": "yishun",
+								"CountryCode": "SGP"
+							}
+						}
+					]
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Contact_Boarding_typeBuyer_with_valid_Data_000_Your_request_has_been_processed_successfully.request.body.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": [
+						{
+							"ReferenceCode": "${$.Contact_Boarding_typeBuyer_with_valid_Data_000_Your_request_has_been_processed_successfully.request.body.ContactDetails[0].ContactInformation.ReferenceCode}",
+							"ContactXpressID": "$NOT.NULL",
+							"Status": "300",
+							"Message": "Contact added successfully",
+							"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+							"BusinessXpressID": ""
+						}
+					]
+				}
+			}
+		},
+		{
+			"name": "Contact_Boarding__withDuplicate_RequestID_609_RequestId_already_processed",
+			"url": "/v1/contactboarding",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"RequestID": "REQhp8765",
+					"ContactDetails": [
+						{
+							"ContactInformation": {
+								"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+								"BusinessXpressID": "",
+								"CompanyName": "Sue${RANDOM.STRING:6}",
+								"CompanyNickName": "",
+								"ReferenceCode": "Sue${RANDOM.NUMBER:6}",
+								"ContactPersonName": "Sue${RANDOM.STRING:6}",
+								"CompanyEmailAddress": "sue${RANDOM.NUMBER:6}@yopmail.com",
+								"CountryCode": "SGP",
+								"ISDCode": "+65",
+								"MobileNumber": "80${RANDOM.NUMBER:6}",
+								"CompanyWebsite": "www.dsbl.com",
+								"CompanyDescription": "fin tech company",
+								"ContactType": "Buyer"
+							},
+							"BankAccountDetails": {
+								"AccountHolderName": "Sue${RANDOM.STRING:6}",
+								"AccountNo": "${RANDOM.NUMBER:10}",
+								"CurrencyCode": "SGD",
+								"RoutingNumber": "",
+								"BICCode": "DBSSSGSG",
+								"BranchCity": "yishun",
+								"CountryCode": "SGP"
+							}
+						}
+					]
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Contact_Boarding__withDuplicate_RequestID_609_RequestId_already_processed.request.body.RequestID}",
+					"StatusCode": "609",
+					"Description": "RequestId already processed",
+					"DetailedSummary": {
+					}
+				}
+			}
+		},
+		{
+			"name": "Contact_Boarding_typeBoth_with_same_emailAddress_178_Your_request_has_been_processed_successfully",
+			"url": "/v1/contactboarding",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"RequestID": "REQhp${RANDOM.NUMBER:13}",
+					"ContactDetails": [
+						{
+							"ContactInformation": {
+								"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+								"BusinessXpressID": "",
+								"CompanyName": "Sue${RANDOM.STRING:6}",
+								"CompanyNickName": "",
+								"ReferenceCode": "${$.Contact_Boarding_with_typeSupplier__valid_Data_000_Your_request_has_been_processed_successfully.response.body.DetailedSummary[0].ReferenceCode}",
+								"ContactPersonName": "Sue${RANDOM.STRING:6}",
+								"CompanyEmailAddress": "${$.Contact_Boarding_with_typeSupplier__valid_Data_000_Your_request_has_been_processed_successfully.request.body.ContactDetails[0].ContactInformation.CompanyEmailAddress}",
+								"CountryCode": "SGP",
+								"ISDCode": "+65",
+								"MobileNumber": "80${RANDOM.NUMBER:6}",
+								"CompanyWebsite": "www.dsbl.com",
+								"CompanyDescription": "fin tech company",
+								"ContactType": "Both"
+							},
+							"BankAccountDetails": {
+								"AccountHolderName": "Sue${RANDOM.STRING:6}",
+								"AccountNo": "${RANDOM.NUMBER:10}",
+								"CurrencyCode": "SGD",
+								"RoutingNumber": "",
+								"BICCode": "DBSSSGSG",
+								"BranchCity": "yishun",
+								"CountryCode": "SGP"
+							}
+						}
+					]
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Contact_Boarding_typeBoth_with_same_emailAddress_178_Your_request_has_been_processed_successfully.request.body.RequestID}",
+					"StatusCode": "178",
+					"Description": "Invalid Input Parameter(s)",
+					"DetailedSummary": [
+						{
+							"Status": "327",
+							"Message": "Company email address already registered.",
+							"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+							"ReferenceCode": "${$.Contact_Boarding_with_typeSupplier__valid_Data_000_Your_request_has_been_processed_successfully.response.body.DetailedSummary[0].ReferenceCode}",
+							"ContactXpressID": ""
+						}
+					]
+				}
+			}
+		},
+		{
+			"name": "Contact_Boarding_with_withoutRequestID_609_Empty_Invalid_RequestId",
+			"url": "/v1/contactboarding",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"ContactDetails": [
+						{
+							"ContactInformation": {
+								"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+								"BusinessXpressID": "",
+								"CompanyName": "Sue${RANDOM.STRING:6}",
+								"CompanyNickName": "",
+								"ReferenceCode": "Sue${RANDOM.NUMBER:6}",
+								"ContactPersonName": "Sue${RANDOM.STRING:6}",
+								"CompanyEmailAddress": "sue${RANDOM.NUMBER:6}@yopmail.com",
+								"CountryCode": "SGP",
+								"ISDCode": "+65",
+								"MobileNumber": "80${RANDOM.NUMBER:6}",
+								"CompanyWebsite": "www.dsbl.com",
+								"CompanyDescription": "fin tech company",
+								"ContactType": "Supplier"
+							},
+							"BankAccountDetails": {
+								"AccountHolderName": "Sue${RANDOM.STRING:6}",
+								"AccountNo": "${RANDOM.NUMBER:10}",
+								"CurrencyCode": "SGD",
+								"RoutingNumber": "",
+								"BICCode": "DBSSSGSG",
+								"BranchCity": "yishun",
+								"CountryCode": "SGP"
+							}
+						}
+					]
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": null,
+					"StatusCode": "609",
+					"Description": "Empty/Invalid RequestId",
+					"DetailedSummary": {
+					}
+				}
+			}
+		},
+		{
+			"name": "Contact_Boarding_with_blankRequestID_609_Empty_Invalid_RequestId",
+			"url": "/v1/contactboarding",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"RequestID": "",
+					"ContactDetails": [
+						{
+							"ContactInformation": {
+								"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+								"BusinessXpressID": "",
+								"CompanyName": "Sue${RANDOM.STRING:6}",
+								"CompanyNickName": "",
+								"ReferenceCode": "Sue${RANDOM.NUMBER:6}",
+								"ContactPersonName": "Sue${RANDOM.STRING:6}",
+								"CompanyEmailAddress": "sue${RANDOM.NUMBER:6}@yopmail.com",
+								"CountryCode": "SGP",
+								"ISDCode": "+65",
+								"MobileNumber": "80${RANDOM.NUMBER:6}",
+								"CompanyWebsite": "www.dsbl.com",
+								"CompanyDescription": "fin tech company",
+								"ContactType": "Supplier"
+							},
+							"BankAccountDetails": {
+								"AccountHolderName": "Sue${RANDOM.STRING:6}",
+								"AccountNo": "${RANDOM.NUMBER:10}",
+								"CurrencyCode": "SGD",
+								"RoutingNumber": "",
+								"BICCode": "DBSSSGSG",
+								"BranchCity": "yishun",
+								"CountryCode": "SGP"
+							}
+						}
+					]
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "",
+					"StatusCode": "609",
+					"Description": "Empty/Invalid RequestId",
+					"DetailedSummary": {
+					}
+				}
+			}
+		},
+		{
+			"name": "Contact_Boarding_with_requestIdMoreThan30_178_Empty_Invalid_RequestId",
+			"url": "/v1/contactboarding",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"RequestID": "REQhp${RANDOM.NUMBER:19}${RANDOM.NUMBER:13}",
+					"ContactDetails": [
+						{
+							"ContactInformation": {
+								"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+								"BusinessXpressID": "",
+								"CompanyName": "Sue${RANDOM.STRING:6}",
+								"CompanyNickName": "",
+								"ReferenceCode": "Sue${RANDOM.NUMBER:6}",
+								"ContactPersonName": "Sue${RANDOM.STRING:6}",
+								"CompanyEmailAddress": "sue${RANDOM.NUMBER:6}@yopmail.com",
+								"CountryCode": "SGP",
+								"ISDCode": "+65",
+								"MobileNumber": "80${RANDOM.NUMBER:6}",
+								"CompanyWebsite": "www.dsbl.com",
+								"CompanyDescription": "fin tech company",
+								"ContactType": "Supplier"
+							},
+							"BankAccountDetails": {
+								"AccountHolderName": "Sue${RANDOM.STRING:6}",
+								"AccountNo": "${RANDOM.NUMBER:10}",
+								"CurrencyCode": "SGD",
+								"RoutingNumber": "",
+								"BICCode": "DBSSSGSG",
+								"BranchCity": "yishun",
+								"CountryCode": "SGP"
+							}
+						}
+					]
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Contact_Boarding_with_requestIdMoreThan30_178_Empty_Invalid_RequestId.request.body.RequestID}",
+					"StatusCode": "178",
+					"Description": "Invalid Input Parameter(s)",
+					"DetailedSummary": [
+						{
+							"Status": "609",
+							"Message": "Empty/Invalid RequestID"
+						}
+					]
+				}
+			}
+		},
+		{
+			"name": "Contact_Boarding_with_requestID30__valid_Data_000_Your_request_has_been_processed_successfully",
+			"url": "/v1/contactboarding",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"RequestID": "${RANDOM.NUMBER:15}${RANDOM.NUMBER:15}",
+					"ContactDetails": [
+						{
+							"ContactInformation": {
+								"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+								"BusinessXpressID": "",
+								"CompanyName": "Sue${RANDOM.STRING:6}",
+								"CompanyNickName": "",
+								"ReferenceCode": "Sue${RANDOM.NUMBER:6}",
+								"ContactPersonName": "Sue${RANDOM.STRING:6}",
+								"CompanyEmailAddress": "sue${RANDOM.NUMBER:6}@yopmail.com",
+								"CountryCode": "SGP",
+								"ISDCode": "+65",
+								"MobileNumber": "80${RANDOM.NUMBER:6}",
+								"CompanyWebsite": "www.dsbl.com",
+								"CompanyDescription": "fin tech company",
+								"ContactType": "Supplier"
+							},
+							"BankAccountDetails": {
+								"AccountHolderName": "Sue${RANDOM.STRING:6}",
+								"AccountNo": "${RANDOM.NUMBER:10}",
+								"CurrencyCode": "SGD",
+								"RoutingNumber": "",
+								"BICCode": "DBSSSGSG",
+								"BranchCity": "yishun",
+								"CountryCode": "SGP"
+							}
+						}
+					]
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Contact_Boarding_with_requestID30__valid_Data_000_Your_request_has_been_processed_successfully.request.body.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": [
+						{
+							"ReferenceCode": "${$.Contact_Boarding_with_requestID30__valid_Data_000_Your_request_has_been_processed_successfully.request.body.ContactDetails[0].ContactInformation.ReferenceCode}",
+							"ContactXpressID": "$NOT.NULL",
+							"Status": "300",
+							"Message": "Contact added successfully",
+							"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+							"BusinessXpressID": ""
+						}
+					]
+				}
+			}
+		},
+		{
+			"name": "Contact_Boarding_with_withoutContactInformationNode_178_Empty_Invalid_Contact_Information_Node",
+			"url": "/v1/contactboarding",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"RequestID": "${RANDOM.NUMBER:15}${RANDOM.NUMBER:15}",
+					"ContactDetails": [
+						{
+							"BankAccountDetails": {
+								"AccountHolderName": "Sue${RANDOM.STRING:6}",
+								"AccountNo": "${RANDOM.NUMBER:10}",
+								"CurrencyCode": "SGD",
+								"RoutingNumber": "",
+								"BICCode": "DBSSSGSG",
+								"BranchCity": "yishun",
+								"CountryCode": "SGP"
+							}
+						}
+					]
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Contact_Boarding_with_withoutContactInformationNode_178_Empty_Invalid_Contact_Information_Node.request.body.RequestID}",
+					"StatusCode": "178",
+					"Description": "Invalid Input Parameter(s)",
+					"DetailedSummary": [
+						{
+							"Status": "337",
+							"Message": "Empty/Invalid Contact Information Node"
+						}
+					]
+				}
+			}
+		}
+	]
+}

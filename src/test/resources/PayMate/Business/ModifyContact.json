@@ -1,0 +1,480 @@
+{
+	"scenarioName": "PayMate Contact Onboarding Flow ",
+	"ignoreStepFailures": true,
+	"steps": [
+		{
+			"name": "Create_Business_boarding_1",
+			"url": "/v1/Businessboarding",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "REQhp${RANDOM.NUMBER:13}",
+						"BusinessInfo": {
+							"BusinessRegistrationNo": "${BusinessRegistrationNo}",
+							"BusinessName": "vaibhavi${RANDOM.NUMBER:8}",
+							"BusinessCode": "vaibhavi${RANDOM.NUMBER:8}",
+							"ContactPersonName": "vaibhavi Walker${RANDOM.STRING:6}",
+							"BusinessEmailAddress": "vaibhavi${RANDOM.NUMBER.FIXED:6}@yopmail.com",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}${RANDOM.NUMBER:6}",
+							"BusinessDescription": "Gift products ecommerce site which has been created for Paul Walker",
+							"WebsiteAddress": "www.tata${RANDOM.NUMBER:6}.com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						},
+						"TransactionCharges": [
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"ProgramCode": "ABC123"
+							},
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"ProgramCode": "ABC123"
+							}
+						]
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Create_Business_boarding_1.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": {
+						"BusinessXpressID": "$NOT.NULL",
+						"BusinessCode": "${$.Create_Business_boarding_1.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"Status": "291",
+						"Message": "KYC Under Review"
+					}
+				}
+			}
+		},
+		{
+			"name": "Contact_Boarding_with_valid_Data_2",
+			"url": "/v1/contactboarding",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"RequestID": "REQhp${RANDOM.NUMBER:13}",
+					"ContactDetails": [
+						{
+							"ContactInformation": {
+								"BusinessCode": "${$.Create_Business_boarding_1.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+								"BusinessXpressID": "",
+								"CompanyName": "LG${RANDOM.STRING:6}",
+								"CompanyNickName": "",
+								"ReferenceCode": "LG${RANDOM.NUMBER:6}",
+								"ContactPersonName": "LG${RANDOM.STRING:6}",
+								"CompanyEmailAddress": "LG${RANDOM.NUMBER:6}@yopmail.com",
+								"CountryCode": "SGP",
+								"ISDCode": "${ISDCode}",
+								"MobileNumber": "80${RANDOM.NUMBER:6}",
+								"CompanyWebsite": "www.dsbl.com",
+								"CompanyDescription": "fin tech company",
+								"ContactType": "Supplier"
+							},
+							"BankAccountDetails": {
+								"AccountHolderName": "LG${RANDOM.STRING:6}",
+								"AccountNo": "${RANDOM.NUMBER:10}",
+								"CurrencyCode": "SGD",
+								"RoutingNumber": "",
+								"BICCode": "DBSSSGSG",
+								"BranchCity": "yishun",
+								"CountryCode": "SGP"
+							}
+						}
+					]
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Contact_Boarding_with_valid_Data_2.request.body.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": [
+						{
+							"ReferenceCode": "${$.Contact_Boarding_with_valid_Data_2.request.body.ContactDetails[0].ContactInformation.ReferenceCode}",
+							"ContactXpressID": "$NOT.NULL",
+							"Status": "300",
+							"Message": "Contact added successfully",
+							"BusinessCode": "${$.Create_Business_boarding_1.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+							"BusinessXpressID": ""
+						}
+					]
+				}
+			}
+		},
+		{
+			"name": "Contact_with_Blank_without_ContactXpressId_and_Reference_Code_3",
+			"url": "/v1/modifycontact",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"RequestID": "REQhp${RANDOM.NUMBER:13}",
+					"BusinessCode": "${$.Create_Business_boarding_1.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+					"BusinessXpressID": "${$.Create_Business_boarding_1.response.body.DetailedSummary.BusinessXpressID}",
+					"ContactDetails": [
+						{
+							"ContactInformation": {
+								"ContactXpressId": "",
+								"ReferenceCode": "",
+								"CompanyName": "LG${RANDOM.STRING:6}",
+								"ContactPersonName": "LG${RANDOM.STRING:6}",
+								"CompanyEmailAddress": "LG${RANDOM.NUMBER:6}@yopmail.com",
+								"CountryCode": "SGP",
+								"ISDCode": "${ISDCode}",
+								"MobileNumber": "80${RANDOM.NUMBER:6}",
+								"NotificationEmailAddress": "LG${RANDOM.NUMBER:6}@yopmail.com",
+								"CompanyWebsite": "www.mgonee1.com",
+								"CompanyDescription": "xnbcnxzvcnzvbcnb",
+								"ContactType": "Supplier"
+							},
+							"BankAccountDetails": {
+								"AccountHolderName": "LG${RANDOM.STRING:6}",
+								"AccountNo": "${RANDOM.NUMBER:10}",
+								"CurrencyCode": "SGD",
+								"RoutingNumber": "",
+								"BICCode": "DBSSSGSG",
+								"BranchCity": "yishun",
+								"CountryCode": "SGP"
+							}
+						}
+					]
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Contact_with_Blank_without_ContactXpressId_and_Reference_Code_3.request.body.RequestID}",
+					"StatusCode": "178",
+					"Description": "Invalid Input Parameter(s)",
+					"DetailedSummary": [
+						{
+							"BusinessCode": "${$.Create_Business_boarding_1.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+							"BusinessXpressID": "$NOT.NULL",
+							"ReferenceCode": "",
+							"ContactXpressID": "",
+							"Status": "614",
+							"Message": "Either Reference code or Contact XpressId is mandatory"
+						}
+					]
+				}
+			}
+		},
+		{
+			"name": "Contact_with_Blank_Request_ID_4",
+			"url": "/v1/modifycontact",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"RequestID": "",
+					"BusinessCode": "${$.Create_Business_boarding_1.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+					"BusinessXpressID": "${$.Create_Business_boarding_1.response.body.DetailedSummary.BusinessXpressID}",
+					"ContactDetails": [
+						{
+							"ContactInformation": {
+								"ContactXpressId": "AAAA0065P3",
+								"ReferenceCode": "LG284176",
+								"CompanyName": "LG${RANDOM.STRING:6}",
+								"ContactPersonName": "LG${RANDOM.STRING:6}",
+								"CompanyEmailAddress": "LG${RANDOM.NUMBER:6}@yopmail.com",
+								"CountryCode": "SGP",
+								"ISDCode": "${ISDCode}",
+								"MobileNumber": "80${RANDOM.NUMBER:6}",
+								"NotificationEmailAddress": "LG${RANDOM.NUMBER:6}@yopmail.com",
+								"CompanyWebsite": "www.mgonee1.com",
+								"CompanyDescription": "xnbcnxzvcnzvbcnb",
+								"ContactType": "Supplier"
+							},
+							"BankAccountDetails": {
+								"AccountHolderName": "LG${RANDOM.STRING:6}",
+								"AccountNo": "${RANDOM.NUMBER:10}",
+								"CurrencyCode": "SGD",
+								"RoutingNumber": "",
+								"BICCode": "DBSSSGSG",
+								"BranchCity": "yishun",
+								"CountryCode": "SGP"
+							}
+						}
+					]
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "",
+					"StatusCode": "609",
+					"Description": "Empty/Invalid RequestId",
+					"DetailedSummary": [
+						{
+						}
+					]
+				}
+			}
+		},
+		{
+			"name": "Contact_without_Request_ID_5",
+			"url": "/v1/modifycontact",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessCode": "${$.Create_Business_boarding_1.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+					"BusinessXpressID": "${$.Create_Business_boarding_1.response.body.DetailedSummary.BusinessXpressID}",
+					"ContactDetails": [
+						{
+							"ContactInformation": {
+								"ContactXpressId": "AAAA0065P3",
+								"ReferenceCode": "LG284176",
+								"CompanyName": "LG${RANDOM.STRING:6}",
+								"ContactPersonName": "LG${RANDOM.STRING:6}",
+								"CompanyEmailAddress": "LG${RANDOM.NUMBER:6}@yopmail.com",
+								"CountryCode": "SGP",
+								"ISDCode": "${ISDCode}",
+								"MobileNumber": "80${RANDOM.NUMBER:6}",
+								"NotificationEmailAddress": "LG${RANDOM.NUMBER:6}@yopmail.com",
+								"CompanyWebsite": "www.mgonee1.com",
+								"CompanyDescription": "xnbcnxzvcnzvbcnb",
+								"ContactType": "Supplier"
+							},
+							"BankAccountDetails": {
+								"AccountHolderName": "LG${RANDOM.STRING:6}",
+								"AccountNo": "${RANDOM.NUMBER:10}",
+								"CurrencyCode": "SGD",
+								"RoutingNumber": "",
+								"BICCode": "DBSSSGSG",
+								"BranchCity": "yishun",
+								"CountryCode": "SGP"
+							}
+						}
+					]
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "$NULL",
+					"StatusCode": "609",
+					"Description": "Empty/Invalid RequestId",
+					"DetailedSummary": [
+						{
+						}
+					]
+				}
+			}
+		},
+		{
+			"name": "Contact_modify_with_valid_data_6",
+			"url": "/v1/modifycontact",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"RequestID": "REQhp${RANDOM.NUMBER:13}",
+					"BusinessCode": "${$.Create_Business_boarding_1.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+					"BusinessXpressID": "${$.Create_Business_boarding_1.response.body.DetailedSummary.BusinessXpressID}",
+					"ContactDetails": [
+						{
+							"ContactInformation": {
+								"ContactXpressId": "${$.Contact_Boarding_with_valid_Data_2.response.body.DetailedSummary[0].ContactXpressID}",
+								"ReferenceCode": "${$.Contact_Boarding_with_valid_Data_2.request.body.ContactDetails[0].ContactInformation.ReferenceCode}",
+								"CompanyName": "LGupdated${RANDOM.STRING:6}",
+								"ContactPersonName": "LGupdated${RANDOM.STRING:6}",
+								"CompanyEmailAddress": "LGupdated${RANDOM.NUMBER:6}@yopmail.com",
+								"CountryCode": "SGP",
+								"ISDCode": "${ISDCode}",
+								"MobileNumber": "80${RANDOM.NUMBER:6}",
+								"NotificationEmailAddress": "LGupdated${RANDOM.NUMBER:6}@yopmail.com",
+								"CompanyWebsite": "www.mgonee1.com",
+								"CompanyDescription": "xnbcnxzvcnzvbcnb",
+								"ContactType": "Supplier"
+							},
+							"BankAccountDetails": {
+								"AccountHolderName": "LG${RANDOM.STRING:6}",
+								"AccountNo": "${RANDOM.NUMBER:10}",
+								"CurrencyCode": "SGD",
+								"RoutingNumber": "",
+								"BICCode": "DBSSSGSG",
+								"BranchCity": "yishun",
+								"CountryCode": "SGP"
+							}
+						}
+					]
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Contact_modify_with_valid_data_6.request.body.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": [
+						{
+							"Status": "300",
+							"Message": "Contact modified successfully",
+							"BusinessCode": "${$.Create_Business_boarding_1.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+							"BusinessXpressID": "${$.Create_Business_boarding_1.response.body.DetailedSummary.BusinessXpressID}",
+							"ReferenceCode": "${$.Contact_Boarding_with_valid_Data_2.request.body.ContactDetails[0].ContactInformation.ReferenceCode}",
+							"ContactXpressID": "${$.Contact_Boarding_with_valid_Data_2.response.body.DetailedSummary[0].ContactXpressID}"
+						}
+					]
+				}
+			}
+		}
+	]
+}

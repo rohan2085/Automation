@@ -167,6 +167,379 @@
 					]
 				}
 			}
+		},
+		{
+			"name": "Onboard_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review",
+			"url": "/v1/Businessboarding",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessDetails": {
+						"RequestID": "NIK0${RANDOM.NUMBER:13}",
+						"BusinessInfo": {
+							"BusinessRegistrationNo": "${RANDOM.NUMBER:9}R",
+							"BusinessName": "Nik Enterprises${RANDOM.NUMBER:8}",
+							"BusinessCode": "NIKKE${RANDOM.NUMBER:8}",
+							"ContactPersonName": "Solipuram Nikhil${RANDOM.STRING:6}",
+							"BusinessEmailAddress": "sngnik${RANDOM.NUMBER.FIXED:6}@yopmail.com",
+							"ISDCode": "${ISDCode}",
+							"MobileNumber": "${MobileNumber}${RANDOM.NUMBER:6}",
+							"BusinessDescription": "Gift products ecommerce site which has been created for Paul Walker",
+							"WebsiteAddress": "www.nikcommunications${RANDOM.NUMBER:6}.com",
+							"BusinessISOCountryCode": "${BusinessISOCountryCode}",
+							"ContactKYCRequired": "Y"
+						},
+						"TransactionCharges": [
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"ProgramCode": "ABC123"
+							},
+							{
+								"ServiceType": "Payments",
+								"PaymentMode": "CreditCard",
+								"ProcessingRate": "2.00",
+								"ProgramCode": "ABC123"
+							}
+						]
+					}
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Onboard_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": {
+						"BusinessXpressID": "$NOT.NULL",
+						"BusinessCode": "${$.Onboard_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+						"Status": "291",
+						"Message": "KYC Under Review"
+					}
+				}
+			}
+		},
+		{
+			"name": "Filter_business_with_Valid_Data_000_Your_request_has_been_processed_successfully_290_KYC_Pending",
+			"url": "/v1/managebusiness",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"RequestID": "Reqm${RANDOM.NUMBER:13}",
+					"BusinessCode": "${$.Onboard_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+					"BusinessXpressID": "${$.Onboard_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.response.body.DetailedSummary.BusinessXpressID}",
+					"FromDate": "${LOCAL.DATETIME.NOW:dd-MM-yyyy}",
+					"ToDate": "${LOCAL.DATETIME.NOW:dd-MM-yyyy}",
+					"PaginationIndex": "1",
+					"RecordsPerPage": "10"
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Filter_business_with_Valid_Data_000_Your_request_has_been_processed_successfully_290_KYC_Pending.request.body.RequestID}",
+					"StatusCode": "000",
+					"Description": "Your request has been processed successfully",
+					"DetailedSummary": [
+						{
+							"BusinessDetails": {
+								"BusinessName": "${$.Onboard_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.BusinessInfo.BusinessName}",
+								"BusinessCode": "${$.Onboard_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+								"ContactPersonName": "${$.Onboard_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.BusinessInfo.ContactPersonName}",
+								"BusinessEmailAddress": "${$.Onboard_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.BusinessInfo.BusinessEmailAddress}",
+								"ISDCode": "${$.Onboard_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.BusinessInfo.ISDCode}",
+								"MobileNumber": "${$.Onboard_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.BusinessInfo.MobileNumber}",
+								"WebsiteAddress": "${$.Onboard_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.BusinessInfo.WebsiteAddress}",
+								"BusinessDescription": "${$.Onboard_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.BusinessInfo.BusinessDescription}",
+								"ContactKYCRequired": "${$.Onboard_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.BusinessInfo.ContactKYCRequired}",
+								"BusinessStatus": "299",
+								"StatusRemark": "Business Registered",
+								"RegistrationDate": "${LOCAL.DATETIME.NOW:dd/MM/yyyy}",
+								"BusinessXpressID": "${$.Onboard_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.response.body.DetailedSummary.BusinessXpressID}",
+								"XpressAccountNo": null,
+								"XpressAccountBalance": 0
+							},
+							"TransactionCharges": [
+								{
+									"ServiceType": "Send Money",
+									"PaymentMode": "Credit Card",
+									"ProcessingRate": 2,
+									"IssuerCode": null
+								}
+							],
+							"TermsConditions": {
+								"AcceptedBy": "${$.Onboard_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.BusinessInfo.BusinessEmailAddress}",
+								"AcceptanceDateTime": "$NOT.NULL",
+								"BusinessIPAddress": "$NOT.NULL"
+							},
+							"KYCDetails": {
+								"BusinessNature": null,
+								"StatusCode": 290,
+								"KYCStatus": "KYC Pending"
+							}
+						}
+					]
+				}
+			}
+		},
+		{
+			"name": "Filter_Manage_Business_With_Optional_Fields_000_Your_request_has_been_processed_successfully",
+			"url": "/v1/managebusiness",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"RequestID": "",
+					"BusinessCode": "${$.Onboard_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+					"BusinessXpressID": "${$.Onboard_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.response.body.DetailedSummary.BusinessXpressID}",
+					"FromDate": "${LOCAL.DATETIME.NOW:dd-MM-yyyy}",
+					"ToDate": "${LOCAL.DATETIME.NOW:dd-MM-yyyy}",
+					"PaginationIndex": "1",
+					"RecordsPerPage": "10"
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Filter_Manage_Business_With_Optional_Fields_000_Your_request_has_been_processed_successfully.request.body.RequestID}",
+					"StatusCode": "609",
+					"Description": "Empty/Invalid RequestId",
+					"DetailedSummary": {
+					}
+				}
+			}
+		},
+		{
+			"name": "Filter_Manage_Business_Without_RequestID_Parameter_000_Your_request_has_been_processed_successfully",
+			"url": "/v1/managebusiness",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"BusinessCode": "${$.Onboard_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+					"BusinessXpressID": "${$.Onboard_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.response.body.DetailedSummary.BusinessXpressID}",
+					"FromDate": "${LOCAL.DATETIME.NOW:dd-MM-yyyy}",
+					"ToDate": "${LOCAL.DATETIME.NOW:dd-MM-yyyy}",
+					"PaginationIndex": "1",
+					"RecordsPerPage": "10"
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": null,
+					"StatusCode": "609",
+					"Description": "Empty/Invalid RequestId",
+					"DetailedSummary": {
+					}
+				}
+			}
+		},
+		{
+			"name": "Filter_Manage_Business_With_Invalid_RequestID_Parameter_000_Your_request_has_been_processed_successfully",
+			"url": "/v1/managebusiness",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"RequestID": "NIK${RANDOM.NUMBER:13}${RANDOM.NUMBER:19}",
+					"BusinessCode": "${$.Onboard_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+					"BusinessXpressID": "${$.Onboard_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.response.body.DetailedSummary.BusinessXpressID}",
+					"FromDate": "${LOCAL.DATETIME.NOW:dd-MM-yyyy}",
+					"ToDate": "${LOCAL.DATETIME.NOW:dd-MM-yyyy}",
+					"PaginationIndex": "1",
+					"RecordsPerPage": "10"
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Filter_Manage_Business_With_Invalid_RequestID_Parameter_000_Your_request_has_been_processed_successfully.request.body.RequestID}",
+					"StatusCode": "178",
+					"Description": "Invalid Input Parameter(s)",
+					"DetailedSummary": {
+						"BusinessXpressID": "${$.Filter_Manage_Business_With_Invalid_RequestID_Parameter_000_Your_request_has_been_processed_successfully.response.body.DetailedSummary.BusinessXpressID}",
+						"BusinessCode": "${$.Filter_Manage_Business_With_Invalid_RequestID_Parameter_000_Your_request_has_been_processed_successfully.request.body.BusinessCode}",
+						"Status": "609",
+						"Message": "Empty/Invalid RequestID"
+					}
+				}
+			}
+		},
+		{
+			"name": "Filter_Manage_Business_With_Blank_RequestID_Parameter_000_Your_request_has_been_processed_successfully",
+			"url": "/v1/managebusiness",
+			"operation": "POST",
+			"request": {
+				"headers": {
+					"MerchantId": "${MerchandId-TOKEN}",
+					"TerminalId": "${TerminalId-TOKEN}",
+					"XpressId": "${XpressId-TOKEN}"
+				},
+				"body": {
+					"RequestID": "",
+					"BusinessCode": "${$.Onboard_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
+					"BusinessXpressID": "${$.Onboard_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.response.body.DetailedSummary.BusinessXpressID}",
+					"FromDate": "${LOCAL.DATETIME.NOW:dd-MM-yyyy}",
+					"ToDate": "${LOCAL.DATETIME.NOW:dd-MM-yyyy}",
+					"PaginationIndex": "1",
+					"RecordsPerPage": "10"
+				}
+			},
+			"assertions": {
+				"status": 200,
+				"headers": {
+					"Date": [
+						"$MATCHES.STRING:\\w{3}, \\d{2} \\w{3} \\d{4} \\d{2}(:\\d{2}){2} \\w{3}"
+					],
+					"Server": [
+						"Webserver"
+					],
+					"Transfer-Encoding": [
+						"chunked"
+					],
+					"X-Frame-Options": [
+						"DENY"
+					],
+					"Content-Type": [
+						"text/plain; charset=utf-8"
+					],
+					"Strict-Transport-Security": [
+						"max-age=31536000"
+					]
+				},
+				"body": {
+					"RequestID": "${$.Filter_Manage_Business_With_Blank_RequestID_Parameter_000_Your_request_has_been_processed_successfully.request.body.RequestID}",
+					"StatusCode": "609",
+					"Description": "Empty/Invalid RequestId",
+					"DetailedSummary": {
+					}
+				}
+			}
 		}
 	]
 }
