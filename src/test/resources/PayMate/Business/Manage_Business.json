@@ -138,8 +138,8 @@
 								"WebsiteAddress": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.BusinessInfo.WebsiteAddress}",
 								"BusinessDescription": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.BusinessInfo.BusinessDescription}",
 								"ContactKYCRequired": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.request.body.BusinessDetails.BusinessInfo.ContactKYCRequired}",
-								"BusinessStatus": "299",
-								"StatusRemark": "Business Registered",
+								"BusinessStatus": "200",
+								"StatusRemark": "Business Active",
 								"RegistrationDate": "${LOCAL.DATETIME.NOW:dd/MM/yyyy}",
 								"BusinessXpressID": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review.response.body.DetailedSummary.BusinessXpressID}",
 								"XpressAccountNo": null,
@@ -159,9 +159,9 @@
 								"BusinessIPAddress": "$NOT.NULL"
 							},
 							"KYCDetails": {
-								"BusinessNature": null,
-								"StatusCode": 290,
-								"KYCStatus": "KYC Pending"
+								"BusinessNature": "Private company",
+								"StatusCode": 295,
+								"KYCStatus": "Kyc verified"
 							}
 						}
 					]

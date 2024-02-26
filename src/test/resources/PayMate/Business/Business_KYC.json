@@ -73,8 +73,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Businessboarding_Verify_API_only_with_mandatory_field.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "291",
-						"Message": "KYC Under Review"
+						"Status": "290",
+						"Message": "KYC pending"
 					}
 				}
 			}

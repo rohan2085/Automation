@@ -986,8 +986,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review_when_BusinessRegistrationNo_is_blank_empty.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "291",
-						"Message": "KYC Under Review"
+						"Status": "290",
+						"Message": "KYC pending"
 					}
 				}
 			}
@@ -1219,8 +1219,8 @@
 					"DetailedSummary": {
 						"BusinessXpressID": "$NOT.NULL",
 						"BusinessCode": "${$.Create_Business_boarding_with_valid_data_000_Your_request_has_been_processed_successfully_291_KYC_Under_Review_when_BusinessRegistrationNo_removed_parameter_from_request.request.body.BusinessDetails.BusinessInfo.BusinessCode}",
-						"Status": "291",
-						"Message": "KYC Under Review"
+						"Status": "290",
+						"Message": "KYC pending"
 					}
 				}
 			}
